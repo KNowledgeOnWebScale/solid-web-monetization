@@ -22,3 +22,7 @@ All progress will happen publicly via this repository.
 4. Documentation and tutorials for Solid users to configure a Web Monetization wallet
 5. Documentation and tutorials for application developers to monetize their application
 6. Dissemination of the main results and findings of this project
+
+
+## Solid-Accountant (Outcome 1)
+The solid accountant app can be found under its respective [folder](./solid-accountant).
