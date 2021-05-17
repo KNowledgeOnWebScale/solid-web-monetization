@@ -1,18 +1,17 @@
-# Getting Started with Create React App
+# Solid Accountant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**General Rules**
+
+* Typescript is enabled, use `.tsx` for React Components
+* Scss is enabled, allows customizing bootstrap theme and using scss variables where appropriate.
+* Start live development with `npm start` in the `solid-accountant` folder
 
 ## Dependencies (worth noting)
 
 * [React Bootstrap](https://react-bootstrap.github.io/)
 * [React Router](https://reactrouter.com/web/guides/quick-start)
 
-Sass integration is on, so you can use scss stylesheets.
-
-** General Rules **
-* Typescript is enabled, use `.tsx` for React Components
-* Scss is enabled, allows customizing bootstrap theme and using scss variables where appropriate.
-* Start live development with `npm start` in the `solid-accountant` folder
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
