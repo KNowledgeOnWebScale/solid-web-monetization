@@ -12,6 +12,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     
     steps:
     - name: Checkout code
@@ -23,12 +26,15 @@ jobs:
         node-version: 13.x
     
     - name: Install NPM packages
+      working-directory: ./solid-accountant
       run: npm ci
     
     - name: Build project
+      working-directory: ./solid-accountant
       run: npm run build
     
     - name: Run tests
+      working-directory: ./solid-accountant
       run: npm run test
 
     - name: Upload production-ready build files
