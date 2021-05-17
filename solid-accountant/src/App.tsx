@@ -19,7 +19,7 @@ import MyNav from "./MyNav";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <MyNav />
 
       <Switch>
