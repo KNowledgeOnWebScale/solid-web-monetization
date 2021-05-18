@@ -10,7 +10,7 @@ import MyNav from "./MyNav";
 
 export default function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename="/solid-web-monetization">
       <MyNav />
 
       <Switch>
