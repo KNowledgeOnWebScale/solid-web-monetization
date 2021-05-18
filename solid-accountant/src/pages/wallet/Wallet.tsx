@@ -6,17 +6,16 @@ import "./Wallet.scss";
 import Profile from "../../components/Profile";
 
 
-function FetchProfile(session: any) {
-    const datasetUri = session?.info?.webId;
-    console.log(datasetUri);
-    const { dataset, error } = useDataset(datasetUri);
-    if (error) return <div>Failed to load profile</div>;
-    if (!dataset) return <div>loading...</div>;
-    return <Profile profileDataset={dataset} />;
-}
-
 export default function Wallet(): ReactElement {
     const { session } = useSession();
+    const datasetUri = session?.info?.webId;
+    const { dataset, error } = useDataset(datasetUri);
+
+    const FetchProfile = () => {
+        if (error) return <div>Failed to load profile</div>;
+        if (!dataset) return <div>loading...</div>;
+        return <Profile profileDataset={dataset} />;
+    }
 
     const WalletInfo = () => {
         if (!session.info.isLoggedIn) {
@@ -28,7 +27,7 @@ export default function Wallet(): ReactElement {
         } else {
             return (
                 <Col>
-                    {FetchProfile(session)}
+                    {FetchProfile()}
                 </Col>
             )
         }

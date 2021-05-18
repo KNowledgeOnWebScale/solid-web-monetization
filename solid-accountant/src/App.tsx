@@ -16,11 +16,12 @@ export default function App() {
   const { session } = useSession();
 
   session.onSessionRestore((url) => {
-    console.log(url);
+
   })
 
   useEffect(() => {
-    session.handleIncomingRedirect({ restorePreviousSession: true }).then(info => console.log(info));
+    session.handleIncomingRedirect({ restorePreviousSession: true })
+    // .then(info => console.log(info));
   }, [session]);
 
   return (
