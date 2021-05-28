@@ -3,29 +3,19 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
+import { SessionProvider } from "@inrupt/solid-ui-react";
 import MyNav from "./MyNav";
 
 import "./App.scss";
-import { useEffect } from "react";
 import { Home } from "./pages/home/Home";
 import Wallet from "./pages/wallet/Wallet";
 import { About } from "./pages/about/About";
 
 export default function App() {
-  const { session } = useSession();
-
-  session.onSessionRestore((url) => {
-
-  })
-
-  useEffect(() => {
-    session.handleIncomingRedirect({ restorePreviousSession: true })
-    // .then(info => console.log(info));
-  }, [session]);
+  // const { session } = useSession();
 
   return (
-    <SessionProvider sessionId="solid-web-monetization">
+    <SessionProvider sessionId="solid-web-monetization" restorePreviousSession={true}>
       <Router basename="/solid-web-monetization">
         <MyNav />
 
