@@ -7,7 +7,7 @@ export class About extends React.Component {
 
     render() {
         return (
-            <Container fluid>
+            <Container fluid="lg">
                 <Row className="pt-3">
                     <Col>
                         <h5>About us</h5>

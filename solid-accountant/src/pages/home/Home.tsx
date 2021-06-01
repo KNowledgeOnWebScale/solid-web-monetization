@@ -8,7 +8,7 @@ export class Home extends React.Component {
 
     render() {
         return (
-            <Container fluid>
+            <Container fluid="lg">
                 <Row className="pt-3">
                     <Col>
                         <h5>Solid Accountant</h5>

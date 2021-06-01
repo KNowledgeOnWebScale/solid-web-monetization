@@ -34,7 +34,7 @@ export default function Wallet(): ReactElement {
     }
 
     return (
-        <Container fluid>
+        <Container fluid="lg">
             <Row className="pt-3">
                 <Col>
                     <h5>Profile</h5>

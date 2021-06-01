@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
-import { LoginButton, LogoutButton, useSession } from "@inrupt/solid-ui-react";
+import { LogoutButton, useSession } from "@inrupt/solid-ui-react";
 import "./MyNav.scss";
 
 export default function MyNav() {
@@ -9,17 +9,9 @@ export default function MyNav() {
     const history = useHistory();
     const onLogout = () => history.go(0);
     const renderAuthBtn = (session: any) => {
-        const onError = (err: Error) => console.log(err);
-        const oidcIssuer = 'https://inrupt.net';
         if (!session.info.isLoggedIn) {
             return (
-                <LoginButton
-                    oidcIssuer={oidcIssuer}
-                    redirectUrl={window.location.href}
-                    onError={onError}
-                >
-                    <Button variant="outline-light">Log In</Button>
-                </LoginButton>
+                <Button variant="outline-light" as={NavLink} to="/auth">Log in</Button>
             )
         } else {
             return (
@@ -32,12 +24,14 @@ export default function MyNav() {
     return (
         <div>
             <Navbar bg="primary" variant="dark">
-                <Navbar.Brand as={NavLink} to="/">Solid Accountant</Navbar.Brand>
-                <Nav className="mr-auto">
-                    <NavLink to="/wallet" className="nav-link">Wallet</NavLink>
-                    <NavLink to="/about" className="nav-link">About</NavLink>
-                </Nav>
-                {renderAuthBtn(session)}
+                <Container fluid="lg">
+                    <Navbar.Brand as={NavLink} to="/">Solid Accountant</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <NavLink to="/wallet" className="nav-link">Wallet</NavLink>
+                        <NavLink to="/about" className="nav-link">About</NavLink>
+                    </Nav>
+                    {renderAuthBtn(session)}
+                </Container>
             </Navbar>
         </div>
     )
