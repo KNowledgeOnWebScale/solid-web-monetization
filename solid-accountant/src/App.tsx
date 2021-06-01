@@ -1,8 +1,7 @@
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
-  HashRouter,
 } from "react-router-dom";
 import { SessionProvider } from "@inrupt/solid-ui-react";
 import MyNav from "./MyNav";
@@ -19,7 +18,7 @@ export default function App() {
 
   return (
     <SessionProvider sessionId="solid-web-monetization" restorePreviousSession={true}>
-      <HashRouter hashType="noslash">
+      <Router hashType="noslash">
         <MyNav />
 
         <Switch>
@@ -29,7 +28,7 @@ export default function App() {
           <Route path="/auth" component={Auth} />
         </Switch>
 
-      </HashRouter>
+      </Router>
     </SessionProvider>
   );
 }
