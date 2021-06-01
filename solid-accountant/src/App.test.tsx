@@ -1,15 +1,19 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { HashRouter as Router } from 'react-router-dom';
 import App from './App';
 
-test('renders navigation', () => {
-    const { container } = render(<App />);
-    const home = container.querySelector('a[href*="#"]');
-    const wallet = container.querySelector('a[href*="#wallet" i]');
-    const about = container.querySelector('a[href*="#about" i]');
-    const auth = container.querySelector('a[href*="#auth" i]');
-    expect(home).toBeInTheDocument();
-    expect(wallet).toBeInTheDocument();
-    expect(about).toBeInTheDocument();
-    expect(auth).toBeInTheDocument();
+test('renders navigation', async () => {
+    const { findByText, findByDisplayValue} = render(
+        <Router hashType="noslash">
+            <App />
+        </Router>
+    );
+
+    expect(await findByText(/wallet/i, {selector: 'a'})).toBeInTheDocument();
+    expect(await findByText(/about/i, {selector: 'a'})).toBeInTheDocument();
+    expect(await findByText(/Log in/i, {selector: 'a'})).toBeInTheDocument();
+    expect(await findByText(/solid accountant/i, {selector: 'a'})).toBeInTheDocument();
+    
+    // })
 });
