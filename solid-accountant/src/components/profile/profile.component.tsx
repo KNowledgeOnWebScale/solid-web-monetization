@@ -1,9 +1,12 @@
-import { ReactElement } from "react";
+import React from "react";
 
+export interface ProfileProps {
+    profileDataset: any;
+}
 
-export default function Profile(props:any): ReactElement {
+export const Profile: React.FC<ProfileProps> = (props) => {
     const { profileDataset } = props;
-    
+
     return (
         <div>
             <pre>

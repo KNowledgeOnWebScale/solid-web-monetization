@@ -1,24 +1,31 @@
 import {
-  HashRouter as Router,
   Switch,
   Route,
+  useHistory,
 } from "react-router-dom";
 import { SessionProvider } from "@inrupt/solid-ui-react";
-import MyNav from "./MyNav";
+import { MyNav } from "./components/my-nav/my-nav.component";
+
+import { Wallet } from "./pages/wallet/wallet.component";
+import { Auth } from "./pages/auth/auth.component";
+import { Home } from "./pages/home/home.component";
+import { About } from "./pages/about/about.component";
 
 import "./App.scss";
-import Wallet from "./pages/wallet/Wallet";
-import Auth from "./pages/auth/Auth";
-import { Home } from "./pages/home/Home";
-import { About } from "./pages/about/About";
-
 
 export default function App() {
-  // const { session } = useSession();
+  const history = useHistory();
+  const onSessionRestore = (url: string) => {
+    const hash = url.indexOf('#');
+    if (hash > -1) {
+      history.push(url.substr(hash));
+    } else {
+      history.push('#');
+    }
+  }
 
   return (
-    <SessionProvider sessionId="solid-web-monetization" restorePreviousSession={true}>
-      <Router hashType="noslash">
+      <SessionProvider sessionId="solid-web-monetization" restorePreviousSession={true} onSessionRestore={onSessionRestore}>
         <MyNav />
 
         <Switch>
@@ -27,8 +34,7 @@ export default function App() {
           <Route path="/about" component={About} />
           <Route path="/auth" component={Auth} />
         </Switch>
-
-      </Router>
-    </SessionProvider>
+        
+      </SessionProvider>
   );
 }

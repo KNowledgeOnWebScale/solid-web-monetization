@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import AuthProvider, { AuthProviderProps } from "../../components/AuthProvider";
+import { AuthProvider, AuthProviderProps } from "../../components/auth-provider/auth-provider.component";
 
-import "./Auth.scss";
+import "./auth.component.scss";
 
 import inruptLogo from './logos/inrupt.png'
 import solidLogo from './logos/solid.svg'
@@ -20,7 +20,7 @@ const providers: AuthProviderProps[] = [
     }
 ]
 
-export default function Auth(): ReactElement {
+export const Auth: React.FC = () => {
 
     return (
         <Container fluid="lg">
@@ -33,8 +33,8 @@ export default function Auth(): ReactElement {
             <Row className="pt-2">
                 <Col>
                     <div className="providers">
-                        {providers.map(p => {
-                            return <AuthProvider {...p} />
+                        {providers.map((p,idx) => {
+                            return <AuthProvider {...p} key={'auth-'+idx} />
                         })}
                     </div>
                 </Col>

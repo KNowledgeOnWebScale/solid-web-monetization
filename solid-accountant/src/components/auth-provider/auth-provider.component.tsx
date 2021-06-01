@@ -1,24 +1,27 @@
 import { LoginButton } from "@inrupt/solid-ui-react";
-import { ReactElement } from "react";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-import "./AuthProvider.scss";
+import "./auth-provider.component.scss";
 
-export default function AuthProvider(props: AuthProviderProps): ReactElement {
+export const AuthProvider: React.FC<AuthProviderProps> = (props) => {
     const onError = console.error;
+    let url = window.location.href;
+    if (url.endsWith('#auth')) {
+        url = url.split('#')[0];
+    }
 
     return (
+
         <LoginButton
             oidcIssuer={props.url}
             redirectUrl={window.location.href}
             onError={onError}
         >
-
-            <OverlayTrigger placement="top" overlay={
-                <Tooltip id="overlay-example" {...props}>
+            <OverlayTrigger placement="top" key={props?.url} overlay={
+                <Tooltip id={props?.url}>
                     {props?.label}
-                    </Tooltip>
+                </Tooltip>
             }>
                 <div className="auth-provider">
                     <div className="logo"><img src={props?.imgUrl} alt="Provider logo"></img></div>

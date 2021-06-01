@@ -1,12 +1,12 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { useSession, useDataset, } from "@inrupt/solid-ui-react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Profile } from "../../components/profile/profile.component";
 
-import "./Wallet.scss";
-import Profile from "../../components/Profile";
+import "./wallet.component.scss";
 
 
-export default function Wallet(): ReactElement {
+export const Wallet: React.FC = () => {
     const { session } = useSession();
     const datasetUri = session?.info?.webId;
     const { dataset, error } = useDataset(datasetUri);

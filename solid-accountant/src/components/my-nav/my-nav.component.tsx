@@ -2,9 +2,10 @@ import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 import { LogoutButton, useSession } from "@inrupt/solid-ui-react";
-import "./MyNav.scss";
 
-export default function MyNav() {
+import "./my-nav.component.scss";
+
+export const MyNav: React.FC = () => {
     const { session } = useSession();
     const history = useHistory();
     const onLogout = () => history.go(0);
