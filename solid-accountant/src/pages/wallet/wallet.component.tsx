@@ -1,7 +1,8 @@
-import { createThing, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, saveSolidDatasetAt, setNamedNode, setStringNoLocale, setThing, SolidDataset, ThingPersisted } from "@inrupt/solid-client";
+import { addIri, addNamedNode, addStringNoLocale, addTerm, addUrl, createSolidDataset, createThing, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, saveSolidDatasetAt, saveSolidDatasetInContainer, setNamedNode, setStringNoLocale, setTerm, setThing, setUrl, SolidDataset, ThingPersisted } from "@inrupt/solid-client";
+import { addRdfJsQuadToDataset } from "@inrupt/solid-client/dist/rdf.internal";
 import { useSession } from "@inrupt/solid-ui-react";
-import { FOAF } from "@inrupt/vocab-common-rdf";
-import { DataFactory } from "n3";
+import { FOAF, RDF, RDFS} from "@inrupt/vocab-common-rdf";
+import { BlankNode, DataFactory, Quad } from "n3";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -29,16 +30,34 @@ export const Wallet: React.FC = () => {
     const onSubmit = handleSubmit(data => {
         // a -> http://www.w3.org/1999/02/22-rdf-syntax-ns#type
 
-
+        const webId = session.info!.webId!;
+        const myBlank = DataFactory.blankNode();
 
         // Build 2 quads
-        let meThing = getThing(dataset!, session.info.webId!)
-        meThing = setNamedNode(meThing!, paymentPointersProp, DataFactory.namedNode(ILPP));
-        let ilppThing = createThing({url: ILPP});
-        ilppThing = setStringNoLocale(ilppThing, ppValue, data?.paymentPointer);
-        let ds = setThing(dataset!, ilppThing)
-        ds = setThing(ds!, meThing);
-        return saveSolidDatasetAt(session.info.webId!, ds!, { fetch: session.fetch }).then(setDataset)
+        // let meThing = getThing(dataset!, session.info.webId!)
+        // meThing = setTerm(meThing!, paymentPointersProp, myBlank);
+        // let ilppThing = createThing({url: ILPP});
+        // ilppThing = setStringNoLocale(ilppThing, ppValue, data?.paymentPointer);
+        // let ds = setThing(dataset!, ilppThing)
+        // ds = setThing(ds!, meThing);
+
+        let ds = dataset!;
+        console.log(RDF.type)
+        let ppThing = createThing({name: myBlank.value});
+        ppThing = setUrl(ppThing, RDF.type, DataFactory.namedNode(ILPP));
+        ppThing = setStringNoLocale(ppThing, DataFactory.namedNode(ppValue), data.paymentPointer);
+        ds = setThing(ds, ppThing);
+        let meThing = getThing(ds, webId)!;
+        meThing = setTerm(meThing, DataFactory.namedNode(paymentPointersProp), myBlank);
+        // ds = addRdfJsQuadToDataset(ds, DataFactory.quad(myBlank, RDF.type, DataFactory.namedNode(ILPP)));
+        // ds = addRdfJsQuadToDataset(ds, DataFactory.quad(myBlank, DataFactory.namedNode(ppValue), DataFactory.literal(data.paymentPointer)));
+        // ds = addRdfJsQuadToDataset(ds, DataFactory.quad(DataFactory.namedNode(webId), DataFactory.namedNode(paymentPointersProp), myBlank));
+        // setDataset(ds);
+        ds = setThing(ds, meThing);
+
+
+        return saveSolidDatasetAt(webId, ds!, {fetch: session.fetch}).then(setDataset);
+        // return saveSolidDatasetAt(session.info.webId!, ds, { fetch: session.fetch }).then(setDataset)
 
         // setUrl(dataset, "#pointer", paymentPointersPrefix );
 
