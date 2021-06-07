@@ -1,11 +1,12 @@
-import { addLiteral, addStringNoLocale, createThing, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, saveSolidDatasetAt, setNamedNode, setThing, setUrl, SolidDataset, ThingPersisted } from "@inrupt/solid-client";
-import { useSession } from "@inrupt/solid-ui-react";
+import { addLiteral, addNamedNode, addStringNoLocale, createThing, getNamedNode, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, removeNamedNode, saveSolidDatasetAt, setNamedNode, setStringNoLocale, setThing, setUrl, SolidDataset, ThingPersisted } from "@inrupt/solid-client";
+import { useSession, } from "@inrupt/solid-ui-react";
 import { FOAF } from "@inrupt/vocab-common-rdf";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Profile } from "../../components/profile/profile.component";
 import "./wallet.component.scss";
+import { DataFactory, NamedNode } from "n3";
 
 
 type Inputs = {
@@ -15,24 +16,29 @@ type Inputs = {
 export const Wallet: React.FC = () => {
     const { session, sessionRequestInProgress } = useSession();
     const paymentPointersProp = 'https://paymentpointers.org/ns#hasPaymentPointer';
-    const paymentPointersPrefix = 'https://paymentpointers.org/ns#pay';
+    const ILPP = 'https://paymentpointers.org/ns#InterledgerPaymentPointer';
+    const ppValue = 'https://paymentpointers.org/ns#paymentPointerValue';
 
     const [dataset, setDataset] = useState<SolidDataset | null>(null);
     const [me, setMe] = useState<ThingPersisted | null>(null);
     const [paymentPointers, setPaymentPointers] = useState<any>(null);
-    
+
 
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-    const onSubmit= handleSubmit(data => {
+    const onSubmit = handleSubmit(data => {
         // a -> http://www.w3.org/1999/02/22-rdf-syntax-ns#type
 
 
 
         // Build 2 quads
-        const ppThing = createThing({ url: paymentPointersProp })
-        setDataset(setThing(dataset as SolidDataset, ppThing));
-        return saveSolidDatasetAt(session.info.webId as string, dataset as SolidDataset, { fetch: session.fetch })
+        let meThing = getThing(dataset!, session.info.webId!)
+        meThing = setNamedNode(meThing!, paymentPointersProp, DataFactory.namedNode(ILPP));
+        let ilppThing = createThing({url: ILPP});
+        ilppThing = setStringNoLocale(ilppThing, ppValue, data?.paymentPointer);
+        let ds = setThing(dataset!, ilppThing)
+        ds = setThing(ds!, meThing);
+        return saveSolidDatasetAt(session.info.webId!, ds!, { fetch: session.fetch }).then(setDataset)
 
         // setUrl(dataset, "#pointer", paymentPointersPrefix );
 
@@ -65,10 +71,10 @@ export const Wallet: React.FC = () => {
         }
 
         fetchThing();
-    }, [session?.info?.webId, ]);
+    }, [session?.info?.webId,]);
 
     const addNewPaymentPointer = () => {
-        if (paymentPointers?.length === 0) {
+        // if (paymentPointers?.length === 0) {
             return (
                 <div>
                     <h6>Add a new payment pointer</h6>
@@ -88,7 +94,7 @@ export const Wallet: React.FC = () => {
                     </Form>
                 </div>
             );
-        }
+        // }
     }
 
     function Page() {
