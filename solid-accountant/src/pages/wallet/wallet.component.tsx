@@ -1,12 +1,12 @@
-import { addLiteral, addNamedNode, addStringNoLocale, createThing, getNamedNode, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, removeNamedNode, saveSolidDatasetAt, setNamedNode, setStringNoLocale, setThing, setUrl, SolidDataset, ThingPersisted } from "@inrupt/solid-client";
-import { useSession, } from "@inrupt/solid-ui-react";
+import { createThing, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, saveSolidDatasetAt, setNamedNode, setStringNoLocale, setThing, SolidDataset, ThingPersisted } from "@inrupt/solid-client";
+import { useSession } from "@inrupt/solid-ui-react";
 import { FOAF } from "@inrupt/vocab-common-rdf";
+import { DataFactory } from "n3";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Profile } from "../../components/profile/profile.component";
 import "./wallet.component.scss";
-import { DataFactory, NamedNode } from "n3";
 
 
 type Inputs = {
