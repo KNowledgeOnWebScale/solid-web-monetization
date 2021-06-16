@@ -1,0 +1,15 @@
+<div class="row pt-3">
+    <div class="col">
+        <h5>Log in</h5>
+        <div class="description">Select an auth provider to log in</div>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col">
+        <div class="providers">
+            <div *ngFor="let p of providers">
+                <app-login-btn [provider]="p"></app-login-btn>
+            </div>
+        </div>
+    </div>
+</div>
