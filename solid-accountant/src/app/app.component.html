@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+  <div class="container-lg">
+    <a class="navbar-brand" routerLink="/">Solid Accountant</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="wallet">Wallet</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="about">About</a>
+        </li>
+      </ul>
+      <ng-container *ngIf="loggedIn; then logoutTpl else loginTpl"></ng-container>
+      <ng-template #loginTpl>
+        <a class="btn btn-outline-light" routerLink="auth">Log in</a>
+      </ng-template>
+      <ng-template #logoutTpl>
+        <button class="btn btn-outline-light" (click)="logout()">Log out</button>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+<div class="container-lg">
+  <router-outlet></router-outlet>
+</div>

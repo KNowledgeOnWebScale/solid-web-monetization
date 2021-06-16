@@ -1,0 +1,18 @@
+.description {
+    color: #666;
+}
+
+.providers {
+    display: grid;
+    width: clamp(162px, 75vw, 500px);
+    // margin: 0 auto;
+    justify-items: left;
+    justify-content: left;
+    align-items: center;
+
+    grid-template-columns: auto auto;
+    grid-auto-rows: auto;
+
+    row-gap: 20px;
+    column-gap: 10px;
+}
