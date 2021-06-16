@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "solid-ng-accountant": {
+    "solid-accountant": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/solid-ng-accountant",
+            "outputPath": "dist/solid-accountant",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,7 +54,8 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "@inrupt/solid-client-authn-browser"
+              "@inrupt/solid-client-authn-browser",
+              "readable-stream"
             ]
           },
           "configurations": {
@@ -90,18 +91,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "solid-ng-accountant:build"
+            "browserTarget": "solid-accountant:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "solid-ng-accountant:build:production"
+              "browserTarget": "solid-accountant:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "solid-ng-accountant:build"
+            "browserTarget": "solid-accountant:build"
           }
         },
         "test": {
@@ -138,16 +139,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "solid-ng-accountant:serve"
+            "devServerTarget": "solid-accountant:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "solid-ng-accountant:serve:production"
+              "devServerTarget": "solid-accountant:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "solid-ng-accountant"
+  "defaultProject": "solid-accountant"
 }

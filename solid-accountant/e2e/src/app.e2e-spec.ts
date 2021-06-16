@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('solid-ng-accountant app is running!');
+    expect(await page.getTitleText()).toEqual('solid-accountant app is running!');
   });
 
   afterEach(async () => {

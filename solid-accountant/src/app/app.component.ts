@@ -10,7 +10,7 @@ import * as solidAuth from '@inrupt/solid-client-authn-browser';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'solid-ng-accountant';
+  title = 'solid-accountant';
   loggedIn: boolean = false;
 
   constructor(private router: Router, private ngZone: NgZone) {
@@ -25,7 +25,10 @@ export class AppComponent implements OnInit {
     });
 
     solidAuth.onSessionRestore(url => {
-      const path = new URL(url).pathname;
+      let path = '/';
+      if (url.indexOf('#') > -1) {
+        path = url.split('#')[1];
+      }
       this.ngZone.run(() => {
         this.router.navigate([path]);
       });
@@ -33,6 +36,6 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    solidAuth.logout().then(_ => window.location.href=window.location.origin);
+    solidAuth.logout().then(_ => window.location.href = window.location.origin);
   }
 }

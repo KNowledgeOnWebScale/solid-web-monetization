@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/solid-ng-accountant'),
+      dir: require('path').join(__dirname, './coverage/solid-accountant'),
       subdir: '.',
       reporters: [
         { type: 'html' },
