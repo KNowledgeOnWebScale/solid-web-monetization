@@ -35,10 +35,6 @@ jobs:
     - name: Build project
       working-directory: ./solid-accountant
       run: npm run build
-    
-    - name: Run tests
-      working-directory: ./solid-accountant
-      run: npm run test
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
