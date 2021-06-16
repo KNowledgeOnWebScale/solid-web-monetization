@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/solid-accountant",
+            "outputPath": "dist",
             "index": "src/index.html",
             "baseHref": "/solid-web-monetization/",
             "main": "src/main.ts",
