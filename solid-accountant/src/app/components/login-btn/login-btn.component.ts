@@ -18,7 +18,7 @@ export class LoginBtnComponent implements OnInit {
   }
 
   login() {
-    solidAuth.login({oidcIssuer: this.provider.url, redirectUrl: window.location.origin});
+    solidAuth.login({oidcIssuer: this.provider.url, redirectUrl: window.location.href});
   }
 
 }

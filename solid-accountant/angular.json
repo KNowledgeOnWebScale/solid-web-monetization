@@ -41,6 +41,7 @@
           "options": {
             "outputPath": "dist/solid-accountant",
             "index": "src/index.html",
+            "baseHref": "/solid-accountant/",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
