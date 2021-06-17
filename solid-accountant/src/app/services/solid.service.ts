@@ -9,7 +9,7 @@ const { namedNode, blankNode, literal, quad, defaultGraph, triple, variable } = 
 const PP = {
   hasPaymentPointer: namedNode("https://paymentpointers.org/ns#hasPaymentPointer"),
   paymentPointerValue: namedNode("https://paymentpointers.org/ns#paymentPointerValue"),
-  InterledgerPaymentPointer: namedNode('pp:InterledgerPaymentPointer'),
+  InterledgerPaymentPointer: namedNode('https://paymentpointers.org/ns#InterledgerPaymentPointer'),
   PREFIX: 'https://paymentpointers.org/ns#'
 }
 
@@ -69,9 +69,10 @@ export class SolidService {
   }
 
   getMaker(): Observable<N3.NamedNode> {
-    let me = this.store.getSubjects(RDF.type, FOAF.person, defaultGraph())
-      .filter(sub => this.store.getQuads(sub, FOAF.maker, sub, defaultGraph()).length > 0)
-      .filter(sub => this.store.getQuads(sub, FOAF.primaryTopic, sub, defaultGraph()).length > 0);
+    let me = this.store.getSubjects(RDF.type, FOAF.Person, defaultGraph())
+    // .filter(sub => this.store.getQuads(sub, FOAF.maker, sub, defaultGraph()).length > 0)
+    // .filter(sub => this.store.getQuads(sub, FOAF.primaryTopic, sub, defaultGraph()).length > 0);
+    console.log('me', me)
     if (me.length > 0) {
       return of(me[0] as N3.NamedNode);
     } else {
@@ -83,22 +84,9 @@ export class SolidService {
   loadAsTurtle(): Observable<string> {
     return this.getMaker().pipe(
       switchMap(me => new Observable<string>(sub => {
-        // Create writer
         this.writer = new N3.Writer({ format: 'text/turtle', prefixes: this.prefixes });
-        // this.writer.addPrefix('pp', namedNode('https://paymentpointers.org/ns#'));
-
-        // Query lists
-        // this.generateUniquePaymentPointerNode();
-
         const quads = this.store.getQuads(null, null, null, null);
-        // this.writer.addPrefix('', '#');
-        // quads.forEach(quad => {
-        //   console.log('quad', quad);
-        //   this.analyseBlankNodes(quad.subject, "subject");
-        //   this.analyseBlankNodes(quad.subject, "object");
-        // })
         this.writer.addQuads(quads);
-        // this.addPaymentPointer('$my.test.org', this.writer, me);
         this.writer.end((err, res) => {
           if (err) {
             sub.error(err);
@@ -245,6 +233,7 @@ export class SolidService {
 
   addPointer(pointer: string): Observable<Response> {
     return this.getMaker().pipe(
+      tap(me => console.log('me now', me)),
       map(me => this.makePatch(me, [pointer], null)),
       switchMap(body => from(this.fetch(this.webId, {
         method: 'PATCH',
@@ -298,12 +287,14 @@ export class SolidService {
     }
 
     //TODO: This works!!
-    let patch = `PREFIX pp: <${PP.PREFIX}>\n`;
+    // let patch = `PREFIX pp: <${PP.PREFIX}>\n`;
+    let patch = '';
+    console.log('me in patch', me);
     if (addPointers?.length > 0) {
       addPointers.forEach(pointer => {
         const pointerRef = this.generateUniquePaymentPointerNode();
-        patch += `INSERT DATA { ${t(me)} ${t(PP.hasPaymentPointer)} ${t(pointerRef)} };`;
         patch += `INSERT DATA {`
+        patch += `  ${t(me)} ${t(PP.hasPaymentPointer)} ${t(pointerRef)}.`;
         patch += `  ${t(pointerRef)} ${t(RDF.type)} ${t(PP.InterledgerPaymentPointer)};`
         patch += `  ${t(PP.paymentPointerValue)} "${pointer}".`
         patch += `}`
@@ -312,12 +303,12 @@ export class SolidService {
     if (delPointers?.length > 0) {
       delPointers.forEach(pointer => {
         const pointerRef = pointer.pointerRef;
-        patch += `DELETE DATA { ${t(me)} ${t(PP.hasPaymentPointer)} ${t(pointerRef)} };`;
         patch += `DELETE DATA {`
+        patch += `  ${t(me)} ${t(PP.hasPaymentPointer)} ${t(pointerRef)}.`;
         patch += `  ${t(pointerRef)} ${t(RDF.type)} ${t(PP.InterledgerPaymentPointer)};`
         patch += `  ${t(PP.paymentPointerValue)} "${pointer.pointerValue}".`
         patch += `}`
-      })
+      });
     }
     return patch;
   }

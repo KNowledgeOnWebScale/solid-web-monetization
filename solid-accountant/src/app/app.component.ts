@@ -36,6 +36,6 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    solidAuth.logout().then(_ => window.location.href = window.location.origin);
+    solidAuth.logout().then(_ => window.location.reload());
   }
 }

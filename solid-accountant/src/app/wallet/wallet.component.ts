@@ -59,6 +59,7 @@ export class WalletComponent implements OnInit {
         console.log('reloading turtle')
         this.turtle = txt;
         this.solid.listPaymentPointers().subscribe(pps => {
+          console.log(pps)
           this.pps = pps;
         })
       });
