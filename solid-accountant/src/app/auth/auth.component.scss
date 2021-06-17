@@ -4,15 +4,17 @@
 
 .providers {
     display: grid;
-    width: clamp(162px, 75vw, 500px);
+    width: calc(320px + 10px);
     // margin: 0 auto;
     justify-items: left;
     justify-content: left;
     align-items: center;
 
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-auto-rows: auto;
 
-    row-gap: 20px;
+    row-gap: 10px;
     column-gap: 10px;
+
+    
 }

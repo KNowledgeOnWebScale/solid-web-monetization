@@ -19,3 +19,20 @@
         }
     }
 }
+
+.auth-provider.custom {
+    width: calc(320px + 10px);
+
+    .logo {
+        padding-top: 5px;
+    }
+
+    .oidcProvider {
+        padding: 5px 0 10px;
+        width: calc(100% - 30px);
+
+        input {
+            width: 100%;;
+        }
+    }
+}

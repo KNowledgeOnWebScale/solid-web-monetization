@@ -1,0 +1,48 @@
+<div class="row pt-3">
+    <div class="col">
+        <h5>My Payment Pointers</h5>
+        <div class="text-muted">Add and remove payment pointers to your WebID</div>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col">
+        <form class="form" (submit)="addPointer()" [formGroup]="ppForm">
+            <table class="table table-sm table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="col">Payment pointer</th>
+                        <th class="col-auto text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pp of pps">
+                        <td class="pp">{{pp}}</td>
+                        <td class="text-center"><button class="btn btn-xs btn-block btn-outline-danger" type="button"
+                                (click)="removePointer(pp)">delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control form-control-xs" placeholder="$my.paymentpointer.org"
+                                formControlName="paymentPointerValue">
+                                
+                            </td>
+                            <td class="text-center">
+                                <button type="submit" class="btn btn-xs btn-block btn-primary" [disabled]="ppForm.invalid">Add</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="errors" *ngIf="ppv?.errors">
+                    <div class="text-danger" *ngIf="ppv.errors.required && ppv.touched">A payment pointer cannot be empty</div>
+                    <div class="text-danger" *ngIf="ppv.errors.pattern">A payment pointer must start with a $ followed by characters of [a-zA-Z0-9.-_]</div>
+                </div>
+        </form>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col">
+        <h6>My WebID <span *ngIf="webId"><small>({{webId}})</small></span></h6>
+        <div class="profile"*ngIf="rawTurtle">{{rawTurtle}}</div>
+    </div>
+</div>

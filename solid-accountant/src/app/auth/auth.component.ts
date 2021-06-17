@@ -8,21 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class AuthComponent implements OnInit {
   readonly providers: AuthProviderProps[] = [
     {
-        url: 'https://inrupt.net',
-        imgUrl: './assets/logos/inrupt.png',
-        label: 'inrupt.net'
+      url: 'https://inrupt.net',
+      imgUrl: './assets/logos/inrupt.png',
+      label: 'inrupt.net'
     },
     {
-        url: 'https://solidcommunity.net/',
-        imgUrl: './assets/logos/solid.svg',
-        label: 'solidcommunity.net'
-    },
-    {
-      url: 'http://localhost:3000/',
+      url: 'https://solidcommunity.net',
       imgUrl: './assets/logos/solid.svg',
-      label: 'Local Solid Docker'
-  }
-]
+      label: 'solidcommunity.net'
+    },
+    {
+      url: 'http://localhost:3000',
+      imgUrl: './assets/logos/solid.svg',
+      label: 'Custom Solid Identity Provider',
+      custom: true
+    }
+  ]
 
   constructor() { }
 
@@ -35,4 +36,5 @@ export interface AuthProviderProps {
   url: string;
   imgUrl: string;
   label?: string;
+  custom?: boolean;
 }

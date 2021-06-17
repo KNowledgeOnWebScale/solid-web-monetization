@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthProviderProps } from 'src/app/auth/auth.component';
 import * as solidAuth from '@inrupt/solid-client-authn-browser';
-// import {  } from '@inrupt/solid-client';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-btn',
@@ -10,11 +10,22 @@ import * as solidAuth from '@inrupt/solid-client-authn-browser';
 })
 export class LoginBtnComponent implements OnInit {
   @Input() provider: AuthProviderProps;
+  @Input() custom: boolean = false;
 
-  constructor() { }
+  authForm: FormGroup;
+
+  constructor(fb: FormBuilder) {
+    this.authForm = fb.group({
+      oidcProvider: ['http://localhost:3000', Validators.required]
+    });
+   }
 
   ngOnInit(): void {
-
+    if (this.custom) {
+      this.authForm.reset({
+        oidcProvider: this.provider.url
+      });
+    }
   }
 
   login() {

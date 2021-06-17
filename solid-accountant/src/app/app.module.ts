@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { WalletComponent } from './wallet/wallet.component';
+import { PaymentPointersComponent } from './pp/payment-pointers.component';
 import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginBtnComponent } from './components/login-btn/login-btn.component';
@@ -16,7 +16,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   declarations: [
     AppComponent,
     HomeComponent,
-    WalletComponent,
+    PaymentPointersComponent,
     AboutComponent,
     AuthComponent,
     LoginBtnComponent,

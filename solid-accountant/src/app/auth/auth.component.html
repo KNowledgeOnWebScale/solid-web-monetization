@@ -8,7 +8,7 @@
     <div class="col">
         <div class="providers">
             <div *ngFor="let p of providers">
-                <app-login-btn [provider]="p"></app-login-btn>
+                <app-login-btn [provider]="p" [custom]="p?.custom"></app-login-btn>
             </div>
         </div>
     </div>

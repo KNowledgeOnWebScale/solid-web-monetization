@@ -17,11 +17,11 @@ const PP = {
   providedIn: 'root'
 })
 export class SolidService {
-  readonly parser = new N3.Parser();
-  private writer = new N3.Writer({ format: 'text/turtle' });
+  readonly parser = new N3.Parser({ format: 'text/turtle' });
+  private writer = new N3.Writer({ format: 'application/sparql-update' });
   private store = new N3.Store();
   private prefixes: Record<string, N3.NamedNode<string>> = {};
-  private myQuads = [];
+  rawTurtle: string | null = null;
 
   constructor() { }
 
@@ -57,22 +57,19 @@ export class SolidService {
           arr.push(quad);
         } else {
           this.prefixes = prefixes;
-          this.myQuads = arr;
           sub.next();
           sub.complete();
         }
       };
       this.fetch(this.profileCard).then(res => res.text().then(txt => {
+        this.rawTurtle = txt;
         new N3.Parser({ baseIRI: this.webId, format: 'text/turtle', }).parse(txt, cb)
       }));
     });
   }
 
   getMaker(): Observable<N3.NamedNode> {
-    let me = this.store.getSubjects(RDF.type, FOAF.Person, defaultGraph())
-    // .filter(sub => this.store.getQuads(sub, FOAF.maker, sub, defaultGraph()).length > 0)
-    // .filter(sub => this.store.getQuads(sub, FOAF.primaryTopic, sub, defaultGraph()).length > 0);
-    console.log('me', me)
+    let me = this.store.getSubjects(RDF.type, FOAF.Person, defaultGraph());
     if (me.length > 0) {
       return of(me[0] as N3.NamedNode);
     } else {
@@ -115,19 +112,6 @@ export class SolidService {
     );
   }
 
-  addPaymentPointer2(pointer: string): Observable<Response> {
-    const patch = (me: N3.NamedNode) => this.makePatch(me, [pointer], null);
-    return this.getMaker().pipe(
-      switchMap(me => from(this.fetch(this.webId, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/sparql-update'
-        },
-        body: patch(me),
-      })))
-    );
-  }
-
   private generateUniquePaymentPointerNode(): N3.NamedNode {
     const prefix = '#me-paymentpointer-';
     const PATTERN = /#me-paymentpointer-(\d+)/;
@@ -142,10 +126,8 @@ export class SolidService {
     return namedNode(`${prefix}${idx + 1}`);
   }
 
-  getProfileAsText(): Observable<string> {
-    return defer(() => this.fetch(this.profileCard)).pipe(
-      switchMap(res => from(res.text())),
-    );
+  getProfileAsText(): string {
+    return this.rawTurtle;
   }
 
   restore(): Observable<Response> {
@@ -201,7 +183,7 @@ export class SolidService {
       foaf:name "Thomas".  
   `;
 
-  saveTextTurtle(turtleTxt: string): Observable<Response> {
+  private saveTextTurtle(turtleTxt: string): Observable<Response> {
     return defer(() => this.fetch(this.webId, {
       method: 'put',
       headers: {
@@ -211,29 +193,10 @@ export class SolidService {
     }));
   }
 
-  saveProfile(quads: N3.Quad[], mock = false): Observable<Response> {
-    return new Observable(sub => {
-      this.writer.addQuads(quads);
-      this.writer.end((err, result) => {
-        if (!mock) {
-          this.fetch(this.getSession().info.webId, {
-            method: 'put', body: result, headers: {
-              "Content-Type": "text/turtle"
-            }
-          }).then(response => {
-            sub.next(response);
-            sub.complete();
-          });
-        } else {
-          console.log(result);
-        }
-      })
-    });
-  }
+
 
   addPointer(pointer: string): Observable<Response> {
     return this.getMaker().pipe(
-      tap(me => console.log('me now', me)),
       map(me => this.makePatch(me, [pointer], null)),
       switchMap(body => from(this.fetch(this.webId, {
         method: 'PATCH',
@@ -260,17 +223,14 @@ export class SolidService {
     return this.getSession().fetch;
   }
 
-  private get webId() {
+  get webId() {
     return this.getSession().info.webId;
   }
 
   private get profileCard(): string {
-    const idx = this.webId.indexOf('#');
-    return idx > -1 ? this.webId.substring(0, idx) : this.webId;
-  }
-
-  private get baseIRI(): string {
-    return new URL(this.webId).origin + '';
+    return this.webId;
+    // const idx = this.webId.indexOf('#');
+    // return idx > -1 ? this.webId.substring(0, idx) : this.webId;
   }
 
   private makePatch(me: N3.NamedNode, addPointers: string[] | null, delPointers: { pointerRef: N3.NamedNode, pointerValue: string }[] | null): string {
@@ -289,7 +249,6 @@ export class SolidService {
     //TODO: This works!!
     // let patch = `PREFIX pp: <${PP.PREFIX}>\n`;
     let patch = '';
-    console.log('me in patch', me);
     if (addPointers?.length > 0) {
       addPointers.forEach(pointer => {
         const pointerRef = this.generateUniquePaymentPointerNode();

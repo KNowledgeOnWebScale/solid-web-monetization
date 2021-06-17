@@ -4,3 +4,17 @@
 .pointer {
     cursor: pointer;
 }
+
+.btn.btn-xs {
+    padding: 0.15rem 0.525em;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    height: 28px;
+}
+
+.form-control.form-control-xs {
+    height: 28px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}

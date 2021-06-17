@@ -6,11 +6,11 @@ import { switchMap, switchMapTo, tap } from 'rxjs/operators';
 import { SolidService } from '../services/solid.service';
 
 @Component({
-  selector: 'app-wallet',
-  templateUrl: './wallet.component.html',
-  styleUrls: ['./wallet.component.scss']
+  selector: 'app-payment-pointers',
+  templateUrl: './payment-pointers.component.html',
+  styleUrls: ['./payment-pointers.component.scss']
 })
-export class WalletComponent implements OnInit {
+export class PaymentPointersComponent implements OnInit {
   prefixes: any;
   profile: Quad[] = [];
   pps: string[] = [];
@@ -19,7 +19,7 @@ export class WalletComponent implements OnInit {
 
   constructor(private solid: SolidService, fb: FormBuilder) {
     this.ppForm = fb.group({
-      paymentPointerValue: ['', Validators.required]
+      paymentPointerValue: ['',[Validators.required, Validators.pattern("^\\$[a-zA-Z0-9\\.\\-_]+$")]]
     });
   }
 
@@ -33,14 +33,11 @@ export class WalletComponent implements OnInit {
 
   addPointer() {
     if (this.ppForm.valid) {
-      this.solid.addPointer(this.ppForm.get('paymentPointerValue').value).subscribe(_ => this.reloadData());
+      this.solid.addPointer(this.ppForm.get('paymentPointerValue').value).subscribe(_ => {
+        this.ppForm.reset();
+        this.reloadData();
+      });
     }
-  }
-
-  save(): void {
-    this.solid.loadAsTurtle().pipe(switchMap(turtle => this.solid.saveTextTurtle(turtle))).subscribe(res => {
-      this.reloadData()
-    });
   }
 
   restore(): void {
@@ -51,17 +48,25 @@ export class WalletComponent implements OnInit {
     this.solid.restoreLocal().subscribe(_ => this.reloadData());
   }
 
+  get rawTurtle() {
+    return this.solid.rawTurtle;
+  }
+
+  get webId() {
+    return this.solid.webId;
+  }
+
+  get ppv() {
+    return this.ppForm.get('paymentPointerValue');
+  }
+
   private reloadData() {
     if (this.solid.getSession().info.isLoggedIn) {
       this.solid.loadProfile().pipe(
         switchMap(_ => this.solid.loadAsTurtle())
       ).subscribe(txt => {
-        console.log('reloading turtle')
         this.turtle = txt;
-        this.solid.listPaymentPointers().subscribe(pps => {
-          console.log(pps)
-          this.pps = pps;
-        })
+        this.solid.listPaymentPointers().subscribe(pps => this.pps = pps);
       });
     }
   }

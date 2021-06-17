@@ -1,3 +1,16 @@
-<div class="auth-provider pointer" [ngbTooltip]="provider?.label" (click)="login()">
+<div class="auth-provider" [class.pointer]="!custom" [ngbTooltip]="provider?.label" (click)="custom ? null : login()" [class.custom]="custom">
     <div class="logo"><img [src]="provider?.imgUrl" alt="Provider logo"></div>
+    <div *ngIf="custom" class="oidcProvider">
+        <form class="form" [formGroup]="authForm" (submit)="login()">
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control form-control-xs" placeholder="https://localhost:3000"
+                        formControlName="oidcProvider">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-xs btn-outline-primary">Go</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
