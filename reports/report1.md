@@ -5,6 +5,17 @@
 <!-- As a Grant for the Web grantee it is important that you update the community and the program on the progress of your work. This is a chance to brag a little, name where you might have struggled and get feedback from the Web Monetization Community. -->
 
 
+## Introduction
+
+The **Solid decentralization effort** decouples data from services, so that users are in full control over their personal data.
+Since services can not primarily depend on data collection as a primary business model anymore, alternative forms of monetization,
+such as **micropayments via Web Monetization** are essential for **incentivizing application development**.
+
+The goals of our project involve **enabling the monetization of Solid application**, **allowing Solid identities to be linked to Web Monetization wallets**, and **incorporating payment processing into Solid’s authentication**.
+In this first report, we share our current progress on this project.
+
+Learn more about our project here: https://github.com/KNowledgeOnWebScale/solid-web-monetization
+
 ## Image (optional)
 
 <!-- Share a project screenshot, a whiteboard doodle, or a photo of your team hard at work. -->

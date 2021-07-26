@@ -23,6 +23,9 @@ All progress will happen publicly via this repository.
 5. Documentation and tutorials for application developers to monetize their application
 6. Dissemination of the main results and findings of this project
 
+## Public reports
+
+* [Interim report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-1-4i35)
 
 ## Solid-Accountant (Outcome 1)
 The solid accountant app can be found under its respective [folder](./solid-accountant).
