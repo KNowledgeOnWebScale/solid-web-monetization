@@ -8,7 +8,7 @@
 ## Image (optional)
 
 <!-- Share a project screenshot, a whiteboard doodle, or a photo of your team hard at work. -->
-
+![solid accountant](solid-accountant.png "Solid Accountant")
 
 ## Project Update
 
@@ -73,23 +73,27 @@ The third objective was creating a prototype monetized Solid application. This i
 ## Communications and marketing
 
 <!-- How have you discussed your work in public? Please include any links to writing, interviews, podcasts, webinars, tutorials etc. If you included marketing in your budget, provide examples of how those funds were spent. -->
-N/a
+
+We are collaborating with other initiatives that combine Web Monetization with Solid on https://github.com/solid/webmonetization.
 
 
 ## What’s next?
 
 <!-- For Progress reports: What will you do during the remainder of your funded grant period? What is still left to accomplish on your timeline?   For Final reports, let us know where you’ll take your work next? -->
+
 The next milestone is of course Milestone 2. Once we have a deep enough insight into the protocols and specifications we can start the theoretical integration of the WebID and Web Monetization protocols (Task 2.3) and follow it up with the implementation. This would then immediatly get us started on Milestone 3 and its tasks.
 
 ## What community support would benefit your project?
 
 <!-- Please let readers  know if there are ways we can help problem-solve, advance your work or make connections. -->
-N/a
+
+We welcome any help and insights regarding any browser-ready JS libraries that can be used to carry out actual payments.
 
 ## Additional comments
 
 <!-- Is there something that we haven’t asked you would like to share? -->
-N/a
+N/A
 
 ## Relevant links/resources  (optional)
-N/a
+
+Learn more about our progress here: https://github.com/KNowledgeOnWebScale/solid-web-monetization/projects/1
