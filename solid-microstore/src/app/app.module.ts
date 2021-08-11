@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Example1Component } from './example1/example1.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Load solid web-monetization polyfill
 import 'solid-wm';
@@ -33,7 +34,12 @@ import 'solid-wm';
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
