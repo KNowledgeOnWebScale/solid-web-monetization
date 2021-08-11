@@ -41,7 +41,7 @@
           "options": {
             "outputPath": "dist",
             "index": "src/index.html",
-            "baseHref": "/solid-web-monetization/web/",
+            "baseHref": "/solid-web-monetization/wallet/",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
