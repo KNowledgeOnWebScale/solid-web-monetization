@@ -9,7 +9,7 @@ on:
       - master
 
 env:
-  PUBLIC_URL: /solid-web-monetization
+  PUBLIC_URL: /solid-web-monetization/store
 
 jobs:
   build:
