@@ -56,7 +56,8 @@ jobs:
         path: ./solid-microstore/dist
 
     - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./solid-microstore/dist
+        destination_dir: store
