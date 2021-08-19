@@ -11,7 +11,8 @@ export class Example1Component implements OnInit {
   constructor(private money: MonetizationService) { }
 
   ngOnInit(): void {
-    this.money.setPaymentPointer('$rafiki.money/p/thomas.dupont@ugent.be');
+    // this.money.setPaymentPointer('$rafiki.money/p/thomas.dupont@ugent.be');
+    // this.money.setPaymentPointer('$rafiki.money/p/tdupont@ugent.be');
     this.money.events.subscribe(console.log)
   }
 
