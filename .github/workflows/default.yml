@@ -73,7 +73,7 @@ jobs:
         name: microstore-production-files
         path: ./solid-microstore/dist
   
-  deploy:
+  deploy-microstore:
     name: Deploy microstore 
     needs: build
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
         publish_dir: ./solid-microstore/dist
         destination_dir: store
 
-   deploy:
+  deploy-accountant:
     name: Deploy accountant 
     needs: build
     runs-on: ubuntu-latest
