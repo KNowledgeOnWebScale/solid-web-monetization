@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Example1Component } from './example1/example1.component';
+import { MixComponent } from './mix/mix.component';
+import { PayscrollComponent } from './payscroll/payscroll.component';
+import { PaywallComponent } from './paywall/paywall.component';
 
 const routes: Routes = [
   {
-    path: 'example1',
-    component: Example1Component
+    path: 'paywall',
+    component: PaywallComponent
+  },
+  {
+    path: 'mix',
+    component: MixComponent
+  },
+  {
+    path: 'payscroll',
+    component: PayscrollComponent
   }
 ];
 

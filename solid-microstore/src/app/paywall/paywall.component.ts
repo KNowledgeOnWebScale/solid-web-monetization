@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MonetizationService } from '../monetization.service';
 
 @Component({
-  selector: 'app-example1',
-  templateUrl: './example1.component.html',
-  styleUrls: ['./example1.component.scss']
+  selector: 'app-paywall',
+  templateUrl: './paywall.component.html',
+  styleUrls: ['./paywall.component.scss']
 })
-export class Example1Component implements OnInit {
+export class PaywallComponent implements OnInit {
 
   constructor(private money: MonetizationService) { }
 

@@ -11,17 +11,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Example1Component } from './example1/example1.component';
+import { PaywallComponent } from './paywall/paywall.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Load solid web-monetization polyfill
 import 'solid-wm';
+import { PayscrollComponent } from './payscroll/payscroll.component';
+import { MixComponent } from './mix/mix.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    Example1Component
+    PaywallComponent,
+    PayscrollComponent,
+    MixComponent
   ],
   imports: [
     BrowserModule,
