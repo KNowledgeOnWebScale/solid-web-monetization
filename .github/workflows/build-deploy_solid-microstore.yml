@@ -28,13 +28,13 @@ jobs:
       with:
         node-version: 16.x
     
-    - name: Install NPM packages
+    - name: Install yarn packages
       working-directory: ./solid-microstore
-      run: npm ci
+      run: yarn
     
     - name: Build project
       working-directory: ./solid-microstore
-      run: npm run build
+      run: yarn run build
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
