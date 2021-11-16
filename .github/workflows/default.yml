@@ -14,7 +14,6 @@ env:
 jobs:  
   build-accountant:
     name: Build accountant
-    needs: checkout
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -46,7 +45,6 @@ jobs:
     
   build-microstore:
     name: Build microstore
-    needs: checkout
     runs-on: ubuntu-latest
     defaults:
       run:
