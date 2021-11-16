@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MonetizationService } from '../monetization.service';
 
 @Component({
   selector: 'app-mix',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MixComponent implements OnInit {
 
-  constructor() { }
+  constructor(private money: MonetizationService) { }
 
   ngOnInit(): void {
   }
 
+  isMonetizationAvailable(): boolean {
+    return this.money.isAvailable();
+  }
 }
