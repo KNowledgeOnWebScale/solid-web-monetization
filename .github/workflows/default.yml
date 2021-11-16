@@ -93,7 +93,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./solid-accountant/dist
-        destination_dir: store
+        destination_dir: wallet
   
   deploy-microstore:
     name: Deploy microstore 
