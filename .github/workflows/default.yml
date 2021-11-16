@@ -8,9 +8,6 @@ on:
     branches:
       - master
 
-env:
-  PUBLIC_URL: /solid-web-monetization/store
-
 jobs:  
   build-accountant:
     name: Build accountant
@@ -102,7 +99,6 @@ jobs:
     if: github.ref == 'refs/heads/master'
     env:
       PUBLIC_URL: /solid-web-monetization/store
-    
     steps:
     - name: Download artifact
       uses: actions/download-artifact@v2
