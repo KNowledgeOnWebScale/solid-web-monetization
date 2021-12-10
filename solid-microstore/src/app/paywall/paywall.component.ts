@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MonetizationService } from '../monetization.service';
 import * as SockJS from 'sockjs-client';
+import { StreamService } from '../stream.service';
 
 @Component({
   selector: 'app-paywall',
@@ -10,7 +11,10 @@ import * as SockJS from 'sockjs-client';
 export class PaywallComponent implements OnInit {
   private sock: WebSocket | null = null;
 
-  constructor(private money: MonetizationService) { }
+  constructor(
+    private money: MonetizationService,
+    private ss: StreamService
+    ) { }
 
   ngOnInit(): void {
     // this.money.setPaymentPointer('$rafiki.money/p/thomas.dupont@ugent.be');
@@ -31,6 +35,11 @@ export class PaywallComponent implements OnInit {
     this.sock.onclose = function () {
       console.log('close');
     };
+
+    this.ss.connect('test.falx', Buffer.from("blargh", "utf-8")).then(conn => {
+      const stream1 = conn.createStream();
+      stream1.setSendMax(500);
+    });
 
   }
 
