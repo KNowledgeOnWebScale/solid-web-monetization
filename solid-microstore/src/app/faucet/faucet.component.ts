@@ -11,8 +11,8 @@ import { MonetizationService } from '../monetization.service';
   styleUrls: ['./faucet.component.scss']
 })
 export class FaucetComponent implements OnInit {
-  private username1: string | null = 'user_ipall2uk';
-  private token1: string | null = '4AI3jsT25fOAK';
+  private username1: string | null = 'user_vghago9s';
+  private token1: string | null = 'mycGPhnwLz0Ua';
   private username2: string | null = 'user_11laxph0';
   private token2: string | null = 'mUkql8fBKCI7n';
 
@@ -90,6 +90,16 @@ export class FaucetComponent implements OnInit {
     this.transfer(this.user1, this.user2);
   }
 
+  transferToRafiki() {
+    const url = `https://hermes-rest.ilpv4.dev/accounts/${this.user1.name}/pay`
+    this.http.post<any>(url,
+      { amount: 10*Math.pow(10,9), destinationPaymentPointer: `$rafiki.money/p/thomas.dupont@ugent.be` },
+      { headers: { Authorization: `Bearer ${this.user1.token}` } }
+    ).subscribe(_ => {
+      this.getBalances();
+    })
+  }
+
   private transfer(from: any, to: any) {
     const url = `https://hermes-rest.ilpv4.dev/accounts/${from.name}/pay`
     this.http.post<any>(url,
@@ -99,6 +109,7 @@ export class FaucetComponent implements OnInit {
       this.getBalances();
     })
   }
+  
 
   private addFunds(user: any) {
     const url = `https://hermes-rest.ilpv4.dev/accounts/${user.name}/money`;
