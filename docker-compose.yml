@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+
+  mkdocs:
+    image: squidfunk/mkdocs-material
+    container_name: mkdocs
+    ports:
+      - 8888:8000
+    volumes:
+      - type: bind
+        source: ./.docs
+        target: /docs
+

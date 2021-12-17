@@ -1,0 +1,36 @@
+site_name: SOLID Web Monetization Docs
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: deep purple
+    accent: deep orange
+  logo: assets/solid-emblem.svg
+  favicon: assets/solid-emblem.svg
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.top
+    - search
+    - search.suggest
+
+markdown_extensions:
+  - pymdownx.betterem
+  - pymdownx.smartsymbols
+  - pymdownx.magiclink
+
+
+nav:
+  - About: index.md
+  - Accountant:
+    - accountant/index.md
+  - Microstore:
+    - microstore/index.md
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/KNowledgeOnWebScale/solid-web-monetization
