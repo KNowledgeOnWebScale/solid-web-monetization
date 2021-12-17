@@ -12,13 +12,22 @@ jobs:
   build-docs:
     name: Build docs
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_URL: /solid-web-monetization/docs
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
       - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force -f .docs/mkdocs.yml
+      - run: mkdocs build --force
+        working-directory: ./.docs
+      - name: Deploy docs to gh-pages
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.docs/site
+          destination_dir: docs
     
 
   build-accountant:
