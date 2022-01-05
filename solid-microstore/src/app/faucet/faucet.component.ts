@@ -11,11 +11,11 @@ import { MonetizationService } from '../monetization.service';
   styleUrls: ['./faucet.component.scss']
 })
 export class FaucetComponent implements OnInit {
-  private username1: string | null = 'user_vghago9s';
-  private token1: string | null = 'mycGPhnwLz0Ua';
+  private username1: string | null = 'user_loxaib7m';
+  private token1: string | null = 'wjcsb9uRgJIm2';
   private username2: string | null = 'user_11laxph0';
   private token2: string | null = 'mUkql8fBKCI7n';
-  private rafikipp: string | null = '$rafiki.money/p/thomas.dupont@ugent.be';
+  private rafikipp: string | null = '$rafiki.money/p/thomasdupont100@gmail.com';
 
 
   user1: any = {};
