@@ -30,6 +30,12 @@
             </mat-form-field>
         </p>
         <p>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Rafiki paymentpointer</mat-label>
+                <input matInput type="text" formControlName="rafikipp">
+            </mat-form-field>
+        </p>
+        <p>
             <button type="submit" mat-flat-button color="primary" [disabled]="faucetForm.invalid">Save</button>
         </p>
     </form>
@@ -57,6 +63,4 @@
     <div class="log">
         <div class="line" *ngFor="let line of lines">{{line}}</div>
     </div>
-
-    <button type="button" mat-flat-button color="secondary">Fund account</button>
 </div>

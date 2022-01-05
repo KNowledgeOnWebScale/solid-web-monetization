@@ -15,6 +15,8 @@ export class FaucetComponent implements OnInit {
   private token1: string | null = 'mycGPhnwLz0Ua';
   private username2: string | null = 'user_11laxph0';
   private token2: string | null = 'mUkql8fBKCI7n';
+  private rafikipp: string | null = '$rafiki.money/p/thomas.dupont@ugent.be';
+
 
   user1: any = {};
   user2: any = {};
@@ -32,6 +34,7 @@ export class FaucetComponent implements OnInit {
       token1: [this.token1, Validators.required],
       username2: [this.username2, Validators.required],
       token2: [this.token2, Validators.required],
+      rafikipp: [this.rafikipp]
     });
 
   }
@@ -93,7 +96,7 @@ export class FaucetComponent implements OnInit {
   transferToRafiki() {
     const url = `https://hermes-rest.ilpv4.dev/accounts/${this.user1.name}/pay`
     this.http.post<any>(url,
-      { amount: 10*Math.pow(10,9), destinationPaymentPointer: `$rafiki.money/p/thomas.dupont@ugent.be` },
+      { amount: 10*Math.pow(10,9), destinationPaymentPointer: this.rafikipp },
       { headers: { Authorization: `Bearer ${this.user1.token}` } }
     ).subscribe(_ => {
       this.getBalances();
