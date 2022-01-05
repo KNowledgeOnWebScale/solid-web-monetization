@@ -55,6 +55,7 @@ export class FaucetComponent implements OnInit {
         token: this.faucetForm.get('token2')?.value,
         balance: 0
       }
+      this.rafikipp = this.faucetForm.get('rafikipp')?.value
 
       this.log('Destination details stored');
       this.getBalances();
