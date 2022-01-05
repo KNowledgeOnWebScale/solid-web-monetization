@@ -29,7 +29,7 @@ export class LoginBtnComponent implements OnInit {
   }
 
   login() {
-    solidAuth.login({oidcIssuer: this.provider.url, redirectUrl: window.location.href});
+    solidAuth.login({oidcIssuer: this.custom ? this.authForm.get('oidcProvider').value : this.provider.url, redirectUrl: window.location.href});
   }
 
 }
