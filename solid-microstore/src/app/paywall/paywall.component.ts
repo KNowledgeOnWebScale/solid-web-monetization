@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MonetizationService } from '../monetization.service';
 import * as SockJS from 'sockjs-client';
-import { StreamService } from '../stream.service';
+import { SolidService } from '../solid.service';
 
 @Component({
   selector: 'app-paywall',
@@ -9,11 +9,14 @@ import { StreamService } from '../stream.service';
   styleUrls: ['./paywall.component.scss']
 })
 export class PaywallComponent implements OnInit {
+  wmp: string | undefined;
+
   private sock: WebSocket | null = null;
+
 
   constructor(
     private money: MonetizationService,
-    private ss: StreamService
+    private solid: SolidService
     ) { }
 
   ngOnInit(): void {
@@ -35,12 +38,8 @@ export class PaywallComponent implements OnInit {
     this.sock.onclose = function () {
       console.log('close');
     };
-
-    this.ss.connect('test.falx', Buffer.from("blargh", "utf-8")).then(conn => {
-      const stream1 = conn.createStream();
-      stream1.setSendMax(500);
-    });
-
+  
+    this.solid.getWebMonetizationProvider().subscribe(wmp => this.wmp = wmp);
   }
 
   isMonetizationAvailable(): boolean {
