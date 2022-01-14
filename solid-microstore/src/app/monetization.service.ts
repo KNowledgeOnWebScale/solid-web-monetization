@@ -24,7 +24,7 @@ export class MonetizationService {
     private meta: Meta
   ) {
     if (this.isAvailable()) {
-      this.events = merge<MonetizationEvent>(
+      this.events = merge<any>(
         fromEvent(this.document.monetization as any, 'monetizationpending'),
         fromEvent(this.document.monetization as any, 'monetizationstart'),
         fromEvent(this.document.monetization as any, 'monetizationstop'),
