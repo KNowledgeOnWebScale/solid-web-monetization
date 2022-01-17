@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~13.1.2",
     "@angular/platform-browser-dynamic": "~13.1.2",
     "@angular/router": "~13.1.2",
+    "@inrupt/solid-client-authn-browser": "^1.11.3",
     "@inrupt/vocab-common-rdf": "^1.0.3",
     "@types/n3": "^1.10.4",
     "n3": "^1.12.2",

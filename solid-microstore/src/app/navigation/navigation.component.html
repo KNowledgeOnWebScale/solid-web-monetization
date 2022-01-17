@@ -19,6 +19,11 @@
                 <mat-icon [inline]="true">monetization_on</mat-icon>
                 SOLID MicroStore
             </div>
+            <div class="spacer"></div>
+            <button *ngIf="auth.loggedIn else loginTpl" type="button" mat-raised-button (click)="logout()">Logout</button>
+            <ng-template #loginTpl>
+                <button type="button" mat-raised-button (click)="login()">Login with WebID</button>
+            </ng-template>
         </mat-toolbar>
         <!-- Add Content Here -->
         <router-outlet>
