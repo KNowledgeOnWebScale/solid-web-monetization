@@ -1,9 +1,23 @@
 <div class="page">
-    <div class="mat-display-1">Paywall</div>
+    <div><h1>Paywall</h1></div>
     <div class="mat-body-1">This example shows a paywall that is unlockable if you have monetization enabled and can
         fulfill the micropayment.</div>
-    <div class="mat-body-2">Monetization possible: {{isMonetizationAvailable() | json}}</div>
-    <br>
-    <br>
-    <div *ngIf="wmp">Web Monetization Provider found: {{wmp}}</div>
+
+    <div class="paywall" *ngIf="isLocked else content">
+        <div>You may not access this content!</div>
+        <div *ngIf="isMonetizationAvailable()">You can unlock this content by aggreeing to reimburse the creator for the
+            content</div>
+        <button type="button" mat-raised-button color="primary" (click)="unlock()">Unlock through Web
+            Monetization</button>
+    </div>
+
+    <ng-template #content>
+        <div class="content">
+            This is the actual content you are paying for!!
+            
+        </div>
+        <div class="logs">
+            <div *ngFor="let log of logs">{{log}}</div>
+        </div>
+    </ng-template>
 </div>

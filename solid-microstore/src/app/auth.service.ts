@@ -18,6 +18,7 @@ export class AuthService {
     solidAuth.handleIncomingRedirect({
       restorePreviousSession: true,
     }).then(_ => {
+      console.log(_);
       this.loggedIn = solidAuth.getDefaultSession().info.isLoggedIn;
     });
 
@@ -39,5 +40,13 @@ export class AuthService {
   
   logout() {
     solidAuth.logout().then(_ => window.location.reload());
+  }
+
+  getAccessToken(): string {
+    return solidAuth.getDefaultSession().info.webId!!;
+  }
+
+  get fetch(): (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response> {
+    return solidAuth.getDefaultSession().fetch;
   }
 }

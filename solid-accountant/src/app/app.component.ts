@@ -1,4 +1,3 @@
-import { UrlResolver } from '@angular/compiler';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as solidAuth from '@inrupt/solid-client-authn-browser';

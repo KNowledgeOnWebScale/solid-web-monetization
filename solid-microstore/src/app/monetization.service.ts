@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { EMPTY, fromEvent, merge, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { Monetization, MonetizationEvent, MonetizationState } from 'types-wm';
+import { MonetizationEvent, MonetizationState } from 'types-wm';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,12 @@ export class MonetizationService {
    */
   public isAvailable(): boolean {
     return !!this.document && !!this.document.monetization;
+  }
+
+  public getTargetPaymentPointer(): string|null {
+    if (!this.isAvailable()) return null;
+    const tag = this.meta.getTag("name='monetization'");
+    return tag?.content || null;
   }
 
 }

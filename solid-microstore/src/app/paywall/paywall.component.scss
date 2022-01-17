@@ -1,0 +1,33 @@
+.paywall {
+    display: grid;
+    justify-items: center;
+    align-content: space-between;
+    position: static;
+    top: 64px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px;
+    height: 200px;
+
+    button {
+        margin-bottom: 10px;;
+    }
+}
+
+.content {
+    font-size: 16px;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.logs {
+    display: grid;
+    justify-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
