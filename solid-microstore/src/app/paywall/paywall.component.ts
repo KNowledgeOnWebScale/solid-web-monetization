@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MonetizationService } from '../monetization.service';
-import * as SockJS from 'sockjs-client';
-import { SolidService } from '../solid.service';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import * as SockJS from 'sockjs-client';
 import { AuthService } from '../auth.service';
+import { MonetizationService } from '../monetization.service';
+import { SolidService } from '../solid.service';
 
 @Component({
   selector: 'app-paywall',
@@ -23,29 +23,9 @@ export class PaywallComponent implements OnInit, OnDestroy {
     private money: MonetizationService,
     private auth: AuthService,
     private solid: SolidService,
-    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
-    // this.money.setPaymentPointer('$rafiki.money/p/thomas.dupont@ugent.be');
-    // this.money.setPaymentPointer('$rafiki.money/p/tdupont@ugent.be');
-    // this.money.events.subscribe(console.log)
-    // this.sock = new SockJS('http://localhost:8888/ws');
-
-    // this.sock.onopen = function () {
-    //   console.log('open');
-    //   this.send('test');
-    // };
-
-    // this.sock.onmessage = function (e) {
-    //   console.log('message', e.data);
-    //   this.close();
-    // };
-
-    // this.sock.onclose = function () {
-    //   console.log('close');
-    // };
-
     this.solid.getWebMonetizationProvider().subscribe(wmp => this.wmp = wmp);
     this.targetPP = this.money.getTargetPaymentPointer();
   }
