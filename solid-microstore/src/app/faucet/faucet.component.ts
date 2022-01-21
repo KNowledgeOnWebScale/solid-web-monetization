@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
-import { MonetizationService } from '../monetization.service';
+import { WmPService } from '../wm.service';
 
 @Component({
   selector: 'app-faucet',
@@ -24,7 +24,7 @@ export class FaucetComponent implements OnInit {
   faucetForm: FormGroup;
 
   constructor(
-    private money: MonetizationService,
+    private wm: WmPService,
     private http: HttpClient,
     fb: FormBuilder
   ) {
@@ -71,7 +71,7 @@ export class FaucetComponent implements OnInit {
   }
 
   isMonetizationAvailable(): boolean {
-    return this.money.isAvailable();
+    return this.wm.isMonetizationSupported();
   }
 
   log(str: string) {

@@ -6812,6 +6812,11 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
+web-monetization-polyfill@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/web-monetization-polyfill/-/web-monetization-polyfill-2.0.0.tgz#6c762ed1a631f508d0f976aeadd277057f9ef351"
+  integrity sha512-qrt1PawK4pKtc+aZtu2rxubm8pF25QOcHaU04K3sGMcyqJYr7WwGdXlfK7fA0TkQI0niMO7ZhaqyQ1T2tnVH6A==
+
 webpack-dev-middleware@5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-5.2.2.tgz#eb5193faa5479ca1086b9f7bed68b89c731bff62"

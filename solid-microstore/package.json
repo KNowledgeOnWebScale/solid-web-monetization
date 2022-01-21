@@ -27,6 +27,7 @@
     "sockjs-client": "^1.5.2",
     "solid-wm": "^0.1.0",
     "tslib": "^2.3.0",
+    "web-monetization-polyfill": "^2.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

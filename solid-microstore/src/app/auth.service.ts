@@ -18,7 +18,6 @@ export class AuthService {
     solidAuth.handleIncomingRedirect({
       restorePreviousSession: true,
     }).then(_ => {
-      console.log(_);
       this.loggedIn = solidAuth.getDefaultSession().info.isLoggedIn;
     });
 

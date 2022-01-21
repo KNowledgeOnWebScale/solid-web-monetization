@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MonetizationService } from '../monetization.service';
+import { WmPService } from '../wm.service';
 
 @Component({
   selector: 'app-mix',
@@ -8,12 +8,12 @@ import { MonetizationService } from '../monetization.service';
 })
 export class MixComponent implements OnInit {
 
-  constructor(private money: MonetizationService) { }
+  constructor(private wm: WmPService) { }
 
   ngOnInit(): void {
   }
 
   isMonetizationAvailable(): boolean {
-    return this.money.isAvailable();
+    return this.wm.isMonetizationSupported();
   }
 }

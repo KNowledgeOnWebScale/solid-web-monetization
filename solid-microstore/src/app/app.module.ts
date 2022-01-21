@@ -12,8 +12,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// Load solid web-monetization polyfill
-import 'solid-wm';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FaucetComponent } from './faucet/faucet.component';
@@ -22,6 +20,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PayscrollComponent } from './payscroll/payscroll.component';
 import { PaywallComponent } from './paywall/paywall.component';
 
+// Load solid web-monetization polyfill
+import 'web-monetization-polyfill';
 
 
 @NgModule({
