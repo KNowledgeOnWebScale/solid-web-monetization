@@ -2,4 +2,8 @@
     <div class="mat-display-1">Mixed content</div>
     <div class="mat-body-1">This example will show free content mixed with premium content, charging you for it.</div>
     <div class="mat-body-2">Monetization possible: {{isMonetizationAvailable() | json}}</div>
+
+    <div class="images">
+        <img [src]="img.src" *ngFor="let img of images">
+    </div>
 </div>

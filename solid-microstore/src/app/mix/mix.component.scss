@@ -1,0 +1,8 @@
+.images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    grid-template-rows: repeat(auto-fit, 140px);
+
+    column-gap: 4px;
+    row-gap: 4px;
+}
