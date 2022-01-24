@@ -7,12 +7,11 @@
         <div class="txt1">You may not access this content!</div>
         <div class="txt2" *ngIf="isMonetizationAvailable()">You can unlock this content by aggreeing to reimburse the creator for the
             content</div>
-        <button type="button" *ngIf="auth.loggedIn else loginTxt" mat-raised-button color="primary" (click)="unlock()">Unlock through Web
+        <button type="button" *ngIf="auth.loggedIn else loginTxt" mat-raised-button color="primary" (click)="unlock()" [disabled]="isClicked">Unlock through Web
             Monetization</button>
             <ng-template #loginTxt><div class="txt3">Please first log in with your WebID!</div></ng-template>
     </div>
 
-    <!-- <ng-template #content> -->
     <div class="content">
         <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h1>
 
@@ -70,9 +69,6 @@
             et adhaesiones atomorum inter se, ex quo eificeretur mundus omnesque partes mundi quaeque in eo essent.
             Quae cum res tota fieta sit piieriliter, turn ne efficit quidem^ quod vult. Nam et ipsa declinatio ad
             libidinem fiiigitur - ait enim deelinare atomum sine causa, quo nibil turpius physico quam fieri.</p>
-
-
-
     </div>
-    <!-- </ng-template> -->
+
 </div>

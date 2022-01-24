@@ -14,6 +14,7 @@ import { WmPService } from '../wmp.service';
 export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   wmp: string | undefined;
   isLocked: boolean = true;
+  isClicked: boolean = false;
   logs: string[] = [];
 
   @ViewChild('paywall') paywall: ElementRef<HTMLDivElement> | undefined;
@@ -34,10 +35,10 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
     private breakpointObserver: BreakpointObserver
   ) {
     // Setup listeners
-    document.monetization?.addEventListener('monetizationpending', evt => this.onPending(evt));
     document.monetization?.addEventListener('monetizationstart', evt => this.onStart(evt));
     document.monetization?.addEventListener('monetizationprogress', evt => this.onProgress(evt));
     document.monetization?.addEventListener('monetizationstop', evt => this.onStop(evt));
+    document.monetization?.addEventListener('monetizationpending', evt => this.onPending(evt));
   }
 
   ngOnInit(): void {
@@ -48,7 +49,6 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.isHandset$.subscribe(isHandset => {
       if (this.paywall) {
-        console.log(`handset: ` +isHandset)
         this.paywall!!.nativeElement.style.left = isHandset ? '0' : '200px';
         this.paywall!!.nativeElement.style.width = isHandset ? '100%' : 'calc(100% - 200px)';
       }
@@ -61,8 +61,14 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   unlock() {
-    this.isLocked = false;
-    this.wm.setupWMPayment(this.wmp!!);
+    this.isClicked = true;
+    if (this.wm.isMonetizationSupported()) {
+      this.solid.getWebMonetizationProvider().subscribe(wmp => {
+        this.wm.setupWMPayment(wmp);
+      })
+    } else {
+      this.isClicked = false;
+    }
   }
 
   ngOnDestroy(): void {
@@ -70,26 +76,19 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private onPending(event: MonetizationPendingEvent) {
-    // console.log('pending')
+    this.isLocked = true;
   }
 
   private onStart(event: MonetizationStartEvent) {
-    this.logs.push('Opened channel')
+    this.isLocked = false;
   }
 
   private onProgress(event: MonetizationProgressEvent) {
-    const amount = parseFloat(event.detail.amount);
-    const scale = event.detail.assetScale;
-    const code = event.detail.assetCode;
-    this.logs.push(`Payed ${amount * Math.pow(10, scale)} ${code}`);
+    this.isLocked = false;
   }
 
   private onStop(event: MonetizationStopEvent) {
-    if (event.detail.finalized) {
-      this.logs.push("Closed channel: meta tag removed or paymentpointer changed")
-    } else {
-      this.logs.push("Closed channel")
-    }
+    this.isLocked = true;
   }
 
 

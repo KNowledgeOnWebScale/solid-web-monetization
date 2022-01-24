@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { GeneratedImage, ImageService } from '../image.service';
 import { SolidService } from '../solid.service';
@@ -10,7 +10,7 @@ import { WmPService } from '../wmp.service';
   styleUrls: ['./mix.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MixComponent implements OnInit {
+export class MixComponent implements OnInit, OnDestroy {
   images: GeneratedImage[] = [];
   locked: boolean = true;
 
@@ -39,6 +39,10 @@ export class MixComponent implements OnInit {
       };
     });
 
+  }
+
+  ngOnDestroy(): void {
+      this.wm.closeMonetizationStream();
   }
 
   isMonetizationAvailable(): boolean {

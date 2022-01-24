@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import * as solidAuth from '@inrupt/solid-client-authn-browser';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthService {
   /**
    * Notifies on auth changes (like suddenly being authed)
    */
-  statusChanged$ = new Subject<void>();
+  statusChanged$ = new ReplaySubject<void>(1);
 
   constructor(private router: Router, private ngZone: NgZone) { }
 

@@ -32,7 +32,7 @@ export class WmPService {
    * @param wmpUrl 
    */
   setupWMPayment(wmpUrl: string) {
-    if (this.wm.state != 'pending') {
+    if (this.wm.state != 'pending' && this.wm.state != 'stopped') {
       throw new Error('Monetization not supported! No meta[name="monetization"] tag found!')
     }
     // Get request Id
