@@ -1,12 +1,17 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import * as solidAuth from '@inrupt/solid-client-authn-browser';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   loggedIn: boolean = false;
+  /**
+   * Notifies on auth changes (like suddenly being authed)
+   */
+  statusChanged$ = new Subject<void>();
 
   constructor(private router: Router, private ngZone: NgZone) { }
 
@@ -15,14 +20,11 @@ export class AuthService {
   }
 
   handleIncomingCallback(): void {
-    solidAuth.handleIncomingRedirect({
-      restorePreviousSession: true,
-    }).then(_ => {
-      this.loggedIn = solidAuth.getDefaultSession().info.isLoggedIn;
-    });
-
     solidAuth.onSessionRestore(url => {
-      let path = '/';
+      // Regular location strategy
+      let path = url.substring(url.lastIndexOf('/'));
+
+      // Hash location strategy
       if (url.indexOf('#') > -1) {
         path = url.split('#')[1];
       }
@@ -30,10 +32,18 @@ export class AuthService {
         this.router.navigate([path]);
       });
     });
+
+    solidAuth.handleIncomingRedirect({
+      restorePreviousSession: true,
+    }).then(_ => {
+      this.loggedIn = solidAuth.getDefaultSession().info.isLoggedIn;
+      this.statusChanged$.next();
+    });
+  
   }
 
   login() {
-    solidAuth.login({oidcIssuer: 'https://solidcommunity.net', redirectUrl: window.location.href});
+    solidAuth.login({oidcIssuer: 'https://solidcommunity.net', redirectUrl: location.href });
   }
 
   

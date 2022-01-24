@@ -8,19 +8,19 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'about'
+    redirectTo: 'about',
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
   },
   {
     path: 'paywall',
-    component: PaywallComponent
+    component: PaywallComponent,
   },
   {
     path: 'mix',
-    component: MixComponent
+    component: MixComponent,
   },
 ];
 

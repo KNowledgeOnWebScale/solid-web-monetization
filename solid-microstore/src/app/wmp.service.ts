@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
 import * as SockJS from 'sockjs-client';
-import { Monetization } from 'types-wm';
+import { Monetization, MonetizationState } from 'types-wm';
 import { v4 as uuidv4 } from "uuid";
 import { AuthService } from './auth.service';
 
@@ -12,6 +13,7 @@ export class WmPService {
   private socket: WebSocket | null = null;
   paymentPointer: string | null = null;
   monetizationId: string | null = null;
+  state$ = new ReplaySubject<MonetizationState>(1);
 
   constructor(
     private auth: AuthService
@@ -73,12 +75,15 @@ export class WmPService {
     return !!this.wm;
   }
 
+  isMonetizationStarted(): boolean {
+    return this.wm.state == 'started';
+  }
+
   /**
    * Start listening for changes on the meta[name=monetization] in the head section
    */
   private listenForMetaTagChanges() {
     const observerHead = new MutationObserver(list => {
-      console.log(list);
       list.forEach(record => {
         if (record.addedNodes.length > 0) {
           record.addedNodes.forEach(node => {
@@ -104,7 +109,6 @@ export class WmPService {
     });
 
     const observerMeta = new MutationObserver(list => {
-      console.log(list);
       list.forEach(record => {
         if (record.type == 'attributes' && record.attributeName == 'content') {
           const el = record.target as HTMLElement;

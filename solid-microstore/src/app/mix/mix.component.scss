@@ -5,4 +5,32 @@
 
     column-gap: 4px;
     row-gap: 4px;
+
+    > div {
+        position: relative;
+        height: 140px;
+        top: 0;
+
+        .locked {
+            position: absolute;
+            width: 160px;
+            height: 26px;
+            top:80px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            background-color: red;
+            border: 2px solid white;
+            border-radius: 4px;
+            margin-left: 20px;
+            cursor: help;
+        }
+    }
+}
+
+.tt-locked {
+    background-color: #b71c1c !important;
 }

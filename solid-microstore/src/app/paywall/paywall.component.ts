@@ -46,7 +46,7 @@ export class PaywallComponent implements OnInit, OnDestroy {
   }
 
   private onPending(event: MonetizationPendingEvent) {
-    console.log('pending')
+    // console.log('pending')
   }
 
   private onStart(event: MonetizationStartEvent) {

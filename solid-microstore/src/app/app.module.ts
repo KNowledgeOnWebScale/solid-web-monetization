@@ -10,17 +10,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Load solid web-monetization polyfill
+import 'web-monetization-polyfill';
+import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MixComponent } from './mix/mix.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaywallComponent } from './paywall/paywall.component';
 
-// Load solid web-monetization polyfill
-import 'web-monetization-polyfill';
-import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -41,16 +42,17 @@ import { AboutComponent } from './about/about.component';
     MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule
   ],
   providers: [
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    }
+    // {
+    //   provide: LocationStrategy,
+    //   useClass: HashLocationStrategy
+    // }
   ],
   bootstrap: [AppComponent]
 })
