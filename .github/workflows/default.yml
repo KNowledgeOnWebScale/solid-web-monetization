@@ -105,8 +105,8 @@ jobs:
     - name: Copy file (spa fix)
       uses: canastro/copy-file-action@master
       with:
-        source: "dist/index.html"
-        target: "dist/404.html"
+        source: "./solid-microstore/dist/index.html"
+        target: "./solid-microstore/dist/404.html"
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
