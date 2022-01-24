@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationStopEvent } from 'types-wm';
 import { SolidService } from '../solid.service';
-import { WmPService } from '../wm.service';
+import { WmPService } from '../wmp.service';
 
 @Component({
   selector: 'app-paywall',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WmPService } from '../wm.service';
+import { WmPService } from '../wmp.service';
 
 @Component({
   selector: 'app-mix',

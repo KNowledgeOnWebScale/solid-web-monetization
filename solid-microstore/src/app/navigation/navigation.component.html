@@ -3,10 +3,9 @@
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
+            <a mat-list-item routerLink="about">About</a>
             <a mat-list-item routerLink="paywall">Paywall</a>
             <a mat-list-item routerLink="mix">Mixed content</a>
-            <a mat-list-item routerLink="payscroll">Payscroll</a>
-            <a mat-list-item routerLink="faucet">Faucet</a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -25,7 +24,7 @@
                 <button type="button" mat-raised-button (click)="login()">Login with WebID</button>
             </ng-template>
         </mat-toolbar>
-        <!-- Add Content Here -->
+
         <router-outlet>
             
         </router-outlet>

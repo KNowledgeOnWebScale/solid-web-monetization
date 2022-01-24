@@ -14,14 +14,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FaucetComponent } from './faucet/faucet.component';
 import { MixComponent } from './mix/mix.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { PayscrollComponent } from './payscroll/payscroll.component';
 import { PaywallComponent } from './paywall/paywall.component';
 
 // Load solid web-monetization polyfill
 import 'web-monetization-polyfill';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -29,9 +28,8 @@ import 'web-monetization-polyfill';
     AppComponent,
     NavigationComponent,
     PaywallComponent,
-    PayscrollComponent,
     MixComponent,
-    FaucetComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
