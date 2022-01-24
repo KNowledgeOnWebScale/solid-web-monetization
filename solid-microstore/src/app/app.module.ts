@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { MixComponent } from './mix/mix.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaywallComponent } from './paywall/paywall.component';
+import { CounterComponent } from './counter/counter.component';
 
 
 
@@ -31,6 +32,7 @@ import { PaywallComponent } from './paywall/paywall.component';
     PaywallComponent,
     MixComponent,
     AboutComponent,
+    CounterComponent,
   ],
   imports: [
     BrowserModule,

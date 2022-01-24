@@ -1,19 +1,40 @@
+.page {
+    position: relative;
+    height: calc(100% - 64px - 16px);
+}
+
 .paywall {
+    position: fixed;
     display: grid;
     justify-items: center;
-    align-content: space-between;
-    position: static;
-    top: 64px;
+    align-content: center;
+    row-gap: 40px;;
+    // position: static;
+    top: calc(64px + 100px);
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    // height: calc(100vh - 64px);
+    background-color: rgba(0,0,0,0.9);
     color: white;
     padding: 10px;
-    height: 200px;
+    // height: 200px;
 
+    
     button {
         margin-bottom: 10px;;
+    }
+    
+    .txt1 {
+        font-size: 24px;
+    }
+    .txt2 {
+        font-size: 18px;
+    }
+    .txt3 {
+        font-size: 20px;
+        
     }
 }
 
@@ -23,7 +44,8 @@
     justify-items: center;
     align-content: center;
     align-items: center;
-    height: 100px;
+    padding: 20px 0;
+    // height: 100px;
 }
 
 .logs {

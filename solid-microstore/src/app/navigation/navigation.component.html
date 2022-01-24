@@ -19,14 +19,18 @@
                 SOLID MicroStore
             </div>
             <div class="spacer"></div>
-            <button *ngIf="auth.loggedIn else loginTpl" type="button" mat-raised-button (click)="logout()">Logout</button>
-            <ng-template #loginTpl>
-                <button type="button" mat-raised-button (click)="login()">Login with WebID</button>
-            </ng-template>
+            <div class="holder">
+                <app-counter *ngIf="auth.loggedIn"></app-counter>
+                <button *ngIf="auth.loggedIn else loginTpl" type="button" mat-raised-button
+                    (click)="logout()">Logout</button>
+                <ng-template #loginTpl>
+                    <button type="button" mat-raised-button (click)="login()">Login with WebID</button>
+                </ng-template>
+            </div>
         </mat-toolbar>
 
         <router-outlet>
-            
+
         </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

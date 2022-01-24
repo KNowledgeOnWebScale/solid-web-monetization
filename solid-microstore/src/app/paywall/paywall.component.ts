@@ -1,5 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { map, Observable, shareReplay } from 'rxjs';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationStopEvent } from 'types-wm';
+import { AuthService } from '../auth.service';
 import { SolidService } from '../solid.service';
 import { WmPService } from '../wmp.service';
 
@@ -8,10 +11,18 @@ import { WmPService } from '../wmp.service';
   templateUrl: './paywall.component.html',
   styleUrls: ['./paywall.component.scss']
 })
-export class PaywallComponent implements OnInit, OnDestroy {
+export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   wmp: string | undefined;
   isLocked: boolean = true;
   logs: string[] = [];
+
+  @ViewChild('paywall') paywall: ElementRef<HTMLDivElement> | undefined;
+
+  private isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   private sock: WebSocket | null = null;
 
@@ -19,6 +30,8 @@ export class PaywallComponent implements OnInit, OnDestroy {
   constructor(
     private wm: WmPService,
     private solid: SolidService,
+    public auth: AuthService,
+    private breakpointObserver: BreakpointObserver
   ) {
     // Setup listeners
     document.monetization?.addEventListener('monetizationpending', evt => this.onPending(evt));
@@ -29,6 +42,17 @@ export class PaywallComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.solid.getWebMonetizationProvider().subscribe(wmp => this.wmp = wmp);
+
+  }
+
+  ngAfterViewInit(): void {
+    this.isHandset$.subscribe(isHandset => {
+      if (this.paywall) {
+        console.log(`handset: ` +isHandset)
+        this.paywall!!.nativeElement.style.left = isHandset ? '0' : '200px';
+        this.paywall!!.nativeElement.style.width = isHandset ? '100%' : 'calc(100% - 200px)';
+      }
+    });
   }
 
   isMonetizationAvailable(): boolean {

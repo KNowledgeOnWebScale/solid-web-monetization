@@ -13,7 +13,6 @@ export class WmPService {
   private socket: WebSocket | null = null;
   paymentPointer: string | null = null;
   monetizationId: string | null = null;
-  state$ = new ReplaySubject<MonetizationState>(1);
 
   constructor(
     private auth: AuthService

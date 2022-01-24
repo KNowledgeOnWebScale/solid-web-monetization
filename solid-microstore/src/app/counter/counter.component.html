@@ -1,0 +1,7 @@
+<div class="outer" #outer>
+    <div class="state" *ngIf="state != 'started' else tpl">{{state}}</div>
+    <ng-template #tpl>
+        <div class="currency">{{currency}}</div>
+        <div class="amount">{{total | number}}</div>
+    </ng-template>
+</div>
