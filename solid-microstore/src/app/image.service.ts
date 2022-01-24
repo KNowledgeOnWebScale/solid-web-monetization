@@ -22,16 +22,21 @@ const premiumImages = [
   'data:image/png;base64,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'
 ];
 
+const nrs = [51, 44, 22, 43, 56, 13, 1, 44, 59, 56, 36, 45, 32, 2, 36, 15, 12, 54, 38, 34, 5, 10, 45, 27, 57, 41, 16, 26, 54, 0, 43, 56, 6, 58, 47, 16, 45, 30, 47, 58, 35, 0, 58, 56, 27, 28, 20, 21, 29, 18, 9, 58, 49, 43, 26, 28, 47, 59, 36, 52];
+
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
+  private idx = 0;
+  private premiumIdx = 0;
 
   constructor() { }
 
   getRandomImage(includePremium: boolean = true): GeneratedImage {
-    const idx = Math.floor(Math.random() * (catalog.length + premiumImages.length));
-    if (includePremium && idx > (catalog.length-1)) {
+    const total = catalog.length + premiumImages.length;
+    const idx = this.nextRand() % total;
+    if (includePremium && idx > (catalog.length - 1)) {
       return { src: premiumImages[idx - catalog.length], premium: true };
     }
     else {
@@ -40,8 +45,16 @@ export class ImageService {
   }
 
   getPremiumImage(): GeneratedImage {
-    const idx = Math.floor(Math.random() * premiumImages.length);
+    const idx = this.nextPremiumRand() % premiumImages.length;
     return { src: premiumImages[idx], premium: true };
+  }
+
+  private nextRand(): number {
+    return nrs[this.idx++ % nrs.length];
+  }
+
+  private nextPremiumRand(): number {
+    return nrs[this.premiumIdx++ % nrs.length]
   }
 }
 

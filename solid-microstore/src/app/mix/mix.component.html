@@ -7,7 +7,7 @@
         <div *ngFor="let img of images">
             <div *ngIf="img.premium && locked">
                 <div class="locked" matTooltip="Micropayments are required"
-                matTooltipClass="tt-locked" [matTooltipDisabled]="!img.premium" matTooltipPosition="above">LOCKED</div>
+                [matTooltipClass]="'tt-locked'" [matTooltipDisabled]="!img.premium" matTooltipPosition="above">LOCKED</div>
             </div>
             <img [src]="img.src">
         </div>

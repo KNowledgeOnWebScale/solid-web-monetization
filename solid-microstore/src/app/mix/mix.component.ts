@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { GeneratedImage, ImageService } from '../image.service';
 import { SolidService } from '../solid.service';
@@ -8,6 +8,7 @@ import { WmPService } from '../wmp.service';
   selector: 'app-mix',
   templateUrl: './mix.component.html',
   styleUrls: ['./mix.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MixComponent implements OnInit {
   images: GeneratedImage[] = [];
@@ -25,7 +26,7 @@ export class MixComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 100; i++) {
       this.images.push(this.img.getRandomImage());
     }
 
