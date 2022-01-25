@@ -13,18 +13,18 @@ env:
 
 jobs:
 
-  build-root-page:
-    name: Build root page
-    runs-on: ubuntu-latest
-    env:
-      PUBLIC_URL: /solid-web-monetization
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy rootpage to gh-pages
-        uses: peaceiris/actions-gh-pages@v3.8.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.htmlroot
+  # build-root-page:
+  #   name: Build root page
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     PUBLIC_URL: /solid-web-monetization
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Deploy rootpage to gh-pages
+  #       uses: peaceiris/actions-gh-pages@v3.8.0
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./.htmlroot
     
 
   build-docs:
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-root-page
     env:
-      PUBLIC_URL: /solid-web-monetization/docs
+      PUBLIC_URL: /solid-web-monetization
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -45,9 +45,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.docs/site
-          destination_dir: docs
-    
+          publish_dir: ./.docs/site    
 
   build-accountant:
     name: Build accountant
@@ -155,12 +153,6 @@ jobs:
     - name: Build microstore project
       working-directory: ./solid-microstore
       run: yarn run build
-
-    # - name: Copy file (spa fix)
-    #   uses: canastro/copy-file-action@master
-    #   with:
-    #     source: "./solid-microstore/dist/index.html"
-    #     target: "./solid-microstore/dist/404.html"
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
