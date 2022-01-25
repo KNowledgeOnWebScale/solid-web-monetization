@@ -94,8 +94,8 @@ jobs:
       run: mvn package
       working-directory: ./solid-wmp
       env:
-        REGISTRY_USERNAME: ${{ github.GITHUB_ACTOR }}
-        REGISTRY_PASSWORD: ${{ github.GITHUB_TOKEN }}
+        REGISTRY_USERNAME: ${{ github.actor }}
+        REGISTRY_PASSWORD: ${{ github.token }}
 
   docker-accountant:
     name: Dockerize accountant
