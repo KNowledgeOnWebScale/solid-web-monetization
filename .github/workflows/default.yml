@@ -81,7 +81,7 @@ jobs:
         path: ./solid-accountant/dist
 
   build-wmp:
-    name: Build Web Monetization Provider
+    name: Build WMP
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -91,7 +91,7 @@ jobs:
         distribution: 'adopt'
         java-version: '16'
     - name: Build docker with jib
-      run: mvn packages
+      run: mvn package
       working-directory: ./solid-wmp
       env:
         REGISTRY_USERNAME: ${{ github.GITHUB_TOKEN }}
