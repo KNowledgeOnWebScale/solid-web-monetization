@@ -94,8 +94,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ./solid-accountant
-        file: ./solid-accountant/docker/Dockerfile
+        context: ./solid-accountant/docker
         push: true
         tags: solid-wm/accountant:latest
     
