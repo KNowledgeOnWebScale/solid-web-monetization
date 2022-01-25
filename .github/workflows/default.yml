@@ -76,6 +76,18 @@ jobs:
       with:
         name: accountant-production-files
         path: ./solid-accountant/dist
+  
+  docker-accountant:
+    name: Dockerize accountant
+    needs: [build-accountant]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: docker/build-push-action@v2
+      with:
+        context: ./solid-accountant
+        file: ./solid-accountant/docker/Dockerfile
+        push: true
+        tags: solid-wm/accountant:latest
     
   build-microstore:
     name: Build microstore
