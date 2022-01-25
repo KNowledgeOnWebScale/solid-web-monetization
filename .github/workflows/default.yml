@@ -30,7 +30,6 @@ jobs:
   build-docs:
     name: Build docs
     runs-on: ubuntu-latest
-    needs: build-root-page
     env:
       PUBLIC_URL: /solid-web-monetization
     steps:
