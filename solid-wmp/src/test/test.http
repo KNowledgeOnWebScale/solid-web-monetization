@@ -1,0 +1,28 @@
+### Checking if a subscription exists (and get details if it does)
+GET http://localhost:8080/api/me/subscription
+Authorization: Bearer {{access_token}}
+
+### Creating a new subscription
+POST http://localhost:8080/api/me/subscription
+Authorization: Bearer {{access_token}}
+
+{
+  "paymentPointer" : "{{userPaymentPointer}}"
+}
+
+### Get mandate details for a subscription
+GET http://localhost:8080/api/me/subscription/mandate
+Authorization: Bearer {{access_token}}
+
+### List monetization sessions for a subscription
+GET http://localhost:8080/api/me/sessions
+Authorization: Bearer {{access_token}}
+
+### Create session (returns ID that can be used to connect to the Websocket), targetPaymentPointer is the PP of the monetized app
+POST http://localhost:8080/api/me/sessions
+Authorization: Bearer {{access_token}}
+
+{
+  "targetPaymentPointer" : "$rafiki.money/p/wannes.kerckhove@ugent.be"
+}
+

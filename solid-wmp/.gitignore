@@ -1,0 +1,7 @@
+﻿.idea
+target
+
+.angular
+node_modules
+
+.vscode

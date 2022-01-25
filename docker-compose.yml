@@ -15,14 +15,37 @@ services:
     image: ghcr.io/knowledgeonwebscale/solid-web-monetization/accountant:latest
     pull_policy: always
     container_name: wallet
-    ports:
-      - 8081:80
+    # ports:
+    #   - 8081:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wallet.rule=Host(`wallet.localhost`)"
+      - "traefik.http.routers.wallet.entrypoints=web"
     
   store:
     image: ghcr.io/knowledgeonwebscale/solid-web-monetization/microstore:latest
     pull_policy: always
     container_name: store
+    # ports:
+    #   - 8082:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.store.rule=Host(`store.localhost`)"
+      - "traefik.http.routers.store.entrypoints=web"
+  
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
-      - 8082:80
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   

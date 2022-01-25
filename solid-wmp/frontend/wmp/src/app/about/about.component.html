@@ -1,0 +1,10 @@
+<div class="row mt-3" *ngIf="auth.isLoggedIn">
+    <div class="col">
+        Logged in with WebID: {{auth.getWebId()}}
+    </div>
+</div>
+<div class="row mt-3" *ngIf="auth.isLoggedIn">
+    <div class="col">
+        <button class="btn btn-outline-secondary" (click)="copyAt()">Copy Access Token</button>
+    </div>
+</div>

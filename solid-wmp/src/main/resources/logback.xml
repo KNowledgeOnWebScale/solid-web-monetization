@@ -1,0 +1,18 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>-->
+        <encoder>
+
+            <pattern>%d{HH:mm:ss.SSS} | %-5level | %thread | %logger{1} | %m%n%rEx{80,
+                org.codejargon.feather,
+                io.netty,
+                io.reactivex
+                }
+            </pattern>
+        </encoder>
+    </appender>
+    <root level="warn">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <logger name="idlab" level="${logback.level}"/>
+</configuration>

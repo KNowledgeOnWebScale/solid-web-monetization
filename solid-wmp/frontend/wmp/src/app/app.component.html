@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="./assets/solid.svg" alt="" height="30"  class="d-inline-block align-text-top">
+      Web Monetization Provider
+    </a>
+    <button class="navbar-toggler" type="button" (click)="navCollapsed = !navCollapsed" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" [collapse]="navCollapsed" [isAnimated]="true">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="manage" routerLinkActive="active">Manage</a>
+        </li>
+      </ul>
+      <div class="">
+        <button *ngIf="auth.isLoggedIn else logoutTpl" class="btn btn-outline-dark" (click)="auth.logout()">Logout</button>
+        <ng-template #logoutTpl>
+          <button class="btn btn-outline-primary" (click)="auth.login()">Log in with WebID</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

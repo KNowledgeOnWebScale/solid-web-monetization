@@ -1,0 +1,151 @@
+<div class="row mt-3" *ngIf="auth.isLoggedIn">
+    <div class="col">
+        <h4>Manage your subscription</h4>
+        <div class="muted">These settings are fetched from and will be stored to your personal Solid WebID.
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!loading else spinner">
+    <!-- No subscription yet -->
+    <div class="row mt-3" *ngIf="auth.isLoggedIn && !subscription">
+        <div class="col">
+            <div class="lead">You don't have a subscription yet!</div>
+            <form [formGroup]="subForm">
+                <div class="input-group mb-3">
+                    <label for="pp" class="input-group-text">Selected PaymentPointer</label>
+                    <select type="email" class="form-select" id="pp" formControlName="pp" required>
+                        <option *ngFor="let pp of pps">{{pp}}</option>
+                    </select>
+                </div>
+                <div class="d-fle">
+                    <button type="button" type="button" (click)="createSubscription()" class="btn btn-primary ms-auto"
+                        [disabled]="subForm.invalid">Subscribe with WebID</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Subscription -->
+    <div class="row mt-3" *ngIf="auth.isLoggedIn && subscription">
+        <div class="col d-flex align-items-center">
+            <h5 class="d-inline-block">Subscription details</h5>
+            <button type="button" class="btn btn-sm btn-outline-danger ms-auto" (click)="removeSubscription()">
+                Remove subscription
+            </button>
+        </div>
+    </div>
+    <div class="row mt-2" *ngIf="auth.isLoggedIn && subscription as sub">
+        <div class="col">
+            <table class="table table-striped table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">userId</th>
+                        <td>{{sub.userId}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">paymentPointer</th>
+                        <td>{{sub.paymentPointer}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">mandateURI</th>
+                        <td>{{sub.mandateURI}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">valid</th>
+                        <td><span [innerHTML]="sub.valid | checkmark"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Mandate -->
+    <div class="row mt-3" *ngIf="auth.isLoggedIn && mandate">
+        <div class="col">
+            <h5>Mandate details</h5>
+        </div>
+    </div>
+    <div class="row mt-2" *ngIf="auth.isLoggedIn && mandate as m">
+        <div class="col">
+            <table class="table table-striped table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">id</th>
+                        <td>{{m.id}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">account</th>
+                        <td>{{m.account}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">amount</th>
+                        <td>{{m.amount}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">assetCode</th>
+                        <td>{{m.assetCode}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">assetScale</th>
+                        <td>{{m.assetScale}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">interval</th>
+                        <td>{{m.interval}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">startAt</th>
+                        <td>{{m.startAt | date: 'MMMM dd, yyyy @ HH:mm'}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">expiresAt</th>
+                        <td>{{m.expiresAt || '-'}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">balance</th>
+                        <td>{{m.balance | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Sessions -->
+<div class="row mt-3" *ngIf="auth.isLoggedIn && sessions">
+    <div class="col">
+        <h5>Active sessions</h5>
+    </div>
+</div>
+<div class="row mt-2" *ngIf="auth.isLoggedIn && sessions">
+    <div class="col">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">target</th>
+                    <th scope="col">txTotal</th>
+                    <th scope="col">assetCode</th>
+                    <th scope="col">assetScale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of sessions">
+                    <td>{{s.id}}</td>
+                    <td>{{s.target}}</td>
+                    <td>{{s.totalAmountTransferred}}</td>
+                    <td>{{s.assetCode}}</td>
+                    <td>{{s.assetScale}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="text-center mt-5 text-secondary">
+        <div class="spinner-grow spinner-grow-sm" role="status"></div>
+        <span class="ms-1">Fetching...</span>
+    </div>
+</ng-template>

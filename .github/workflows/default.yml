@@ -79,7 +79,23 @@ jobs:
       with:
         name: accountant-production-files
         path: ./solid-accountant/dist
-  
+
+  build-wmp:
+    name: Build Web Monetization Provider
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 16 for deploy to GitHub Container Registry
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '16'
+    - name:
+      run: mvn packages
+      working-directory: ./solid-wmp
+      env:
+        REGISTRY_USERNAME: ${{ github.GITHUB_TOKEN }}
+        REGISTRY_PASSWORD: ${{ github.GITHUB_ACTOR }}
+
   docker-accountant:
     name: Dockerize accountant
     needs: [build-accountant]
