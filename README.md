@@ -30,9 +30,7 @@ All progress will happen publicly via this repository.
 ## Solid-Accountant (Outcome 1)
 The solid accountant app can be found under its respective [folder](./solid-accountant).
 
-Public URL: https://knowledgeonwebscale.github.io/solid-web-monetization/wallet
-
 ## Solid-MicroStore (Outcome 3 -- ongoing)
 The solid microstore app can be found under its respective [folder](./solid-microstore).
 
-Public URL: https://knowledgeonwebscale.github.io/solid-web-monetization/store
+Public URL: https://knowledgeonwebscale.github.io/solid-web-monetization
