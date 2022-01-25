@@ -13,12 +13,14 @@ services:
 
   wallet:
     image: ghcr.io/knowledgeonwebscale/solid-web-monetization/accountant:latest
+    pull_policy: always
     container_name: wallet
     ports:
       - 8081:80
     
   store:
     image: ghcr.io/knowledgeonwebscale/solid-web-monetization/microstore:latest
+    pull_policy: always
     container_name: store
     ports:
       - 8082:80
