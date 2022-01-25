@@ -8,6 +8,8 @@ This project is funded by [Grant for the Web](https://www.grantfortheweb.org/),
 and runs from May 2021 for 6 months until (and including) October 2021.
 All progress will happen publicly via this repository.
 
+_The project was extended until (and including) January 2022._
+
 ## Goals
 
 1. **Enable monetization of Solid applications**: Solid applications will be able to include a payment pointer that can be discovered and used by the Solid authentication logic or by user agents. This involves the creation of a prototype monetized Solid application.

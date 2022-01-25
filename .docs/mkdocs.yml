@@ -20,15 +20,26 @@ markdown_extensions:
   - pymdownx.betterem
   - pymdownx.smartsymbols
   - pymdownx.magiclink
+  - pymdownx.tasklist:
+      custom_checkbox: false
+      clickable_checkbox: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - meta
 
 
 nav:
   - About: index.md
+  - Demo:
+    - demo/demo.md
   - Accountant:
     - accountant/index.md
   - Microstore:
     - microstore/index.md
-
+  - Web Monetization Provider:
+    - wmp/practical.md
+    - wmp/technical.md
 
 extra:
   social:
