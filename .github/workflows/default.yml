@@ -82,6 +82,7 @@ jobs:
 
   build-wmp:
     name: Build Web Monetization Provider
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 16 for deploy to GitHub Container Registry
@@ -89,7 +90,7 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '16'
-    - name:
+    - name: Build docker with jib
       run: mvn packages
       working-directory: ./solid-wmp
       env:
