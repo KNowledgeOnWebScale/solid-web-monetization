@@ -8,6 +8,10 @@ on:
     branches:
       - master
 
+env:
+  REGISTRY: ghcr.io
+  REPO_NAME: ${{ github.repository }}
+
 jobs:
 
   build-root-page:
@@ -91,13 +95,19 @@ jobs:
       with:
         name: accountant-production-files
         path: ./solid-accountant/dist
+    - name: Log in to the Container registry
+      uses: docker/login-action@v1
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
         context: ./solid-accountant
         file: ./solid-accountant/docker/Dockerfile
         push: true
-        tags: solid-wm/accountant:latest
+        tags: ${{ env.REGISTRY}}/${{ env.REPO_NAME}}/accountant:latest
     
   build-microstore:
     name: Build microstore
