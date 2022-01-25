@@ -10,13 +10,15 @@ services:
       - type: bind
         source: ./.docs
         target: /docs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.docs.rule=Host(`docs.localhost`)"
+      - "traefik.http.routers.docs.entrypoints=web"
 
   wallet:
     image: ghcr.io/knowledgeonwebscale/solid-web-monetization/accountant:latest
     pull_policy: always
     container_name: wallet
-    # ports:
-    #   - 8081:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wallet.rule=Host(`wallet.localhost`)"
@@ -26,18 +28,42 @@ services:
     image: ghcr.io/knowledgeonwebscale/solid-web-monetization/microstore:latest
     pull_policy: always
     container_name: store
-    # ports:
-    #   - 8082:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.store.rule=Host(`store.localhost`)"
       - "traefik.http.routers.store.entrypoints=web"
+
+  wmp:
+    image: ghcr.io/knowledgeonwebscale/solid-web-monetization/wmp:latest
+    pull_policy: always
+    container_name: wmp
+    expose:
+      - "8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wmp.rule=Host(`wmp.localhost`)"
+      - "traefik.http.routers.wmp.entrypoints=web"
+    environment:
+      - "BASE_URI=http://wmp.localhost"
+      - "MONGO_CONNECTION_STRING=mongodb://mongodb:27017"
+      - "REDIRECT_URI=http://wmp.localhost/auth/cb"
+      - "REDIRECT_URI_POST_LOGOUT=http://wmp.localhost/auth/logout/cb"
+      - "CLIENT_ID=79e3648fc184f70306e4072f3a856bb1"
+      - "CLIENT_SECRET=2ba10ec24a3cb231ee39781bc3882d66"
+      
+  mongodb:
+    image: mongo:4.2
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongodb_data:/data/db'
   
   traefik:
     image: "traefik:v2.6"
     container_name: "traefik"
     command:
-      #- "--log.level=DEBUG"
+      # - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -48,4 +74,6 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-  
+volumes:
+  mongodb_data:
+    driver: local
