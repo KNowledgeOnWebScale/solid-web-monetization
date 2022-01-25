@@ -151,6 +151,40 @@ jobs:
         name: microstore-production-files
         path: ./solid-microstore/dist
 
+  docker-microstore:
+    name: Dockerize microstore
+    needs: [build-microstore]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: accountant-production-files
+        path: ./solid-microstore/dist
+    - name: Log in to the Container registry
+      uses: docker/login-action@v1
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v3
+      with:
+        images: ${{ env.REGISTRY }}/${{ github.repository }}/microstore
+        tags: latest
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: ./solid-microstore
+        file: ./solid-microstore/docker/Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+
   deploy-accountant:
     name: Deploy accountant 
     needs: [build-accountant, build-docs]
