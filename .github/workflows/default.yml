@@ -139,11 +139,11 @@ jobs:
       working-directory: ./solid-microstore
       run: yarn run build
 
-    - name: Copy file (spa fix)
-      uses: canastro/copy-file-action@master
-      with:
-        source: "./solid-microstore/dist/index.html"
-        target: "./solid-microstore/dist/404.html"
+    # - name: Copy file (spa fix)
+    #   uses: canastro/copy-file-action@master
+    #   with:
+    #     source: "./solid-microstore/dist/index.html"
+    #     target: "./solid-microstore/dist/404.html"
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
@@ -185,44 +185,44 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
 
-  deploy-accountant:
-    name: Deploy accountant 
-    needs: [build-accountant, build-docs]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    env:
-      PUBLIC_URL: /solid-web-monetization/wallet
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: accountant-production-files
-        path: ./solid-accountant/dist
+  # deploy-accountant:
+  #   name: Deploy accountant 
+  #   needs: [build-accountant, build-docs]
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/master'
+  #   env:
+  #     PUBLIC_URL: /solid-web-monetization/wallet
+  #   steps:
+  #   - name: Download artifact
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: accountant-production-files
+  #       path: ./solid-accountant/dist
 
-    - name: Deploy accountant to gh-pages
-      uses: peaceiris/actions-gh-pages@v3.8.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./solid-accountant/dist
-        destination_dir: wallet
+  #   - name: Deploy accountant to gh-pages
+  #     uses: peaceiris/actions-gh-pages@v3.8.0
+  #     with:
+  #       github_token: ${{ secrets.GITHUB_TOKEN }}
+  #       publish_dir: ./solid-accountant/dist
+  #       destination_dir: wallet
   
-  deploy-microstore:
-    name: Deploy microstore 
-    needs: [build-microstore, deploy-accountant]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    env:
-      PUBLIC_URL: /solid-web-monetization/store
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: microstore-production-files
-        path: ./solid-microstore/dist
+  # deploy-microstore:
+  #   name: Deploy microstore 
+  #   needs: [build-microstore, deploy-accountant]
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/master'
+  #   env:
+  #     PUBLIC_URL: /solid-web-monetization/store
+  #   steps:
+  #   - name: Download artifact
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: microstore-production-files
+  #       path: ./solid-microstore/dist
 
-    - name: Deploy microstore to gh-pages
-      uses: peaceiris/actions-gh-pages@v3.8.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./solid-microstore/dist
-        destination_dir: store
+  #   - name: Deploy microstore to gh-pages
+  #     uses: peaceiris/actions-gh-pages@v3.8.0
+  #     with:
+  #       github_token: ${{ secrets.GITHUB_TOKEN }}
+  #       publish_dir: ./solid-microstore/dist
+  #       destination_dir: store

@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
     });
 
     solidAuth.onSessionRestore(url => {
-      let path = '/';
+      // Regular location strategy
+      let path = url.substring(url.lastIndexOf('/'));
+
+      // Hash location strategy
       if (url.indexOf('#') > -1) {
         path = url.split('#')[1];
       }

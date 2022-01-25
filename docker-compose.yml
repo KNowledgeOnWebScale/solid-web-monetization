@@ -11,3 +11,16 @@ services:
         source: ./.docs
         target: /docs
 
+  wallet:
+    image: ghcr.io/knowledgeonwebscale/solid-web-monetization/accountant:latest
+    container_name: wallet
+    ports:
+      - 8081:80
+    
+  store:
+    image: ghcr.io/knowledgeonwebscale/solid-web-monetization/microstore:latest
+    container_name: store
+    ports:
+      - 8082:80
+
+  

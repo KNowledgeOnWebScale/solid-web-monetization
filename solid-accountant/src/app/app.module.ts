@@ -29,10 +29,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     NgbTooltipModule
   ],
   providers: [
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    }
+    // {
+    //   provide: LocationStrategy,
+    //   useClass: HashLocationStrategy
+    // }
   ],
   bootstrap: [AppComponent]
 })
