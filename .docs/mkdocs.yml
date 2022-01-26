@@ -10,8 +10,8 @@ theme:
   features:
     - navigation.tracking
     - navigation.tabs
-    - navigation.tabs.sticky
-    # - navigation.instant
+    # - navigation.tabs.sticky
+    - navigation.instant
     # - navigation.expand
     # - navigation.sections
     - navigation.indexes
@@ -39,18 +39,19 @@ markdown_extensions:
 
 
 nav:
-  - About: index.md
-  - Demo:
-    - demo/index.md
-  - Accountant:
-    - accountant/index.md
-    - accountant/practical.md
-    - accountant/technical.md
-  - Microstore:
-    - microstore/index.md
-  - Web Monetization Provider:
-    - wmp/index.md
-    - wmp/technical.md
+  - Home: index.md
+  - Demo: demo/index.md
+  - Components:
+    - Accountant:
+      - accountant/index.md
+      - Practical: accountant/practical.md
+      - Technical: accountant/technical.md
+    - Microstore:
+      - microstore/index.md
+    - Web Monetization Provider:
+      - wmp/index.md
+      - wmp/technical.md
+  - Specification: specs.html" target="_blank"
 
 extra:
   social:

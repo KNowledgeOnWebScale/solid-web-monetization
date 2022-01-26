@@ -1,0 +1,680 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/html" lang="en" dir="ltr"><head>
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 28.2.6">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+span.example-title{text-transform:none}
+:is(aside,div).example,div.illegal-example{padding:.5em;margin:1em 0;position:relative;clear:both}
+div.illegal-example{color:red}
+div.illegal-example p{color:#000}
+:is(aside,div).example{border-left-width:.5em;border-left-style:solid;border-color:#e0cb52;background:#fcfaee}
+aside.example div.example{border-left-width:.1em;border-color:#999;background:#fff}
+.example pre{background-color:rgba(0,0,0,.03)}
+</style>
+<style>
+.issue-label{text-transform:initial}
+.warning>p:first-child{margin-top:0}
+.warning{padding:.5em;border-left-width:.5em;border-left-style:solid}
+span.warning{padding:.1em .5em .15em}
+.issue.closed span.issue-number{text-decoration:line-through}
+.warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}
+.warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}
+li.task-list-item{list-style:none}
+input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
+.issue a.respec-gh-label{padding:5px;margin:0 2px 0 2px;font-size:10px;text-transform:none;text-decoration:none;font-weight:700;border-radius:4px;position:relative;bottom:2px;border:none;display:inline-block}
+</style>
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font:small Helvetica Neue,sans-serif,Droid Sans Fallback;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+    
+    
+<title>Solid Web Monetization</title>
+    
+    
+  
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+code{color:#c63501}
+th code{color:inherit}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+a[href].self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+:is(h2,h3,h4,h5,h6)+a.self-link{border:none;color:inherit;position:relative;top:-2.9em;left:-1.4em;margin-bottom:-2em}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";opacity:.5;text-decoration:none}
+@media (max-width:767px){
+dd{margin-left:0}
+:is(h2,h3,h4,h5,h6)+a.self-link{left:95%}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+<meta name="description" content="This specification is a proposal for how [Solid] can be leveraged to open up the [Web Monetization] ecosystem,
+making it easy for content creators to receive micro-payments in a generic way and avoiding vendor lock-in
+by allowing content consumers to freely choose a supported [Web Monetization] provider.">
+<style>
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
+.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
+.hljs-literal{color:#0b76c5}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs-emphasis{font-style:italic}
+.hljs-strong{font-weight:700}
+.hljs-link{text-decoration:underline}
+</style>
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "specStatus": "ED",
+  "editors": [
+    {
+      "name": "Thomas Dupont"
+    },
+    {
+      "name": "Wannes Kerckhove"
+    }
+  ],
+  "github": "https://github.com/KNowledgeOnWebScale/solid-web-monetization",
+  "shortName": "solid-web-monetization",
+  "xref": "web-platform",
+  "format": "markdown",
+  "noRecTrack": true,
+  "localBiblio": {
+    "Solid": {
+      "title": "Solid Protocol",
+      "href": "https://solidproject.org/TR/protocol",
+      "id": "solid"
+    },
+    "Web Monetization": {
+      "title": "Web Monetization",
+      "href": "https://webmonetization.org/specification.html",
+      "id": "web monetization"
+    },
+    "Grant for the Web": {
+      "title": "Grant for the Web",
+      "href": "https://www.grantfortheweb.org",
+      "id": "grant for the web"
+    },
+    "Interledger": {
+      "title": "Interledger",
+      "href": "https://interledger.org",
+      "id": "interledger"
+    },
+    "Open Payments": {
+      "title": "Open Payments",
+      "href": "https://openpayments.dev",
+      "id": "open payments"
+    }
+  },
+  "publishISODate": "2022-01-26T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 26 January 2022"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
+<body class="h-entry informative" data-cite="HTML INFRA URL WEBIDL DOM FETCH"><div class="head">
+    <a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+  </a> <h1 id="title" class="title">Solid Web Monetization</h1>
+    
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-01-26">26 January 2022</time></p>
+    <details open="">
+      <summary>More details about this document</summary>
+      <dl>
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://knowledgeonwebscale.github.io/solid-web-monetization/">https://knowledgeonwebscale.github.io/solid-web-monetization/</a>
+              </dd><dt>Latest published version:</dt><dd>
+                <a href="https://www.w3.org/TR/solid-web-monetization/">https://www.w3.org/TR/solid-web-monetization/</a>
+              </dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://knowledgeonwebscale.github.io/solid-web-monetization/">https://knowledgeonwebscale.github.io/solid-web-monetization/</a></dd>
+        <dt>History:</dt><dd>
+        <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/commits/">Commit history</a>
+      </dd>
+        
+        
+        
+        
+        
+        <dt>Editors:</dt>
+        <dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Thomas Dupont</span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Wannes Kerckhove</span>
+  </dd>
+        
+        
+        <dt>Feedback:</dt><dd>
+        <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/">GitHub KNowledgeOnWebScale/solid-web-monetization</a>
+        (<a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/pulls/">pull requests</a>,
+        <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/issues/new/choose">new issue</a>,
+        <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/issues/">open issues</a>)
+      </dd>
+        
+        
+      </dl>
+    </details>
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2022
+    
+    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
+    <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+    <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
+  </p>
+    <hr title="Separator for header">
+  </div><section id="abstract" class="introductory"><h2 id="abstract-0">Abstract</h2><a class="self-link" href="#abstract" aria-label="Permalink for this Section"></a><p>This specification is a proposal for how [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] can be leveraged to open up the [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] ecosystem,
+making it easy for content creators to receive micro-payments in a generic way and avoiding vendor lock-in
+by allowing content consumers to freely choose a supported [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] provider.</p></section><section id="sotd" class="introductory"><h2 id="status-of-this-document">Status of This Document</h2><a class="self-link" href="#sotd" aria-label="Permalink for this Section"></a><p><em>This section describes the status of this
+      document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr>
+      publications and the latest revision of this technical report can be found
+      in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p><p>This document is the description of a proposal for the integration of [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] and [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>], with the goal of innovating upon the latter.
+The proposal was formed as part of a Proof of Concept solution in the context of the [<cite><a class="bibref" data-link-type="biblio" href="#bib-grant for the web" title="Grant for the Web">Grant for the Web</a></cite>].</p><p>Publication as an Editor's Draft does not
+  imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. </p><p>
+    This is a draft document and may be updated, replaced or obsoleted by other
+    documents at any time. It is inappropriate to cite this document as other
+    than work in progress.
+    
+  </p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
+          Policy</a>.
+      
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#goals"><bdi class="secno">1. </bdi>Goals</a></li><li class="tocline"><a class="tocxref" href="#wmp-def"><bdi class="secno">2. </bdi>Definition of a Web Monetization provider (<abbr title="Web Monetization provider">WMP</abbr>)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#authentication-operations"><bdi class="secno">2.1 </bdi>Authentication operations</a></li><li class="tocline"><a class="tocxref" href="#subscription-operations"><bdi class="secno">2.2 </bdi>Subscription operations</a></li><li class="tocline"><a class="tocxref" href="#session-operations"><bdi class="secno">2.3 </bdi>Session operations</a></li></ol></li><li class="tocline"><a class="tocxref" href="#flow"><bdi class="secno">3. </bdi>Flow</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#subscribing-to-a-web-monetization-provider"><bdi class="secno">3.1 </bdi>Subscribing to a Web Monetization provider</a></li><li class="tocline"><a class="tocxref" href="#consuming-monetized-content"><bdi class="secno">3.2 </bdi>Consuming monetized content</a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#api-endpoints"><bdi class="secno">4.1 </bdi>API endpoints</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#authentication"><bdi class="secno">4.1.1 </bdi>Authentication</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#get-auth-jwks"><bdi class="secno">4.1.1.1 </bdi>GET /auth/jwks</a></li><li class="tocline"><a class="tocxref" href="#get-auth-login"><bdi class="secno">4.1.1.2 </bdi>GET /auth/login</a></li><li class="tocline"><a class="tocxref" href="#get-auth-cb"><bdi class="secno">4.1.1.3 </bdi>GET /auth/cb</a></li></ol></li><li class="tocline"><a class="tocxref" href="#subscriptions"><bdi class="secno">4.1.2 </bdi>Subscriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#post-me-subscription"><bdi class="secno">4.1.2.1 </bdi>POST /me/subscription</a></li><li class="tocline"><a class="tocxref" href="#get-me-subscription"><bdi class="secno">4.1.2.2 </bdi>GET /me/subscription</a></li><li class="tocline"><a class="tocxref" href="#get-me-subscription-mandate"><bdi class="secno">4.1.2.3 </bdi>GET /me/subscription/mandate</a></li><li class="tocline"><a class="tocxref" href="#delete-me-subscription"><bdi class="secno">4.1.2.4 </bdi>DELETE /me/subscription</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sessions"><bdi class="secno">4.1.3 </bdi>Sessions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#get-me-sessions"><bdi class="secno">4.1.3.1 </bdi>GET /me/sessions</a></li><li class="tocline"><a class="tocxref" href="#post-me-sessions"><bdi class="secno">4.1.3.2 </bdi>POST /me/sessions</a></li><li class="tocline"><a class="tocxref" href="#get-me-sessions-sessionid"><bdi class="secno">4.1.3.3 </bdi>GET /me/sessions/{sessionId}</a></li><li class="tocline"><a class="tocxref" href="#delete-me-sessions-sessionid"><bdi class="secno">4.1.3.4 </bdi>DELETE /me/sessions/{sessionId}</a></li><li class="tocline"><a class="tocxref" href="#websocket-me-sessions-sessionid-channel"><bdi class="secno">4.1.3.5 </bdi>Websocket /me/sessions/{sessionId}/channel</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#types"><bdi class="secno">4.2 </bdi>Types</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#subscriptioninput"><bdi class="secno">4.2.1 </bdi>SubscriptionInput</a></li><li class="tocline"><a class="tocxref" href="#subscription"><bdi class="secno">4.2.2 </bdi>Subscription</a></li><li class="tocline"><a class="tocxref" href="#monetizationsessioninput"><bdi class="secno">4.2.3 </bdi>MonetizationSessionInput</a></li><li class="tocline"><a class="tocxref" href="#monetizationsession"><bdi class="secno">4.2.4 </bdi>MonetizationSession</a></li><li class="tocline"><a class="tocxref" href="#ilpstreamupdate"><bdi class="secno">4.2.5 </bdi>ILPStreamUpdate</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#future-work"><bdi class="secno">5. </bdi>Future work</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">A. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">A.1 </bdi>Informative references</a></li></ol></li></ol></nav><section id="goals"><h2 id="x1-goals"><bdi class="secno">1. </bdi>Goals</h2><a class="self-link" href="#goals" aria-label="Permalink for Section 1."></a><p>In the context of [<cite><a class="bibref" data-link-type="biblio" href="#bib-grant for the web" title="Grant for the Web">Grant for the Web</a></cite>], our initial goal was to integrate [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] with [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] applications, enabling [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] users to consume monetized content from [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] enabled applications without needing to rely on browser extensions. Our research efforts uncovered some limitations of the existing protocols and this specification should be interpreted as a proposal for a possible solution that aims to mitigate these limitations, with the goal of furthering the discussion.</p><p>These limitations can be defined as follows:</p><ol>
+<li>The heterogeneity of [<cite><a class="bibref" data-link-type="biblio" href="#bib-interledger" title="Interledger">Interledger</a></cite>] (<abbr title="Interledger">ILP</abbr>) wallet implementations makes it difficult to encapsulate the logic required for streaming payments between wallets (because they use different protocols, different authentication schemes, etc).</li>
+<li>There is a lack of mechanisms for reliably and securely performing these payments on behalf of the user.</li>
+<li>There is an inherent issue of trust, by requiring the client to orchestrate the payment setup and thus determining the rate and the amount of the payment stream.</li>
+</ol><p>We propose the introduction of a [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] provider or <abbr title="Web Monetization provider">WMP</abbr>, as the generic component that can be deployed as an additional layer of abstraction to help solve some of these limitations. Section <a href="#wmp-def" class="sec-ref"><bdi class="secno">2. </bdi>Definition of a Web Monetization provider (<abbr title="Web Monetization provider">WMP</abbr>)</a> formalizes the role of such a <abbr title="Web Monetization provider">WMP</abbr>.</p></section><section id="definition-of-a-web-monetization-provider-wmp"><h2 id="wmp-def"><bdi class="secno">2. </bdi>Definition of a Web Monetization provider (<abbr title="Web Monetization provider">WMP</abbr>)</h2><a class="self-link" href="#wmp-def" aria-label="Permalink for Section 2."></a><p>By introducing the <abbr title="Web Monetization provider">WMP</abbr> as a trusted third party between the content consumer (sending party) and the content creator (receiving party), a new level of abstraction is added that helps to solve some of the current [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] limitations.</p><ol>
+<li>The complexity of dealing with the heterogeneity of [<cite><a class="bibref" data-link-type="biblio" href="#bib-interledger" title="Interledger">Interledger</a></cite>] wallet implementations is handled by the <abbr title="Web Monetization provider">WMP</abbr>. This makes it easier for client developers to create [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] enabled applications.</li>
+<li>The <abbr title="Web Monetization provider">WMP</abbr> handles streaming payments for monetized sessions. In exchange the user subscribes to the <abbr title="Web Monetization provider">WMP</abbr> by paying a monthly fee, or funds the <abbr title="Web Monetization provider">WMP</abbr> for a predetermined amount (see note). The <abbr title="Web Monetization provider">WMP</abbr> is free to choose its revenue model and spending strategy. This loose coupling adds a lot of flexibility to the [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">Web Monetization</a></cite>] model and again helps to reduce client-side complexity.</li>
+<li>The <abbr title="Web Monetization provider">WMP</abbr> API is an open specification, enabling different parties to compete in providing <abbr title="Web Monetization provider">WMP</abbr> services. This benefits the users as they can now choose which <abbr title="Web Monetization provider">WMP</abbr> to trust as their [<cite><a class="bibref" data-link-type="biblio" href="#bib-web monetization" title="Web Monetization">web Monetization</a></cite>] agent, and can easily switch providers at any time while still being able to consume the monetized content in the same way. This model perfectly aligns with the [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] philosophy.</li>
+</ol><div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="3"><span>Note</span><span class="issue-label">: Funding the WMP</span></div><p class="">
+  Although the revenue model for a <abbr title="Web Monetization provider">WMP</abbr> can be flexible (subscription model, prefunded, etc), we have chosen to limit the specification that follows to a subscription model only.
+</p></div><p>The <abbr title="Web Monetization provider">WMP</abbr> can be defined as a set of HTTP endpoints, which can be split up in three categories:</p><section id="authentication-operations"><h3 id="x2-1-authentication-operations"><bdi class="secno">2.1 </bdi>Authentication operations</h3><a class="self-link" href="#authentication-operations" aria-label="Permalink for Section 2.1"></a><p>Clients must authenticate on behalf of a user with a <abbr title="Web Monetization provider">WMP</abbr> server using [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] WebID. The authentication process (todo: verwijzing naar een spec of zelf werking kort beschrijven?)
+Once authenticated, a client can interact with the contextualized subscription and session endpoints (<code>/me/...</code>).</p><p><abbr title="Web Monetization provider">WMP</abbr> servers must at least support the following auth operations:</p><ul>
+<li>Publishing the public JWKS keyset via <a href="#get-auth-jwks"><code>GET /auth/jwks</code></a></li>
+<li>Triggering authentication via <a href="#get-auth-login"><code>GET /auth/login</code></a></li>
+<li>Providing a callback for the WebID provider via <a href="#get-auth-cb"><code>GET /auth/cb</code></a></li>
+</ul></section><section id="subscription-operations"><h3 id="x2-2-subscription-operations"><bdi class="secno">2.2 </bdi>Subscription operations</h3><a class="self-link" href="#subscription-operations" aria-label="Permalink for Section 2.2"></a><p>The subscription operations allow an authenticated user to create a new subscription, or to interact with an existing subscription. A subscription links a [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] WebID to an [<cite><a class="bibref" data-link-type="biblio" href="#bib-open payments" title="Open Payments">Open Payments</a></cite>] mandate formalizing the recurring charge that will be applied to the user's Wallet. The [<cite><a class="bibref" data-link-type="biblio" href="#bib-open payments" title="Open Payments">Open Payments</a></cite>] specification is an extension of the [<cite><a class="bibref" data-link-type="biblio" href="#bib-simple-payment-setup-protocol" title="Simple Payment Setup Protocol">simple-payment-setup-protocol</a></cite>] or <abbr title="Simple Payment Setup Protocol">SPSP</abbr>, one of the <abbr title="Interledger">ILP</abbr> protocols used for discovering (technical) details for a Wallet, starting from a Payment Pointer (see [<cite><a class="bibref" data-link-type="biblio" href="#bib-payment-pointers" title="Payment Pointers">payment-pointers</a></cite>]). The [<cite><a class="bibref" data-link-type="biblio" href="#bib-open payments" title="Open Payments">Open Payments</a></cite>] protocol defines how a <abbr title="Web Monetization provider">WMP</abbr> can discover the user's wallet, create a mandate for a recurring payment and then periodically submit new charges for this mandate in a secure way.</p><p><abbr title="Web Monetization provider">WMP</abbr> servers must support the following subscription operations:</p><ul>
+<li>Creating a new subscription via <a href="#post-me-subscription"><code>POST /me/subscription</code></a></li>
+<li>Retrieving details (including the state) of a subscription via <a href="#get-me-subscription"><code>GET /me/subscription</code></a></li>
+<li>Getting a (proxied) representation of the [<cite><a class="bibref" data-link-type="biblio" href="#bib-open payments" title="Open Payments">Open Payments</a></cite>] mandate linked to the subscription via <a href="#get-me-subscription-mandate"><code>GET /me/subscription/mandate</code></a></li>
+<li>Cancelling a subscription via <a href="#delete-me-subscription"><code>DELETE /me/subscription</code></a></li>
+</ul><p>The flow of how a subscription is initialized, and how charges are then made towards the subscription mandate, is detailed in section <a href="#subscribing-to-a-web-monetization-provider" class="sec-ref"><bdi class="secno">3.1 </bdi>Subscribing to a Web Monetization provider</a>.</p></section><section id="session-operations"><h3 id="x2-3-session-operations"><bdi class="secno">2.3 </bdi>Session operations</h3><a class="self-link" href="#session-operations" aria-label="Permalink for Section 2.3"></a><p>Authenticated clients interfacing with a <abbr title="Web Monetization provider">WMP</abbr> on behalf of a user with an active subscription, can initiate <abbr title="Web Monetization provider">WMP</abbr> sessions which will grant the user access to monetized content on [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] enabled applications. The flow of how such a session is set up and used, is detailed in section <a href="#consuming-monetized-content" class="sec-ref"><bdi class="secno">3.2 </bdi>Consuming monetized content</a>.</p><p><abbr title="Web Monetization provider">WMP</abbr> servers must support the following session operations:</p><ul>
+<li>Creating a new session via <a href="#post-me-sessions"><code>POST /me/sessions</code></a></li>
+<li>Activating a created session by connecting to a Websocket at <a href="#websocket-me-sessions-sessionid-channel"><code>/me/sessions/{sessionId}/channel</code></a></li>
+</ul><p>To provide additional feedback to the user and give clients more control, <abbr title="Web Monetization provider">WMP</abbr> servers can optionally support the following additional session operations:</p><ul>
+<li>Retrieving a list of active monetization sessions via <a href="#get-me-sessions"><code>GET /me/sessions</code></a></li>
+<li>Retrieving the details of an active monetization session (including e.g. amount spent)  via <a href="#get-me-sessions-sessionid"><code>GET /me/sessions/{sessionId}</code></a></li>
+<li>Manually closing a session (e.g. to stop the session in case of a malicious or buggy client) via <a href="#delete-me-sessions-sessionid"><code>DELETE /me/sessions/{sessionId}</code></a></li>
+</ul></section></section><section id="flow"><h2 id="x3-flow"><bdi class="secno">3. </bdi>Flow</h2><a class="self-link" href="#flow" aria-label="Permalink for Section 3."></a><p>This section is used to define the interaction patterns of a <abbr title="Web Monetization provider">WMP</abbr> server with other actors in the monetization flow: users/clients, [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] Pods/Identity providers, <abbr title="Interledger">ILP</abbr> Wallets, etc. These interactions can be split up into two main scenarios: <a href="#subscribing-to-a-web-monetization-provider" class="sec-ref"><bdi class="secno">3.1 </bdi>Subscribing to a Web Monetization provider</a> and <a href="#consuming-monetized-content" class="sec-ref"><bdi class="secno">3.2 </bdi>Consuming monetized content</a>.</p><section id="subscribing-to-a-web-monetization-provider"><h3 id="x3-1-subscribing-to-a-web-monetization-provider"><bdi class="secno">3.1 </bdi>Subscribing to a Web Monetization provider</h3><a class="self-link" href="#subscribing-to-a-web-monetization-provider" aria-label="Permalink for Section 3.1"></a><figure id="create-subscription-flow">
+  <img src="assets/img/spec/create-subscription-flow.png" height="1362" width="1724">
+  <figcaption>Figure <bdi class="figno">1</bdi> <span class="fig-title">Sequence diagram for the flow "Subscribing to a Web Monetization provider"</span></figcaption>
+</figure></section><section id="consuming-monetized-content"><h3 id="x3-2-consuming-monetized-content"><bdi class="secno">3.2 </bdi>Consuming monetized content</h3><a class="self-link" href="#consuming-monetized-content" aria-label="Permalink for Section 3.2"></a><p>TODO: note how this can be integrated in solid auth flow</p><figure id="consume-monetized-content-flow">
+  <img src="assets/img/spec/consume-monetized-content-flow.png" height="1342" width="1622">
+  <figcaption>Figure <bdi class="figno">2</bdi> <span class="fig-title">Sequence diagram for the flow "Consuming monetized content"</span></figcaption>
+</figure></section></section><section id="specification"><h2 id="x4-specification"><bdi class="secno">4. </bdi>Specification</h2><a class="self-link" href="#specification" aria-label="Permalink for Section 4."></a><section id="api-endpoints"><h3 id="x4-1-api-endpoints"><bdi class="secno">4.1 </bdi>API endpoints</h3><a class="self-link" href="#api-endpoints" aria-label="Permalink for Section 4.1"></a><section id="authentication"><h4 id="x4-1-1-authentication"><bdi class="secno">4.1.1 </bdi>Authentication</h4><a class="self-link" href="#authentication" aria-label="Permalink for Section 4.1.1"></a><p>TODO</p><section id="get-auth-jwks"><h5 id="x4-1-1-1-get-auth-jwks"><bdi class="secno">4.1.1.1 </bdi>GET /auth/jwks</h5><a class="self-link" href="#get-auth-jwks" aria-label="Permalink for Section 4.1.1.1"></a></section><section id="get-auth-login"><h5 id="x4-1-1-2-get-auth-login"><bdi class="secno">4.1.1.2 </bdi>GET /auth/login</h5><a class="self-link" href="#get-auth-login" aria-label="Permalink for Section 4.1.1.2"></a></section><section id="get-auth-cb"><h5 id="x4-1-1-3-get-auth-cb"><bdi class="secno">4.1.1.3 </bdi>GET /auth/cb</h5><a class="self-link" href="#get-auth-cb" aria-label="Permalink for Section 4.1.1.3"></a></section></section><section id="subscriptions"><h4 id="x4-1-2-subscriptions"><bdi class="secno">4.1.2 </bdi>Subscriptions</h4><a class="self-link" href="#subscriptions" aria-label="Permalink for Section 4.1.2"></a><section id="post-me-subscription"><h5 id="x4-1-2-1-post-me-subscription"><bdi class="secno">4.1.2.1 </bdi>POST /me/subscription</h5><a class="self-link" href="#post-me-subscription" aria-label="Permalink for Section 4.1.2.1"></a><p>A client creates a subscription by performing an HTTP POST of a JSON document (defined by <a href="#subscriptioninput"><code>SubscriptionInput</code></a>) to the subscriptions API endpoint.
+The <abbr title="Web Monetization provider">WMP</abbr> server must respond with a <code>201 Created</code> response upon successful creation and initialization of the subscription (i.e. 1. creating a mandate at the user's Wallet referenced by the supplied Payment Pointer and 2. registering the <abbr title="Web Monetization provider">WMP</abbr> with the [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] Pod of the user), otherwise an error response is returned.</p><aside class="example" id="example-example-request"><div class="marker">
+    <a class="self-link" href="#example-example-request">Example<bdi> 1</bdi></a><span class="example-title">: Example request</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/me/subscription</span> <span class="hljs-meta">HTTP/1.1</span>
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+
+<span class="json">{
+  <span class="hljs-attr">"paymentPointer"</span> : <span class="hljs-string">"wallet.example/alice"</span>
+}
+</span></code></pre>
+</aside><aside class="example" id="example-example-response"><div class="marker">
+    <a class="self-link" href="#example-example-response">Example<bdi> 2</bdi></a><span class="example-title">: Example response</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">201</span> Created
+<span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json
+</code></pre>
+</aside></section><section id="get-me-subscription"><h5 id="x4-1-2-2-get-me-subscription"><bdi class="secno">4.1.2.2 </bdi>GET /me/subscription</h5><a class="self-link" href="#get-me-subscription" aria-label="Permalink for Section 4.1.2.2"></a><p>The client gets details about a subscription by performing an HTTP GET to the subscriptions API endpoint. If a subscription for the authenticated user exists, the <abbr title="Web Monetization provider">WMP</abbr> server must respond with a <code>200 Ok</code> and a JSON document (defined by <a href="#subscription"><code>Subscription</code></a>) as the response body. If the subscription does not exist, the <abbr title="Web Monetization provider">WMP</abbr> server must respond with a <code>404 Not Found</code>.</p><aside class="example" id="example-example-request-0"><div class="marker">
+    <a class="self-link" href="#example-example-request-0">Example<bdi> 3</bdi></a><span class="example-title">: Example request</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/me/subscription</span> <span class="hljs-meta">HTTP/1.1</span>
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+<span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>application/json
+</code></pre>
+</aside><aside class="example" id="example-example-response-0"><div class="marker">
+    <a class="self-link" href="#example-example-response-0">Example<bdi> 4</bdi></a><span class="example-title">: Example response</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> Ok
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+
+<span class="json">{
+  <span class="hljs-attr">"userId"</span> : <span class="hljs-string">"https://alice.solidcommunity.net/profile/card#me"</span>,
+  <span class="hljs-attr">"paymentPointer"</span> : <span class="hljs-string">"$wallet.example/alice"</span>,
+  <span class="hljs-attr">"mandateURI"</span> : <span class="hljs-string">"https://wallet.example/alice/mandates/2fad69d0-7997-4543-8346-69b418c479a6"</span>,
+  <span class="hljs-attr">"valid"</span> : <span class="hljs-literal">true</span>
+}
+</span></code></pre>
+</aside></section><section id="get-me-subscription-mandate"><h5 id="x4-1-2-3-get-me-subscription-mandate"><bdi class="secno">4.1.2.3 </bdi>GET /me/subscription/mandate</h5><a class="self-link" href="#get-me-subscription-mandate" aria-label="Permalink for Section 4.1.2.3"></a><p>A client can retrieve the [<cite><a class="bibref" data-link-type="biblio" href="#bib-open payments" title="Open Payments">Open Payments</a></cite>] mandate details via the <abbr title="Web Monetization provider">WMP</abbr> server by performing an HTTP GET to <code>/me/subscription/mandate</code>. If a subscription for the authenticated user exists, the referenced mandate should exist on the Wallet of the user (otherwise the subscription is no longer valid), in which case the <abbr title="Web Monetization provider">WMP</abbr> server can proxy serve the mandate details by responding with a <code>200 Ok</code> and a JSON document as the response body. If the subscription does not exist, the <abbr title="Web Monetization provider">WMP</abbr> server must respond with a <code>404 Not Found</code>.</p><aside class="example" id="example-example-request-1"><div class="marker">
+    <a class="self-link" href="#example-example-request-1">Example<bdi> 5</bdi></a><span class="example-title">: Example request</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/me/subscription/mandate</span> <span class="hljs-meta">HTTP/1.1</span>
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+<span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>application/json
+</code></pre>
+</aside><aside class="example" id="example-example-response-1"><div class="marker">
+    <a class="self-link" href="#example-example-response-1">Example<bdi> 6</bdi></a><span class="example-title">: Example response</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> Ok
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+
+<span class="json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"https://wallet.example/mandates/2fad69d0-7997-4543-8346-69b418c479a6"</span>,
+  <span class="hljs-attr">"account"</span>: <span class="hljs-string">"https://wallet.example/alice"</span>,
+  <span class="hljs-attr">"amount"</span>: <span class="hljs-number">500</span>,
+  <span class="hljs-attr">"assetCode"</span> : <span class="hljs-string">"USD"</span>,
+  <span class="hljs-attr">"assetScale"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"interval"</span>: <span class="hljs-string">"P1M"</span>,
+  <span class="hljs-attr">"startAt"</span>: <span class="hljs-string">"2022-01-22T00:00:00Z"</span>,
+  <span class="hljs-attr">"balance"</span>: <span class="hljs-number">134</span>
+}
+</span></code></pre>
+</aside></section><section id="delete-me-subscription"><h5 id="x4-1-2-4-delete-me-subscription"><bdi class="secno">4.1.2.4 </bdi>DELETE /me/subscription</h5><a class="self-link" href="#delete-me-subscription" aria-label="Permalink for Section 4.1.2.4"></a><p>A client can cancel a subscription by performing an HTTP DELETE to the subscription API endpoint. If a subscription for the authenticated user exists, the <abbr title="Web Monetization provider">WMP</abbr> server must delete the associated mandate on the user's Wallet and deregister the <abbr title="Web Monetization provider">WMP</abbr> reference from the user's [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] pod, after which a <code>204 No Content</code> is responded to the client, indicating the cancellation was completed successfully. If there is no subscription, the <abbr title="Web Monetization provider">WMP</abbr> server responds with <code>404 Not Found</code>. In case of other exceptions, the <abbr title="Web Monetization provider">WMP</abbr> server responds with an appropriate error response.</p><aside class="example" id="example-example-request-2"><div class="marker">
+    <a class="self-link" href="#example-example-request-2">Example<bdi> 7</bdi></a><span class="example-title">: Example request</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-keyword">DELETE</span> <span class="hljs-string">/me/subscription</span> <span class="hljs-meta">HTTP/1.1</span>
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+</code></pre>
+</aside><aside class="example" id="example-example-response-2"><div class="marker">
+    <a class="self-link" href="#example-example-response-2">Example<bdi> 8</bdi></a><span class="example-title">: Example response</span>
+  </div>
+
+
+<pre><code aria-busy="false" class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">204</span> No Content
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>example.com
+</code></pre>
+</aside></section></section><section id="sessions"><h4 id="x4-1-3-sessions"><bdi class="secno">4.1.3 </bdi>Sessions</h4><a class="self-link" href="#sessions" aria-label="Permalink for Section 4.1.3"></a><section id="get-me-sessions"><h5 id="x4-1-3-1-get-me-sessions"><bdi class="secno">4.1.3.1 </bdi>GET /me/sessions</h5><a class="self-link" href="#get-me-sessions" aria-label="Permalink for Section 4.1.3.1"></a></section><section id="post-me-sessions"><h5 id="x4-1-3-2-post-me-sessions"><bdi class="secno">4.1.3.2 </bdi>POST /me/sessions</h5><a class="self-link" href="#post-me-sessions" aria-label="Permalink for Section 4.1.3.2"></a></section><section id="get-me-sessions-sessionid"><h5 id="x4-1-3-3-get-me-sessions-sessionid"><bdi class="secno">4.1.3.3 </bdi>GET /me/sessions/{sessionId}</h5><a class="self-link" href="#get-me-sessions-sessionid" aria-label="Permalink for Section 4.1.3.3"></a></section><section id="delete-me-sessions-sessionid"><h5 id="x4-1-3-4-delete-me-sessions-sessionid"><bdi class="secno">4.1.3.4 </bdi>DELETE /me/sessions/{sessionId}</h5><a class="self-link" href="#delete-me-sessions-sessionid" aria-label="Permalink for Section 4.1.3.4"></a></section><section id="websocket-me-sessions-sessionid-channel"><h5 id="x4-1-3-5-websocket-me-sessions-sessionid-channel"><bdi class="secno">4.1.3.5 </bdi>Websocket /me/sessions/{sessionId}/channel</h5><a class="self-link" href="#websocket-me-sessions-sessionid-channel" aria-label="Permalink for Section 4.1.3.5"></a></section></section></section><section id="types"><h3 id="x4-2-types"><bdi class="secno">4.2 </bdi>Types</h3><a class="self-link" href="#types" aria-label="Permalink for Section 4.2"></a><section id="subscriptioninput"><h4 id="x4-2-1-subscriptioninput"><bdi class="secno">4.2.1 </bdi>SubscriptionInput</h4><a class="self-link" href="#subscriptioninput" aria-label="Permalink for Section 4.2.1"></a><p>A <code>SubscriptionInput</code> is an object instance that must have the following property:</p><ul>
+<li><code>paymentPointer</code> (type String): the Payment Pointer (see [<cite><a class="bibref" data-link-type="biblio" href="#bib-payment-pointers" title="Payment Pointers">payment-pointers</a></cite>]) to use for creating the subscription.</li>
+</ul><aside class="example" id="example-subscriptioninput-example"><div class="marker">
+    <a class="self-link" href="#example-subscriptioninput-example">Example<bdi> 9</bdi></a><span class="example-title">: SubscriptionInput example</span>
+  </div>
+<pre aria-busy="false"><code class="hljs json">{
+  <span class="hljs-attr">"paymentPointer"</span> : <span class="hljs-string">"wallet.example/alice"</span>
+}</code></pre>
+</aside></section><section id="subscription"><h4 id="x4-2-2-subscription"><bdi class="secno">4.2.2 </bdi>Subscription</h4><a class="self-link" href="#subscription" aria-label="Permalink for Section 4.2.2"></a><p>A <code>Subscription</code> is an object instance that has the following properties:</p><ul>
+<li><code>userId</code> (type String/URI, required): the [<cite><a class="bibref" data-link-type="biblio" href="#bib-solid" title="Solid Protocol">Solid</a></cite>] WebID of the owner of the subscription. This id also identifies the subscription, as it does not make sense for a user to have multiple subscriptions with the same <abbr title="Web Monetization provider">WMP</abbr>.</li>
+<li><code>paymentPointer</code> (type String, required): the Payment Pointer to the Wallet that was used to create the subscription.</li>
+<li><code>mandateURI</code> (type String/URI, required): URI referencing the mandate in the user's Wallet that is associated with the subscription.</li>
+<li><code>valid</code> (type Boolean, optional): a boolean value indicating if the subscription is valid (i.e. the mandateURI can be resolved and the associated mandate has not yet expired).</li>
+</ul><aside class="example" id="example-subscription-example"><div class="marker">
+    <a class="self-link" href="#example-subscription-example">Example<bdi> 10</bdi></a><span class="example-title">: Subscription example</span>
+  </div>
+<pre aria-busy="false"><code class="hljs json">{
+  <span class="hljs-attr">"userId"</span> : <span class="hljs-string">"https://alice.solidcommunity.net/profile/card#me"</span>,
+  <span class="hljs-attr">"paymentPointer"</span> : <span class="hljs-string">"$wallet.example/alice"</span>,
+  <span class="hljs-attr">"mandateURI"</span> : <span class="hljs-string">"https://wallet.example/alice/mandates/2fad69d0-7997-4543-8346-69b418c479a6"</span>,
+  <span class="hljs-attr">"valid"</span> : <span class="hljs-literal">true</span>
+}</code></pre>
+</aside></section><section id="monetizationsessioninput"><h4 id="x4-2-3-monetizationsessioninput"><bdi class="secno">4.2.3 </bdi>MonetizationSessionInput</h4><a class="self-link" href="#monetizationsessioninput" aria-label="Permalink for Section 4.2.3"></a><p>A <code>MonetizationSessionInput</code> is an object instance that must have the following property:</p><ul>
+<li><code>targetPaymentPointer</code> (type String): the Payment Pointer (see [<cite><a class="bibref" data-link-type="biblio" href="#bib-payment-pointers" title="Payment Pointers">payment-pointers</a></cite>]) representing the Wallet of the content creator. The <abbr title="Web Monetization provider">WMP</abbr> will use this Wallet as the target for the micro-payments that are streamed during the session.</li>
+</ul><aside class="example" id="example-monetizationsessioninput-example"><div class="marker">
+    <a class="self-link" href="#example-monetizationsessioninput-example">Example<bdi> 11</bdi></a><span class="example-title">: MonetizationSessionInput example</span>
+  </div>
+<pre aria-busy="false"><code class="hljs json">{
+  <span class="hljs-attr">"targetPaymentPointer"</span> : <span class="hljs-string">"wallet.example/bob"</span>
+}</code></pre>
+</aside></section><section id="monetizationsession"><h4 id="x4-2-4-monetizationsession"><bdi class="secno">4.2.4 </bdi>MonetizationSession</h4><a class="self-link" href="#monetizationsession" aria-label="Permalink for Section 4.2.4"></a><p>A <code>MonetizationSession</code> is an object instance that has the following properties:</p><ul>
+<li><code>id</code> (type String, required): the unique identifier for the session.</li>
+<li><code>target</code> (type String, required): the Payment Pointer (see [<cite><a class="bibref" data-link-type="biblio" href="#bib-payment-pointers" title="Payment Pointers">payment-pointers</a></cite>]) representing the Wallet of the content creator. The <abbr title="Web Monetization provider">WMP</abbr> will use this Wallet as the target for the micro-payments that are streamed during the session.</li>
+<li><code>totalAmountTransferred</code> (type Long, optional): the total sum of the micro-payments that were successfully submitted during the session.</li>
+<li><code>assetCode</code> (type String, required if <code>totalAmountTransferred</code> is present): the <abbr title="Interledger">ILP</abbr> asset code used during the transactions.</li>
+<li><code>assetScale</code> (type Int, required if <code>totalAmountTransferred</code> is present): the <abbr title="Interledger">ILP</abbr> asset scale used during the transactions.</li>
+</ul><aside class="example" id="example-monetizationsession-example"><div class="marker">
+    <a class="self-link" href="#example-monetizationsession-example">Example<bdi> 12</bdi></a><span class="example-title">: MonetizationSession example</span>
+  </div>
+<pre aria-busy="false"><code class="hljs json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"ed64d3d8-7749-4196-a347-1eb9bca56599"</span>,
+  <span class="hljs-attr">"target"</span> : <span class="hljs-string">"wallet.example/bob"</span>,
+  <span class="hljs-attr">"totalAmountTransferred"</span>: <span class="hljs-number">250000</span>,
+  <span class="hljs-attr">"assetCode"</span>: <span class="hljs-string">"XRP"</span>,
+  <span class="hljs-attr">"assetScale"</span>: <span class="hljs-number">9</span>
+}</code></pre>
+</aside></section><section id="ilpstreamupdate"><h4 id="x4-2-5-ilpstreamupdate"><bdi class="secno">4.2.5 </bdi>ILPStreamUpdate</h4><a class="self-link" href="#ilpstreamupdate" aria-label="Permalink for Section 4.2.5"></a><p>A <code>ILPStreamUpdate</code> is an object instance that has the following properties:</p><ul>
+<li><code>amount</code> (type Long, required): the sum of the micro-payments that were successfully submitted since the previous update (or since the start if no previous update was emitted).</li>
+<li><code>assetCode</code> (type String, required): the <abbr title="Interledger">ILP</abbr> asset code used during the transaction.</li>
+<li><code>assetScale</code> (type Int, required): the <abbr title="Interledger">ILP</abbr> asset scale used during the transaction.</li>
+<li><code>timeRange</code> (type TimeRange, optional): specifies the interval (defined by a start and end [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3339" title="Date and Time on the Internet: Timestamps">rfc3339</a></cite>] datetime) during which the <code>amount</code> specified by the update was streamed (e.g. this can be useful for the client to predict the expected payment total).</li>
+</ul><aside class="example" id="example-ilpstreamupdate-example"><div class="marker">
+    <a class="self-link" href="#example-ilpstreamupdate-example">Example<bdi> 13</bdi></a><span class="example-title">: ILPStreamUpdate example</span>
+  </div>
+<pre aria-busy="false"><code class="hljs json">{
+  <span class="hljs-attr">"amount"</span>: <span class="hljs-string">"250"</span>,
+  <span class="hljs-attr">"assetCode"</span>: <span class="hljs-string">"XRP"</span>,
+  <span class="hljs-attr">"assetScale"</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-attr">"timeRange"</span> : {
+    <span class="hljs-attr">"start"</span> : <span class="hljs-string">"2022-01-26T13:48:52+00:00"</span>,
+    <span class="hljs-attr">"end"</span> : <span class="hljs-string">"2022-01-26T13:49:18+00:00"</span>
+  }
+}</code></pre>
+</aside></section></section></section><section id="future-work"><h2 id="x5-future-work"><bdi class="secno">5. </bdi>Future work</h2><a class="self-link" href="#future-work" aria-label="Permalink for Section 5."></a></section><section id="references" class="appendix"><h2 id="a-references"><bdi class="secno">A. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix A."></a><section id="informative-references">
+    <h3 id="a-1-informative-references"><bdi class="secno">A.1 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix A.1"></a>
+    <dl class="bibliography"><dt id="bib-grant for the web">[Grant for the Web]</dt><dd><a href="https://www.grantfortheweb.org"><cite>Grant for the Web</cite></a>. URL: <a href="https://www.grantfortheweb.org">https://www.grantfortheweb.org</a></dd><dt id="bib-interledger">[Interledger]</dt><dd><a href="https://interledger.org"><cite>Interledger</cite></a>. URL: <a href="https://interledger.org">https://interledger.org</a></dd><dt id="bib-open payments">[Open Payments]</dt><dd><a href="https://openpayments.dev"><cite>Open Payments</cite></a>. URL: <a href="https://openpayments.dev">https://openpayments.dev</a></dd><dt id="bib-payment-pointers">[payment-pointers]</dt><dd><a href="https://interledger.org/rfcs/0026-payment-pointers/"><cite>Payment Pointers</cite></a>.  Interledger Community. IL RFC. URL: <a href="https://interledger.org/rfcs/0026-payment-pointers/">https://interledger.org/rfcs/0026-payment-pointers/</a></dd><dt id="bib-rfc3339">[rfc3339]</dt><dd><a href="https://www.rfc-editor.org/rfc/rfc3339"><cite>Date and Time on the Internet: Timestamps</cite></a>. G. Klyne; C. Newman.  IETF. July 2002. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3339">https://www.rfc-editor.org/rfc/rfc3339</a></dd><dt id="bib-simple-payment-setup-protocol">[simple-payment-setup-protocol]</dt><dd><a href="https://interledger.org/rfcs/0009-simple-payment-setup-protocol/"><cite>Simple Payment Setup Protocol</cite></a>.  Interledger Community. IL RFC. URL: <a href="https://interledger.org/rfcs/0009-simple-payment-setup-protocol/">https://interledger.org/rfcs/0009-simple-payment-setup-protocol/</a></dd><dt id="bib-solid">[Solid]</dt><dd><a href="https://solidproject.org/TR/protocol"><cite>Solid Protocol</cite></a>. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd><dt id="bib-web monetization">[Web Monetization]</dt><dd><a href="https://webmonetization.org/specification.html"><cite>Web Monetization</cite></a>. URL: <a href="https://webmonetization.org/specification.html">https://webmonetization.org/specification.html</a></dd></dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body></html>
