@@ -41,6 +41,7 @@ export class SolidService {
     this.store = new N3.Store();
     return new Observable(sub => {
       const arr = [];
+      // Define callback
       const cb = (error, quad, prefixes) => {
         if (quad) {
           this.store.addQuad(quad);
@@ -51,8 +52,10 @@ export class SolidService {
           sub.complete();
         }
       };
+      // Execute fetch
       this.fetch(this.profileCard).then(res => res.text().then(txt => {
         this.rawTurtle = txt;
+        // Define parser and call async parsing
         new N3.Parser({ baseIRI: this.webId, format: 'text/turtle', }).parse(txt, cb)
       }));
     });
@@ -63,6 +66,7 @@ export class SolidService {
    * @returns Observable of a N3.NamedNode
    */
   getMaker(): Observable<N3.NamedNode> {
+    // Find subjects of type Person
     let me = this.store.getSubjects(RDF.type, FOAF.Person, defaultGraph());
     if (me.length > 0) {
       return of(me[0] as N3.NamedNode);
@@ -79,9 +83,12 @@ export class SolidService {
   loadAsTurtle(): Observable<string> {
     return this.getMaker().pipe(
       switchMap(me => new Observable<string>(sub => {
+        // Define writer
         this.writer = new N3.Writer({ format: 'text/turtle', prefixes: this.prefixes });
+        // Get all quads from store
         const quads = this.store.getQuads(null, null, null, null);
         this.writer.addQuads(quads);
+        // Write and output on the Observable as string
         this.writer.end((err, res) => {
           if (err) {
             sub.error(err);
@@ -127,13 +134,17 @@ export class SolidService {
     const prefix = '#me-paymentpointer-';
     const PATTERN = /#me-paymentpointer-(\d+)/;
     let idx = 0;
+    // For each subject in the store:
     this.store.forSubjects(sub => {
+      // If it matches the pattern
       const res = sub.value.match(PATTERN);
       if (res?.length > 1) {
+        // Get the current index
         idx = parseInt(res[1]);
       }
 
     }, null, null, null);
+    // Increment the index by 1 and add it as suffix
     return namedNode(`${prefix}${idx + 1}`);
   }
 
