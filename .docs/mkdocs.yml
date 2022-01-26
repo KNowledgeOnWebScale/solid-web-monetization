@@ -11,12 +11,17 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.expand
+    - navigation.instant
+    # - navigation.expand
+    # - navigation.sections
+    - navigation.indexes
+    - toc.integrate
     - navigation.top
     - search
     - search.suggest
 
 markdown_extensions:
+  - abbr
   - pymdownx.betterem
   - pymdownx.smartsymbols
   - pymdownx.magiclink
@@ -27,6 +32,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - meta
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
 
@@ -37,10 +44,12 @@ nav:
     - demo/index.md
   - Accountant:
     - accountant/index.md
+    - accountant/practical.md
+    - accountant/technical.md
   - Microstore:
     - microstore/index.md
   - Web Monetization Provider:
-    - wmp/practical.md
+    - wmp/index.md
     - wmp/technical.md
 
 extra:

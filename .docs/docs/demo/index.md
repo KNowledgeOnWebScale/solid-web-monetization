@@ -1,7 +1,7 @@
----
+<!-- ---
 hide:
   - navigation
----
+--- -->
 # SOLID Web Monetization Demonstrator
 
 The outcome of this project was defined by [several items](/#intended-outcomes). A large contribution to those items comes in the form of a working demonstrator. This section will act as a guide for this demo, as it consists of multiple separate components.
@@ -47,14 +47,15 @@ This will start all demmo components on your pc.
 
 Component | URL | Description
 ----------|-----|------------
-Accountant | http://wallet.localhost | Allows you to edit your payment pointers stored in your WebID (on your solid pod).
-Web Monetization Provider | http://wmp.localhost | Allows you to register the WMP in your WebID (on your solid pod) and setup a subscription to pay the WMP.
-Microstore | http://store.localhost | Website of the content creator that have unlockable monetized content for users logged in with WebID.
+[Accountant](/accountant) | http://wallet.localhost | Allows you to edit your payment pointers stored in your WebID (on your solid pod).
+[Web Monetization Provider](/wmp) | http://wmp.localhost | Allows you to register the WMP in your WebID (on your solid pod) and setup a subscription to pay the WMP.
+[Microstore](/microstore) | http://store.localhost | Website of the content creator that have unlockable monetized content for users logged in with WebID.
 Docs | http://docs.localhost | These docs are also hosted locally on your pc now.
 
 ## Demo scenario
 
-step by step through the demo
+!!! todo
+    step by step guid through the demo
 
 ## docker-compose.yml
 
