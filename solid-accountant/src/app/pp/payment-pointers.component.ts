@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Quad, Quad_Object } from 'n3';
-import { pipe } from 'rxjs';
-import { switchMap, switchMapTo, tap } from 'rxjs/operators';
+import { Quad } from 'n3';
+import { switchMap } from 'rxjs/operators';
 import { SolidService } from '../services/solid.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class PaymentPointersComponent implements OnInit {
 
   constructor(private solid: SolidService, fb: FormBuilder) {
     this.ppForm = fb.group({
-      paymentPointerValue: ['',[Validators.required, Validators.pattern("^\\$[a-zA-Z0-9\\.\\-_]+$")]]
+      paymentPointerValue: ['', [Validators.required, Validators.pattern("^\\$[a-zA-Z0-9\\.\\-_]+$")]]
     });
   }
 
@@ -38,14 +37,6 @@ export class PaymentPointersComponent implements OnInit {
         this.reloadData();
       });
     }
-  }
-
-  restore(): void {
-    this.solid.restore().subscribe(_ => this.reloadData());
-  }
-
-  restoreLocal(): void {
-    this.solid.restoreLocal().subscribe(_ => this.reloadData());
   }
 
   get rawTurtle() {
