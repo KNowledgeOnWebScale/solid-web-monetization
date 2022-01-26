@@ -33,8 +33,6 @@ jobs:
     defaults:
       run:
         shell: bash
-    env:
-      PUBLIC_URL: /solid-web-monetization/wallet
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -115,8 +113,6 @@ jobs:
     defaults:
       run:
         shell: bash
-    env:
-      PUBLIC_URL: /solid-web-monetization/store
     steps:    
     - name: Checkout code
       uses: actions/checkout@v2
