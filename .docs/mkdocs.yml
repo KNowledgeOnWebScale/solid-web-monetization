@@ -27,12 +27,14 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - meta
+  - toc:
+      permalink: true
 
 
 nav:
   - About: index.md
   - Demo:
-    - demo/demo.md
+    - demo/index.md
   - Accountant:
     - accountant/index.md
   - Microstore:
