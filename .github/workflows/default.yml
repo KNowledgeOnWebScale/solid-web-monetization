@@ -13,20 +13,6 @@ env:
 
 jobs:
 
-  # build-root-page:
-  #   name: Build root page
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     PUBLIC_URL: /solid-web-monetization
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Deploy rootpage to gh-pages
-  #       uses: peaceiris/actions-gh-pages@v3.8.0
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./.htmlroot
-    
-
   build-docs:
     name: Build docs
     runs-on: ubuntu-latest
