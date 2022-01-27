@@ -48,10 +48,13 @@ nav:
       - Technical: accountant/technical.md
     - Microstore:
       - microstore/index.md
+      - Practical: microstore/practical.md
+      - Technical: microstore/technical.md
     - Web Monetization Provider:
       - wmp/index.md
-      - wmp/technical.md
-  - Specification: specs.html" target="_blank"
+      - Practical: wmp/practical.md
+      - Technical: wmp/technical.md
+  - Specification: spec.html" target="_blank"
 
 extra:
   social:

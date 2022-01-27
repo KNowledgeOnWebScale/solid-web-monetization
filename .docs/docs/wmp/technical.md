@@ -1,8 +1,3 @@
-# Technical
-
-!!! todo
-    Replace below with technical content of WMP
-
 ## How to make this functional?
 
 This Proof of Concept implementation can be used as a starting point for the development of a fully functional Web Monetization provider. Our implementation uses clearly defined interfaces for the various integration points (Open Payments interfacing, Solid Pod, ILP), making it easy to swap out the existing PoC implementation for a real implementation.
