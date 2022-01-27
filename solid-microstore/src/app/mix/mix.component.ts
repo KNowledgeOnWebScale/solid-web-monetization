@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { GeneratedImage, ImageService } from '../image.service';
 import { SolidService } from '../solid.service';
-import { WmPService } from '../wmp.service';
+import { WmpService } from '../wmp.service';
 
 @Component({
   selector: 'app-mix',
@@ -15,7 +15,7 @@ export class MixComponent implements OnInit, OnDestroy {
   locked: boolean = true;
 
   constructor(
-    private wm: WmPService,
+    private wmp: WmpService,
     private img: ImageService,
     private solid: SolidService,
     private auth: AuthService) {
@@ -32,9 +32,9 @@ export class MixComponent implements OnInit, OnDestroy {
 
     // After auth change:
     this.auth.statusChanged$.subscribe(_ => {
-      if (this.wm.isMonetizationSupported()) {
+      if (this.wmp.isMonetizationSupported()) {
         this.solid.getWebMonetizationProvider().subscribe(wmp => {
-          this.wm.setupWMPayment(wmp);
+          this.wmp.setupWMPayment(wmp);
         })
       };
     });
@@ -42,14 +42,14 @@ export class MixComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.wm.closeMonetizationStream();
+    this.wmp.closeMonetizationStream();
   }
 
   isMonetizationAvailable(): boolean {
-    return this.wm.isMonetizationSupported();
+    return this.wmp.isMonetizationSupported();
   }
 
   isMonetizationStarted(): boolean {
-    return this.wm.isMonetizationStarted();
+    return this.wmp.isMonetizationStarted();
   }
 }

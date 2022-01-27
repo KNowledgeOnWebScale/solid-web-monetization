@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationState, MonetizationStopEvent } from 'types-wm';
-import { WmPService } from '../wmp.service';
+import { WmpService } from '../wmp.service';
 
 @Component({
   selector: 'app-counter',
@@ -13,12 +13,10 @@ export class CounterComponent implements OnInit {
   currency = ''
 
 
-  @ViewChild('outer', {static: true}) 
+  @ViewChild('outer') 
   outer: ElementRef<HTMLDivElement>|undefined;
 
-  constructor(
-    private wm: WmPService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     if (document.monetization) {
@@ -47,6 +45,7 @@ export class CounterComponent implements OnInit {
   }
   private onStop(evt: MonetizationStopEvent) {
     this.state = 'stopped';
+    this.total = 0;
   }
   private onPending(evt: MonetizationPendingEvent) {
     this.state = 'pending';

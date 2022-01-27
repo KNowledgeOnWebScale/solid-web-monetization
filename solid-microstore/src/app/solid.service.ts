@@ -43,7 +43,7 @@ export class SolidService {
       map(me => me ? this.store.getObjects(me, WMP.hasProvider, defaultGraph()) : []),
       switchMap(providers => providers?.length > 0 ? of(providers[0]) : throwError(() => new Error('no WMP relation present!'))),
       map(q => this.store.getObjects(q, WMP.apiUrl, defaultGraph())),
-      switchMap(res => res?.length > 0 ? of(res[0].value) : throwError(() => new Error("no apiUrl for WMP present!")) )
+      switchMap(res => res?.length > 0 ? of(res[0].value) : throwError(() => new Error("no apiUrl for WMP present!")))
     )
   }
 
@@ -55,7 +55,7 @@ export class SolidService {
     );
   }
 
-  private getMaker(): Observable<N3.NamedNode|null> {
+  private getMaker(): Observable<N3.NamedNode | null> {
     let me = this.store.getSubjects(RDF.type, FOAF.Person, defaultGraph());
     if (me.length > 0) {
       return of(me[0] as N3.NamedNode);
@@ -68,7 +68,7 @@ export class SolidService {
     this.store = new N3.Store();
     return new Observable(sub => {
       const arr = [];
-      const cb = (error:any, quad: any, prefixes: any) => {
+      const cb = (error: any, quad: any, prefixes: any) => {
         if (quad) {
           this.store.addQuad(quad);
           arr.push(quad);
@@ -78,9 +78,11 @@ export class SolidService {
           sub.complete();
         }
       };
-      this.http.get(this.auth.getWebId()!!, {responseType: 'text'}).subscribe(txt => {
-        new N3.Parser({ baseIRI: this.auth.getWebId()!!, format: 'text/turtle', }).parse(txt, cb)
-      });
+      if (this.auth.getWebId()) {
+        this.http.get(this.auth.getWebId(), { responseType: 'text' }).subscribe(txt => {
+          new N3.Parser({ baseIRI: this.auth.getWebId()!!, format: 'text/turtle', }).parse(txt, cb)
+        });
+      }
     });
   }
 }

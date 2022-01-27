@@ -6254,6 +6254,14 @@ solid-wm@^0.1.0:
   dependencies:
     uuid "^8.3.2"
 
+solid-wmp-client@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/solid-wmp-client/-/solid-wmp-client-1.0.4.tgz#e368db383132fd9ae17d559ebf723c2057e5ff8f"
+  integrity sha512-BL7voGoLTuX5n9Vv+crBNgT44ZFrePo53gzGkiDVIIC9idHNXrXSuP8L1wWrurVX9A5whRrpcHvC55l+C99Zfw==
+  dependencies:
+    sockjs-client "^1.5.2"
+    uuid "^8.3.2"
+
 source-map-js@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-0.6.2.tgz#0bb5de631b41cfbda6cfba8bd05a80efdfd2385e"

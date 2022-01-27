@@ -4,7 +4,7 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationStopEvent } from 'types-wm';
 import { AuthService } from '../auth.service';
 import { SolidService } from '../solid.service';
-import { WmPService } from '../wmp.service';
+import { WmpService } from '../wmp.service';
 
 @Component({
   selector: 'app-paywall',
@@ -12,7 +12,7 @@ import { WmPService } from '../wmp.service';
   styleUrls: ['./paywall.component.scss']
 })
 export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
-  wmp: string | undefined;
+  wmpUri: string | undefined;
   isLocked: boolean = true;
   isClicked: boolean = false;
   logs: string[] = [];
@@ -29,7 +29,7 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   constructor(
-    private wm: WmPService,
+    private wmp: WmpService,
     private solid: SolidService,
     public auth: AuthService,
     private breakpointObserver: BreakpointObserver
@@ -42,7 +42,7 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.solid.getWebMonetizationProvider().subscribe(wmp => this.wmp = wmp);
+    this.solid.getWebMonetizationProvider().subscribe(wmp => this.wmpUri = wmp);
 
   }
 
@@ -56,15 +56,15 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   isMonetizationAvailable(): boolean {
-    return this.wm.isMonetizationSupported();
+    return this.wmp.isMonetizationSupported();
   }
 
 
   unlock() {
     this.isClicked = true;
-    if (this.wm.isMonetizationSupported()) {
+    if (this.wmp.isMonetizationSupported()) {
       this.solid.getWebMonetizationProvider().subscribe(wmp => {
-        this.wm.setupWMPayment(wmp);
+        this.wmp.setupWMPayment(wmp);
       })
     } else {
       this.isClicked = false;
@@ -72,7 +72,7 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.wm.closeMonetizationStream()
+    this.wmp.closeMonetizationStream()
   }
 
   private onPending(event: MonetizationPendingEvent) {

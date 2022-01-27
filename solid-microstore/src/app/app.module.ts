@@ -1,5 +1,4 @@
 import { LayoutModule } from '@angular/cdk/layout';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,10 +17,10 @@ import 'web-monetization-polyfill';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter.component';
 import { MixComponent } from './mix/mix.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaywallComponent } from './paywall/paywall.component';
-import { CounterComponent } from './counter/counter.component';
 
 
 
@@ -50,12 +49,7 @@ import { CounterComponent } from './counter/counter.component';
     MatIconModule,
     MatListModule
   ],
-  providers: [
-    // {
-    //   provide: LocationStrategy,
-    //   useClass: HashLocationStrategy
-    // }
-  ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
