@@ -21,7 +21,6 @@ That is why you should create a solid pod over at [solidcommunity.net](https://s
 
 ### Paywall page
 
-
 This page demonstrates the typical use case of a paywall. Without paying, you cannot view anything on the page, since it is locked behind a paywall. 
 
 Once logged in the Web Monetization Provider URL will be read from the WebID of the user. The solid-wmp-client library can than be used to initiate micropayments to the payment pointer of the content creator/owner.

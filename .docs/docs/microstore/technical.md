@@ -232,6 +232,6 @@ he WebID profile is stored in RDF. That means that data read from that profile s
 
 ```
 
-The actual query was performed by the [solid-wmp-client](https://github.com/KNowledgeOnWebScale/solid-wmp-client) library.
+The actual query is performed by the [solid-wmp-client](https://github.com/KNowledgeOnWebScale/solid-wmp-client) library.
 
 --8<-- "includes/abbreviations.md"

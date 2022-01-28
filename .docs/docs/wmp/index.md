@@ -1,16 +1,7 @@
 # Solid Web Monetization Provider
 
-## Component description
+The Solid Web Monetization Provider is an example of an intermediate party that performs micropayments to payment pointers on behalf of a user. That user trusts the WMP and has an active subscription with it.
 
-What does the component do. Which role does it fulfill
-
-## Usage
-
-How to actually use it. 
-
-
-## Configuration
-
-Listing of environment variables.
+![](/assets/img/wmp.png)
 
 --8<-- "includes/abbreviations.md"
