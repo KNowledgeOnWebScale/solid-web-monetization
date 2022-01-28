@@ -1,4 +1,28 @@
-## How to make this functional?
+# Technical
+
+## Stack
+
+### Framework
+The WMP Proof of Concept is written in [Kotlin 1.6.10](https://kotlinlang.org) on top of JDK 16. The [Vert.x] toolkit is used as a Web/Micro-service framework (Vert.x can be compared to Node.js). 
+
+### Project setup
+[Maven](https://maven.apache.org) was used for describing the project dependencies, managing builds and generating the Docker image.
+
+To install all dependencies and compile the project: run `mvn compile` from the project folder `/solid-wmp`.
+To generate a Docker image:
+
+1. Override the details for the `to` image repository of the [Jib plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin) in the file `/solid-wmp/pom.xml`
+2. Run `mvn package` from the project folder `/solid-wmp`.
+
+### Libraries
+Next to the framework related dependencies, the following additional libraries were used:
+
+library |  reason | project link
+--------|---------|----------
+Feather | Dependency injection framework, makes it easy to extend or replace specific implementation modules | https://github.com/zsoltherpai/feather
+Apache Jena | Framework for building Semantic Web and Linked Data applications | https://jena.apache.org
+
+## Extending the Proof of Concept
 
 This Proof of Concept implementation can be used as a starting point for the development of a fully functional Web Monetization provider. Our implementation uses clearly defined interfaces for the various integration points (Open Payments interfacing, Solid Pod, ILP), making it easy to swap out the existing PoC implementation for a real implementation.
 
