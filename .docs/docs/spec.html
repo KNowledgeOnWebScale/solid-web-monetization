@@ -68,7 +68,7 @@ In the context of [[Grant for the Web]], our initial goal was to integrate [[Web
 These limitations can be defined as follows:
 
 1. The heterogeneity of [[Interledger]] (<abbr title="Interledger">ILP</abbr>) wallet implementations makes it difficult to encapsulate the logic required for streaming payments between wallets (because they use different protocols, different authentication schemes, etc).
-2. There is a lack of mechanisms for reliably and securely performing these payments on behalf of the user.
+2. There is a lack of mechanisms for reliably and securely performing these payments _on behalf of_ the user.
 3. There is an inherent issue of trust, by requiring the client to orchestrate the payment setup and thus determining the rate and the amount of the payment stream.
 
 We propose the introduction of a [[Web Monetization]] provider or <abbr title="Web Monetization provider">WMP</abbr>, as the generic component that can be deployed as an additional layer of abstraction to help solve some of these limitations. Section [](#wmp-def) formalizes the role of such a WMP.
@@ -79,7 +79,7 @@ By introducing the WMP as a trusted third party between the content consumer (se
 
 1. The complexity of dealing with the heterogeneity of [[Interledger]] wallet implementations is handled by the WMP. This makes it easier for client developers to create [[Web Monetization]] enabled applications.
 2. The WMP handles streaming payments for monetized sessions. In exchange the user subscribes to the WMP by paying a monthly fee, or funds the WMP for a predetermined amount (see note). The WMP is free to choose its revenue model and spending strategy. This loose coupling adds a lot of flexibility to the [[Web Monetization]] model and again helps to reduce client-side complexity.
-3. The WMP API is an open specification, enabling different parties to compete in providing WMP services. This benefits the users as they can now choose which WMP to trust as their [[web Monetization]] agent, and can easily switch providers at any time while still being able to consume the monetized content in the same way. This model perfectly aligns with the [[Solid]] philosophy.
+3. The WMP API is an open specification, enabling different parties to compete in providing WMP services. This benefits the users as they can now choose which WMP to trust as their [[Web Monetization]] agent, and can easily switch providers at any time while still being able to consume the monetized content in the same way. This model perfectly aligns with the [[Solid]] philosophy.
 
 <p class = "note" title="Funding the WMP">
   Although the revenue model for a WMP can be flexible (subscription model, prefunded, etc), we have chosen to limit the specification that follows to a subscription model only.
@@ -123,19 +123,20 @@ This section is used to define the interaction patterns of a WMP server with oth
 
 ### Subscribing to a Web Monetization provider
 
-**Context**: A user wishes to consume monetized content and visits the web page of the WMP she/he has chosen.
+**Context**: A user wishes to consume monetized content and visits the web page of the WMP she/he has chosen, with the goal of subscribing to this WMP, which can then broker access to monetized content for the user (see section [](#consuming-monetized-content)).
 
 1. The user goes to the subscription page, fills in the Payment Pointer (see [[payment-pointers]]) she/he wants to use and clicks the "Subscribe via WebID" button. This triggers a redirect to handle WebID authentication. The WMP must provide a URL as the target address for the callback that is executed upon successful completion of the authentication process (conform [[Solid-OIDC]]).
 2. The browser client follows the redirect, allowing the user to authenticate with her/his Solid Pod. If successful, the flow is redirected back to the WMP via the provided callback URL.
 3. The WMP then verifies if the Payment Pointer provided by the user can be found in the WebID linked to the authentication session by contacting the Solid Pod server of the user (see section [](#payment-pointer) on how a Payment Pointer is linked to a WebID).
 4. Once the Payment Pointer is verified, the WMP can resolve this Payment Pointer via SPSP to discover the user's Wallet. Using this information, the WMP can construct a request to create a mandate representing the recurring payment for subscription (according to [[Open Payments]]).
 5. If the mandate was successfully created, the WMP can request the user's Wallet to authorize the mandate. This will result in the Wallet server asking for consent with the user, leading to the mandate being accepted. This interaction completes with the WMP being granted access & refresh tokens that will allow the WMP to make authorized charges on the mandate (according to [[Open Payments]]).
+6. Now the mandate has been created and authorized, the WMP can finalize the creation of the subscription by registering itself with the user's [[Solid]] Pod. This will allow monetized [[Solid]] applications to discover with which WMP they should communicate to broker access to the content on behalf of the user. This is done by writing a resource referencing the WMP and linking it to the [[Solid]] WebID (see section [](#wmp-reference)).
 
 Once the mandate has been created and authorized, it is the responsibility of the WMP to act upon this mandate by creating charges (in accordance with payment details that were specified when creating the mandate). Each time the payment is triggered (via a background process of the WMP):
 
-1. The WMP must create an invoice on the ILP Wallet associated with the WMP.
-2. This invoice is then charged on the mandate. This request is authorized using the refresh and access tokens that are stored for each individual subscription in the WMP.
-3. The Wallet of the user will react on the creation of this invoice by initiating a push payment towards the Wallet of the WMP.
+7. The WMP must create an invoice on the ILP Wallet associated with the WMP.
+8. This invoice is then charged on the mandate. This request is authorized using the refresh and access tokens that are stored for each individual subscription in the WMP.
+9. The Wallet of the user will react on the creation of this invoice by initiating a push payment towards the Wallet of the WMP.
 
 <figure id="create-subscription-flow">
   <img src="assets/img/spec/create-subscription-flow.png" />
@@ -146,16 +147,14 @@ Note: see [[Open Payments: Recurring Payments]] for details regarding the protoc
 
 ### Consuming monetized content
 
-**Context**: A user visits a Solid web application, which contains monetized content.
+**Context**: A user visits a Solid web application, which contains monetized content. The WMP chosen by the user (defined by a reference in the user's [[Solid]] Pod) brokers access to the monetized content (by performing micro-payments during the session on behalf of the user).
 
 1. If there is no previous session for the application, the user starts the monetized session by clicking the button "Login with WebID". This triggers a redirect to handle WebID authentication. The client must provide a URL as the target address for the callback that is executed upon successful completion of the authentication process.
 2. The browser follows the redirect, allowing the user to authenticate with her/his Solid Pod. If successful, the flow is redirected back to the WMP via the provided callback URL.
 3. The callback URL triggers the application to contact the user's Solid Pod on behalf of the user, with the goal of checking if the WebID contains a WMP reference (see section [](#wmp-reference)), and if so, to retrieve this reference.
 4. Upon retrieving and resolving the WMP reference, the client can now attempt to set up the monetization session by sending a request to the discovered WMP server to create a session.
 5. Ideally, this again triggers an authentication process similar to the one described in steps 1-3, but this time with the WMP as the target for Solid WebID authentication instead of the monetized Solid (client) application. Alternatively, the Solid access token returned to the client by the authentication process in steps 1-3 can also serve as a proof of identity for the Solid user.
-6. Next, the WMP verifies the Solid user's subscription by:
-    - Fetching the Payment Pointer from the user's Solid Pod (WebID). The Wallet referenced by this Payment Pointer should match the Wallet where the mandate associated with the subscription is registered.
-    - Validating the mandate associated with the subscription (i.e. fetching the mandate details, checking the mandate has not yet expired).
+6. Next, the WMP verifies the Solid user's subscription by validating the mandate associated with the subscription (i.e. fetching the mandate details, checking the mandate has not yet expired).
 7. The WMP concludes the session setup process, by returning a session ID (and optionally other connection details).
 8. The client then opens a Websocket using the result of the session setup process. The Websocket is used to track the monetization session. While the Websocket is connected, the WMP can send updates in the form of statistics regarding the micro-payments that are executed by the WMP in the background.
 
@@ -197,11 +196,11 @@ pro:card a foaf:PersonalProfileDocument; foaf:maker :me; foaf:primaryTopic :me.
 </aside>
 
 #### WMP Reference
-The linked data representation of a WMP Reference is a resource of RDF type `https://webmonetization.org/ns#Provider`, with at least a property `https://webmonetization.org/ns#apiUrl`, referencing the base API URL of the WMP.
+The linked data representation of a WMP Reference is a resource of RDF type `https://webmonetization.org/ns#Provider`, with at least a property `https://webmonetization.org/ns#apiUrl`, referencing the base API URL of the WMP (serving the API that implements the endpoints specified in section [](#api-endpoints)).
 
 A Solid WebID can have a registered WMP Reference, by linking the WMP Reference resource from the profile using the property `https://webmonetization.org/ns#hasProvider`.
 
-<aside class="example" title="Excerpt of a WebID profile, having a linked Payment Pointer">
+<aside class="example" title="Excerpt of a WebID profile, having a linked WMP Reference">
 <pre>
 @prefix : <#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
@@ -520,7 +519,13 @@ A `ILPStreamUpdate` is an object instance that has the following properties:
 </aside>
 
 ## Future work
-send triggers from client, multiple modes
+As mentioned before, this document acts as a proposal to open up the discussion on how Web Monetization as a concept can be improved upon (using Solid principles). Additional work and improvements will be required for this proposal to evolve into a practical specification.
+
+1. It will be interesting to follow up the evolution of the [[Open Payments]] specification and its adoption at the level of the ILP Wallet implementations. Interactions via [[Open Payments]] for coordinating the recurring payments towards the WMP are a crucial part of the solution and any changes or updates to the specification should be evaluated with regards to this proposal.
+2. The contents of this document should be made more compatible with the efforts in [[Web Monetization]]. However, the Web Monetization specification is also still evolving, so we should also monitor any updates in this space.
+3. From a functional perspective, some additional features for the WMP can be explored, for example:
+    - Investigate supporting additional revenue strategies in addition to the subscription based strategy that is described in this proposal.
+    - Make use of the bi-directional channel for the monetized session (see section [](#websocket-me-sessions-sessionid-channel)) to support advanced usage patterns (e.g. the micro-payment stream generated for a video can be temporarily suspended when the user clicks pause).
 
 </body>
 </html>
