@@ -25,7 +25,6 @@
     "n3": "^1.12.2",
     "rxjs": "^7.5.2",
     "sockjs-client": "^1.5.2",
-    "solid-wm": "^0.1.0",
     "solid-wmp-client": "^1.0.4",
     "tslib": "^2.3.0",
     "web-monetization-polyfill": "^2.0.0",
@@ -38,7 +37,6 @@
     "@angular/compiler-cli": "~13.1.2",
     "@types/node": "^12.11.1",
     "@types/sockjs-client": "^1.5.1",
-    "node-polyfill-webpack-plugin": "^1.1.4",
     "types-wm": "^1.1.0",
     "typescript": "~4.4.4"
   }

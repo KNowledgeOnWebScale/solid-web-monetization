@@ -2,9 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationStopEvent } from 'types-wm';
-import { AuthService } from '../auth.service';
-import { SolidService } from '../solid.service';
-import { WmpService } from '../wmp.service';
+import { AuthService, SolidService, WmpService } from '../services';
+
 
 @Component({
   selector: 'app-paywall',
