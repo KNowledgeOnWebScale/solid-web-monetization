@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="about">About</a>
+            <a mat-list-item routerLink="paywall">Paywall</a>
+            <a mat-list-item routerLink="mix">Mixed content</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <div class="title">
+                <mat-icon [inline]="true">monetization_on</mat-icon>
+                SOLID MicroStore
+            </div>
+            <div class="spacer"></div>
+            <div class="holder">
+                <app-counter *ngIf="auth.loggedIn"></app-counter>
+                <button *ngIf="auth.loggedIn else loginTpl" type="button" mat-raised-button
+                    (click)="logout()">Logout</button>
+                <ng-template #loginTpl>
+                    <button type="button" mat-raised-button (click)="login()">Login with WebID</button>
+                </ng-template>
+            </div>
+        </mat-toolbar>
+
+        <router-outlet>
+
+        </router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

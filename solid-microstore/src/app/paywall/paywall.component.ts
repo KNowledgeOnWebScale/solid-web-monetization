@@ -2,9 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationStopEvent } from 'types-wm';
-import { AuthService } from '../auth.service';
-import { SolidService } from '../solid.service';
-import { WmpService } from '../wmp.service';
+import { AuthService, SolidService, WmpService } from '../services';
+
 
 @Component({
   selector: 'app-paywall',
@@ -25,9 +24,6 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
       shareReplay()
     );
 
-  private sock: WebSocket | null = null;
-
-
   constructor(
     private wmp: WmpService,
     private solid: SolidService,
@@ -41,10 +37,7 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
     document.monetization?.addEventListener('monetizationpending', evt => this.onPending(evt));
   }
 
-  ngOnInit(): void {
-    this.solid.getWebMonetizationProvider().subscribe(wmp => this.wmpUri = wmp);
-
-  }
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.isHandset$.subscribe(isHandset => {
@@ -59,19 +52,26 @@ export class PaywallComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.wmp.isMonetizationSupported();
   }
 
-
+  /**
+   * Unlock the paywall
+   */
   unlock() {
+    // Disable button while loading (see [disabled]="isClicked" attribute in HTML)
     this.isClicked = true;
     if (this.wmp.isMonetizationSupported()) {
-      this.solid.getWebMonetizationProvider().subscribe(wmp => {
-        this.wmp.setupWMPayment(wmp);
+      // Request WMP Url from WebID document
+      this.solid.getWebMonetizationProvider().subscribe(wmpUrl => {
+        // Instruct wmp service to setup the payment
+        this.wmp.setupWMPayment(wmpUrl);
       })
     } else {
+      // Re-enable button
       this.isClicked = false;
     }
   }
 
   ngOnDestroy(): void {
+    // When navigating away, close any open stream
     this.wmp.closeMonetizationStream()
   }
 

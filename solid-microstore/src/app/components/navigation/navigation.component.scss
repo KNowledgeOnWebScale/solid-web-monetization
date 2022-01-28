@@ -1,0 +1,35 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.title {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto;
+  column-gap: 6px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.holder {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) auto;
+  column-gap: 4px;
+  align-items: center;
+}

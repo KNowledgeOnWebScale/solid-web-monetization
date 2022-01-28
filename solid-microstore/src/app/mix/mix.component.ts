@@ -1,8 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { GeneratedImage, ImageService } from '../image.service';
-import { SolidService } from '../solid.service';
-import { WmpService } from '../wmp.service';
+import { AuthService, GeneratedImage, ImageService, SolidService, WmpService } from '../services';
 
 @Component({
   selector: 'app-mix',

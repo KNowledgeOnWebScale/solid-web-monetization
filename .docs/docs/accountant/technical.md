@@ -30,17 +30,24 @@ n3 | Implementation of the RDF.js low-level specification that lets you handle R
 
 ### Pages
 
-Angular works with components. Each subpage is component, as such the following folders contain the component that such subpage:
+Angular works with components. Each subpage is a component, as such the following folders contain the component for that such subpage:
 
   * `/src/app/home`: Home page
   * `/src/app/pp`: Payment pointers page
   * `/src/app/about`: About page
   * `/src/app/auth`: Login page
 
+Nothing special happens in the code for these pages. The code and HTML should speak for itself.
+
 ### Other components
 
-  * `/src/app/components/login-btn`: Login Button  
-    This component is used for the login boxes on the login page with a logo of the IDP.
+Other components are used in the HTML. A component has HTML, CSS and code (typescript) associated with it. You can use a component in HTML by using an HTML tag to refer to it.
+
+#### Login button
+
+> Folder: `/src/app/components/login-btn`
+
+This component is used for the login boxes on the login page with a logo of the IDP.
 
 ### Services
 
@@ -48,7 +55,7 @@ Services are singleton instances that are dependency injected into the component
 
 #### SolidService
 
-_Location: `/src/app/services/solid.service.ts`_
+> Location: `/src/app/services/solid.service.ts`
 
 This service contains the code to read from, parse and write to the WebID document on the solid pod of the user. It mainly uses the [n3 library](#libraries) to read/write the solid WebID profile.
 

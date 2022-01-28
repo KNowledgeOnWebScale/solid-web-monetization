@@ -17,9 +17,9 @@ import 'web-monetization-polyfill';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CounterComponent } from './counter/counter.component';
+import { CounterComponent } from './components/counter/counter.component';
 import { MixComponent } from './mix/mix.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaywallComponent } from './paywall/paywall.component';
 
 

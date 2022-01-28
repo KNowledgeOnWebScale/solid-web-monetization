@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MonetizationPendingEvent, MonetizationProgressEvent, MonetizationStartEvent, MonetizationState, MonetizationStopEvent } from 'types-wm';
-import { WmpService } from '../wmp.service';
 
 @Component({
   selector: 'app-counter',
