@@ -30,7 +30,7 @@ n3 | Implementation of the RDF.js low-level specification that lets you handle R
 
 ### Pages
 
-Angular works with components. Each subpage is component, as such the following folders contain the component that such subpage:
+Angular works with components. Each subpage is component, as such the following folders contain the component for that such subpage:
 
   * `/src/app/home`: Home page
   * `/src/app/pp`: Payment pointers page
