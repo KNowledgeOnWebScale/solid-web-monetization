@@ -33,6 +33,11 @@ export class ImageService {
 
   constructor() { }
 
+  /**
+   * Return a predicatable random image.
+   * @param includePremium includes premium images
+   * @returns GenerateImage instance
+   */
   getRandomImage(includePremium: boolean = true): GeneratedImage {
     const total = catalog.length + premiumImages.length;
     const idx = this.nextRand() % total;
@@ -44,6 +49,10 @@ export class ImageService {
     }
   }
 
+  /**
+   * Returns a premium images.
+   * @returns GeneratedImage instance
+   */
   getPremiumImage(): GeneratedImage {
     const idx = this.nextPremiumRand() % premiumImages.length;
     return { src: premiumImages[idx], premium: true };

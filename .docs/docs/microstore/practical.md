@@ -58,3 +58,6 @@ As with any meta tag, it should be in the header section of the HTML page.
 <meta name="monetization" content="$wallet.example.com/alice">
 ```
 
+
+
+--8<-- "includes/abbreviations.md"

@@ -16,13 +16,13 @@ export class MixComponent implements OnInit, OnDestroy {
     private img: ImageService,
     private solid: SolidService,
     private auth: AuthService) {
-    if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', _ => this.locked = false);
-      document.monetization.addEventListener('monetizationstop', _ => this.locked = true);
-    }
+      // Setup listeners
+      document.monetization?.addEventListener('monetizationstart', _ => this.locked = false);
+      document.monetization?.addEventListener('monetizationstop', _ => this.locked = true);
   }
 
   ngOnInit(): void {
+    // Create 100 random images
     for (let i = 0; i < 100; i++) {
       this.images.push(this.img.getRandomImage());
     }
@@ -30,8 +30,10 @@ export class MixComponent implements OnInit, OnDestroy {
     // After auth change:
     this.auth.statusChanged$.subscribe(_ => {
       if (this.wmp.isMonetizationSupported()) {
-        this.solid.getWebMonetizationProvider().subscribe(wmp => {
-          this.wmp.setupWMPayment(wmp);
+        // Get WMP Url from WebID profile
+        this.solid.getWebMonetizationProvider().subscribe(wmpUrl => {
+          // Setup payment
+          this.wmp.setupWMPayment(wmpUrl);
         })
       };
     });

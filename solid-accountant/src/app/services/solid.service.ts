@@ -4,7 +4,7 @@ import { FOAF, RDF } from "@inrupt/vocab-common-rdf";
 import * as N3 from 'n3';
 import { from, Observable, of } from 'rxjs';
 import { map, mergeMap, switchMap, toArray } from 'rxjs/operators';
-const { namedNode, blankNode, literal, quad, defaultGraph, triple, variable } = N3.DataFactory;
+const { namedNode, literal, defaultGraph } = N3.DataFactory;
 
 const PP = {
   hasPaymentPointer: namedNode("https://paymentpointers.org/ns#hasPaymentPointer"),

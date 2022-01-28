@@ -1,4 +1,4 @@
-# Practical
+# Solid Web Monetization Provider
 
 ## Component description
 
@@ -12,3 +12,5 @@ How to actually use it.
 ## Configuration
 
 Listing of environment variables.
+
+--8<-- "includes/abbreviations.md"
