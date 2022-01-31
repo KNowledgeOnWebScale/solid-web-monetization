@@ -235,7 +235,7 @@ Content-Type: application/ld+json
 
 {
   "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/SubscriptionInput.jsonld",
-  "paymentPointer" : "wallet.example/alice"
+  "paymentPointer" : "$wallet.example/alice"
 }
 ```
 </aside>
@@ -376,7 +376,7 @@ Content-Type: application/ld+json
 
 {
   "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/MonetizationSessionInput.jsonld",
-  "targetPaymentPointer" : "wallet.example/bob"
+  "targetPaymentPointer" : "$wallet.example/bob"
 }
 ```
 </aside>
@@ -420,7 +420,7 @@ Content-Type: application/ld+json
   "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/MonetizationSession.jsonld",
   "@id": "https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569",
   "@type" : "MonetizationSession",
-  "target" : "wallet.example/bob",
+  "target" : "$wallet.example/bob",
   "totalAmountTransferred": 250000,
   "assetCode": "XRP",
   "assetScale": 9
@@ -462,7 +462,7 @@ A `SubscriptionInput` is an object instance that must have the following propert
 <aside class="example" title="SubscriptionInput example">
 <pre class="json">
 {
-  "paymentPointer" : "wallet.example/alice"
+  "paymentPointer" : "$wallet.example/alice"
 }
 </pre>
 </aside>
@@ -494,7 +494,7 @@ A `MonetizationSessionInput` is an object instance that must have the following 
 <aside class="example" title="MonetizationSessionInput example">
 <pre class="json">
 {
-  "targetPaymentPointer" : "wallet.example/bob"
+  "targetPaymentPointer" : "$wallet.example/bob"
 }
 </pre>
 </aside>
@@ -512,7 +512,7 @@ A `MonetizationSession` is an object instance that has the following properties:
 <pre class="json">
 {
   "id": "ed64d3d8-7749-4196-a347-1eb9bca56599",
-  "target" : "wallet.example/bob",
+  "target" : "$wallet.example/bob",
   "totalAmountTransferred": 250000,
   "assetCode": "XRP",
   "assetScale": 9
