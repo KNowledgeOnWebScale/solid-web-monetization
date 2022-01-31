@@ -33,7 +33,7 @@ services:
       - "traefik.http.routers.store.rule=Host(`store.localhost`)"
       - "traefik.http.routers.store.entrypoints=web"
     environment:
-      - "PAYMENT_POINTER=$rafiki.money/p/thomas.dupont@ugent.be"
+      - "PAYMENT_POINTER=$$rafiki.money/p/thomas.dupont@ugent.be"
       - "CONFIG_VARS=PAYMENT_POINTER"
       - "CONFIG_FILE_PATH=/app/assets"
       - "CONFIG_FILE_NAME=config.json"
