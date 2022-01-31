@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Mandate, SessionDetails, SubscriptionDetails } from './types';
+import { Mandate, SessionDetails, SessionGraph, SubscriptionDetails } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +25,8 @@ export class WmpService {
     return this.http.get<Mandate>(url('/api/me/subscription/mandate'));
   }
 
-  listSessions(): Observable<SessionDetails[]> {
-    return this.http.get<SessionDetails[]>(url('/api/me/sessions'));
+  listSessions(): Observable<SessionGraph> {
+    return this.http.get<SessionGraph>(url('/api/me/sessions'));
   }
 }
 

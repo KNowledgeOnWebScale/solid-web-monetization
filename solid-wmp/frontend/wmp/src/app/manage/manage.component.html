@@ -130,9 +130,9 @@
                     <th scope="col">assetScale</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let s of sessions">
-                    <td>{{s.id}}</td>
+            <tbody *ngIf="sessions['@graph'] as graph">
+                <tr *ngFor="let s of graph">
+                    <td>{{s['@id']}}</td>
                     <td>{{s.target}}</td>
                     <td>{{s.totalAmountTransferred}}</td>
                     <td>{{s.assetCode}}</td>

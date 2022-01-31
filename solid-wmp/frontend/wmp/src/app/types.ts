@@ -1,4 +1,7 @@
 export interface SubscriptionDetails {
+    '@context': string;
+    '@id': string;
+    '@type': string;
     userId: string;
     paymentPointer: string;
     mandateURI: string;
@@ -17,10 +20,18 @@ export interface Mandate {
     balance: number;
 }
 
+export interface SessionGraph {
+    '@context': string;
+    '@graph': SessionDetails[];
+}
+
 export interface SessionDetails {
-    id: string;
+    '@id': string;
+    '@type': string;
     target: string;
     totalAmountTransferred: number;
     assetCode: string;
     assetScale: number;
+    active: true;
+
 }

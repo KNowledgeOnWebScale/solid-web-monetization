@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { concatMap, forkJoin, map, switchMap } from 'rxjs';
 import { AuthService } from '../auth-service.service';
 import { SolidService } from '../solid.service';
-import { Mandate, SessionDetails, SubscriptionDetails } from '../types';
+import { Mandate, SessionDetails, SessionGraph, SubscriptionDetails } from '../types';
 import { WmpService } from '../wmp.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { WmpService } from '../wmp.service';
 export class ManageComponent implements OnInit {
   subscription: SubscriptionDetails | null = null;
   mandate: Mandate | null = null;
-  sessions: SessionDetails[] | null = null;
+  sessions: SessionGraph | null = null;
   pps: string[] = [];
   subForm: FormGroup
   loading: boolean = true;
@@ -40,7 +40,7 @@ export class ManageComponent implements OnInit {
     this.mandate = null;
     this.sessions = null;
     this.wmp.getSubscription().pipe(
-      concatMap(sub => forkJoin([this.wmp.getMandate(), this.wmp.listSessions()]).pipe(map(([mandate, sessions]) => [sub, mandate, sessions] as [SubscriptionDetails, Mandate, SessionDetails[]])))
+      concatMap(sub => forkJoin([this.wmp.getMandate(), this.wmp.listSessions()]).pipe(map(([mandate, sessions]) => [sub, mandate, sessions] as [SubscriptionDetails, Mandate, SessionGraph])))
 
     )
       .subscribe({
