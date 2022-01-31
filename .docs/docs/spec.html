@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8" />
-    <title>Solid Web Monetization</title>
+    <title>Solid Web Monetization Provider</title>
     <script
       src="https://www.w3.org/Tools/respec/respec-w3c"
       class="remove"
@@ -71,7 +71,7 @@ These limitations can be defined as follows:
 2. There is a lack of mechanisms for reliably and securely performing these payments _on behalf of_ the user.
 3. There is an inherent issue of trust, by requiring the client to orchestrate the payment setup and thus determining the rate and the amount of the payment stream.
 
-We propose the introduction of a [[Web Monetization]] provider or <abbr title="Web Monetization provider">WMP</abbr>, as the generic component that can be deployed as an additional layer of abstraction to help solve some of these limitations. Section [](#wmp-def) formalizes the role of such a WMP.
+We propose the introduction of a [[Web Monetization]] provider or <abbr title="Web Monetization provider">WMP</abbr>, as the generic component that can be deployed as an additional layer of abstraction to help solve some of these limitations. Section [[[#wmp-def]]] formalizes the role of such a WMP.
 
 ## Definition of a Solid Web Monetization provider (WMP) {#wmp-def}
 
@@ -84,6 +84,13 @@ By introducing the WMP as a trusted third party between the content consumer (se
 <p class = "note" title="Funding the WMP">
   Although the revenue model for a WMP can be flexible (subscription model, prefunded, etc), we have chosen to limit the specification that follows to a subscription model only.
 </p>
+
+[[[#overview]]] shows an overview of how the WMP interacts with other actors in the context of Web Monetization. The details of these interactions are explained further in the next sections.
+
+<figure id="overview">
+  <img src="assets/img/spec/overview.png" />
+  <figcaption>Overview of the interactions of the WMP (in relation to other actors in a Web Monetization use case)</figcaption>
+</figure>
 
 The WMP can be defined as a set of HTTP endpoints, which can be split up in three categories:
 
@@ -164,12 +171,13 @@ Note: see [[Open Payments: Recurring Payments]] for details regarding the protoc
 </figure>
 
 ## Specification
+The following sections provide details on the technical concepts that were referenced in sections [[[#wmp-def]]] and [[[#flow]]].
 
-### Linked Data Properties
+### RDF Properties
 
 
 #### Payment Pointer
-The linked data representation of a Payment Pointer is a resource of RDF type `https://paymentpointers.org/ns#InterledgerPaymentPointer`, with at least a property `https://paymentpointers.org/ns#paymentPointerValue` of type String, linking the actual Payment Pointer.
+The RDF representation of a Payment Pointer is a resource of RDF type `https://paymentpointers.org/ns#InterledgerPaymentPointer`, with at least a property `https://paymentpointers.org/ns#paymentPointerValue` of type String, linking the actual Payment Pointer.
 
 A Solid WebID can have a registered Payment Pointer, by linking the Payment Pointer resource from the profile using the property `https://paymentpointers.org/ns#hasPaymentPointer`.
 
@@ -177,15 +185,9 @@ A Solid WebID can have a registered Payment Pointer, by linking the Payment Poin
 <pre>
 @prefix : <#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix schema: <http://schema.org/>.
-@prefix solid: <http://www.w3.org/ns/solid/terms#>.
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
-@prefix pro: <./>.
 @prefix pp: <https://paymentpointers.org/ns#>.
-pro:card a foaf:PersonalProfileDocument; foaf:maker :me; foaf:primaryTopic :me.
 :me
-  a schema:Person, foaf:Person;
-  vcard:fn "alice";
+  a foaf:Person;
   ...
   foaf:name "Alice Doe";
   pp:hasPaymentPointer :me-paymentpointer-1.
@@ -196,7 +198,7 @@ pro:card a foaf:PersonalProfileDocument; foaf:maker :me; foaf:primaryTopic :me.
 </aside>
 
 #### WMP Reference
-The linked data representation of a WMP Reference is a resource of RDF type `https://webmonetization.org/ns#Provider`, with at least a property `https://webmonetization.org/ns#apiUrl`, referencing the base API URL of the WMP (serving the API that implements the endpoints specified in section [](#api-endpoints)).
+The RDF representation of a WMP Reference is a resource of RDF type `https://webmonetization.org/ns#Provider`, with at least a property `https://webmonetization.org/ns#apiUrl`, referencing the base API URL of the WMP (serving the API that implements the endpoints specified in section [](#api-endpoints)).
 
 A Solid WebID can have a registered WMP Reference, by linking the WMP Reference resource from the profile using the property `https://webmonetization.org/ns#hasProvider`.
 
@@ -204,15 +206,9 @@ A Solid WebID can have a registered WMP Reference, by linking the WMP Reference 
 <pre>
 @prefix : <#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix schema: <http://schema.org/>.
-@prefix solid: <http://www.w3.org/ns/solid/terms#>.
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
-@prefix pro: <./>.
 @prefix wm: <https://webmonetization.org/ns#>.
-pro:card a foaf:PersonalProfileDocument; foaf:maker :me; foaf:primaryTopic :me.
 :me
-  a schema:Person, foaf:Person;
-  vcard:fn "alice";
+  a foaf:Person;
   ...
   foaf:name "Alice Doe";
   wm:hasProvider :me-webmonetization-provider.
