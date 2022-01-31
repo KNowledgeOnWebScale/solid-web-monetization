@@ -25,7 +25,7 @@
     "n3": "^1.12.2",
     "rxjs": "^7.5.2",
     "sockjs-client": "^1.5.2",
-    "solid-wmp-client": "^1.0.5",
+    "solid-wmp-client": "^2.0.1",
     "tslib": "^2.3.0",
     "web-monetization-polyfill": "^2.0.0",
     "zone.js": "~0.11.4"

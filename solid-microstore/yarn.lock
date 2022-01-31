@@ -3440,6 +3440,11 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
+http-link-header@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/http-link-header/-/http-link-header-1.0.4.tgz#f4efc76c6151ed0ba0d1a2d679798a18854a4a99"
+  integrity sha512-Cnv3Q+FF+35avekdnH/ML8dls++tdnSgrvUIWw0YEszrWeLSuw5Iq1vyCVTb5v0rEUgFTy0x4shxXyrO0MDUzw==
+
 http-parser-js@>=0.5.1:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.5.5.tgz#d7c30d5d3c90d865b4a2e870181f9d6f22ac7ac5"
@@ -5683,11 +5688,12 @@ socks@^2.6.1:
     ip "^1.1.5"
     smart-buffer "^4.1.0"
 
-solid-wmp-client@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/solid-wmp-client/-/solid-wmp-client-1.0.5.tgz#fbcf1b05a78c996b96f8935200116f5d64b4baae"
-  integrity sha512-GowCerylbnwkEQMK+SrEta0QTFdwfdeSuQeQWUmxjLSDBRVfGt6L83E0wnnACDW7TBGudqm1VVcyFM4tIzFeiQ==
+solid-wmp-client@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/solid-wmp-client/-/solid-wmp-client-2.0.1.tgz#230213b8ef2b1fc67548673f496b4b314722c0c0"
+  integrity sha512-PJq3M8ZPtA8z1oFgXGsRoPWbtwG+xE0NIKeR8StYtmpo93LRu8E8z6hl7I5ofj5x70a8WxJ2IglbyazEVRnJHg==
   dependencies:
+    http-link-header "^1.0.4"
     sockjs-client "^1.5.2"
     uuid "^8.3.2"
 

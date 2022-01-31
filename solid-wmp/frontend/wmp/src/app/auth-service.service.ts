@@ -39,7 +39,6 @@ export class AuthService {
   }
 
   logout() {
-    // TODO: Could be moved to backend
     const it = this.storage.get('it');
     const cb = encodeURI(document.location.origin);
     this.storage.remove('at');
