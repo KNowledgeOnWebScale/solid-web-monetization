@@ -1,4 +1,5 @@
 site_name: Solid Web Monetization Docs
+site_url: https://knowledgeonwebscale.github.io/solid-web-monetization/
 theme:
   name: material
   palette:
