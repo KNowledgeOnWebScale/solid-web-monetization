@@ -16,7 +16,7 @@ The content creator will need a wallet account. For that we are going to create 
 * On the overview page you will see two important parts. The Payment Pointer, which you can copy and store for the next step.
 * The Monetization box, which you will see increase later in the demonstrator.
 
-![](/assets/img/guide/1.1.png)
+![](../assets/img/guide/1.1.png)
 
 
 ### 1.2 Set environment variables
@@ -112,7 +112,7 @@ Now we will use the Accountant application to add a payment pointer to your Soli
 * Browse to http://wallet.localhost
 * Press `Login` on the top right.
 * Pick the solidcommynity.net box  
-  ![](/assets/img/acc_login.png)
+  ![](../assets/img/acc_login.png)
 * Follow the redirect and log in there with your newly created pod account
 
 ### 3.2 Add payment pointers
@@ -121,11 +121,11 @@ Once back in the application, open the `Payment pointers` page.
  
 Now enter an example payment pointer `$example.my.pointer` in the form and click `Add`.
 
-![](/assets/img/guide/3.pp_1.png)
+![](../assets/img/guide/3.pp_1.png)
 
 It will be listed once added  .
 
-![](/assets/img/guide/3.pp_2.png)
+![](../assets/img/guide/3.pp_2.png)
 
 You can see the entry in your WebID profile output too:
 
@@ -166,7 +166,7 @@ Your registered payment pointers are now read from your WebID profile document.*
 
 Select one of your registered payment pointer and click `Subscribe with WebID`.
 
-![](/assets/img/guide/4_1.png)
+![](../assets/img/guide/4_1.png)
 
 Two things now happen:
 * This WMP is written to your WebID Profile for later use.
@@ -177,7 +177,7 @@ Two things now happen:
 
 The page now shows detail on the subscription.
 
-![](/assets/img/guide/4_2.png)
+![](../assets/img/guide/4_2.png)
 
 You can see the entry in your WebID profile output too:
 
@@ -221,7 +221,7 @@ Open the paywall page. Now that you are logged in, the button is to unlock the c
 * Now open a new screen and browse to https://rafiki.money/login
 * Log in with the content creator account from [step 1.2](#12-set-environment-variables)
 * Watch as the Monetization box gets updated, while the paywall page is open.  
-  ![](/assets/img/guide/5.2.png)
+  ![](../assets/img/guide/5.2.png)
 
 ### 5.3 Open subpage mixed content
 
@@ -232,7 +232,7 @@ Open the mixed content page. Now that you are logged in this page automatically 
 * Now open a new screen and browse to https://rafiki.money/login
 * Log in with the content creator account from [step 1.2](#12-set-environment-variables)
 * Watch as the Monetization box gets updated, while the paywall page is open.  
-  ![](/assets/img/guide/5.3.png)
+  ![](../assets/img/guide/5.3.png)
 
 ### 5.4 Active session in WMP
 
@@ -242,7 +242,7 @@ In the WMP you can also see that a session is active.
 * Login if not logged in
 * Open the `Manage` page
 * Scroll to the end to the `Active sessions` section
-  ![](/assets/img/guide/5.4.png)
+  ![](../assets/img/guide/5.4.png)
 
 
 _This concludes the demonstrator scenario._

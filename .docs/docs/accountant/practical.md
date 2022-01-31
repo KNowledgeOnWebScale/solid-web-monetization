@@ -20,7 +20,7 @@ The Microstore can be started via Docker:
 
 ### Login
 
-![Solid indentity providers](/assets/img/acc_login.png){ align=right }
+![Solid indentity providers](../../assets/img/acc_login.png){ align=right }
 
 Although this application has support for different solid pod providers, the other applications only support solidcommunity.net pods.  
 That is why you should create a solid pod over at [solidcommunity.net](https://solidcommunity.net/register) to carry on. 

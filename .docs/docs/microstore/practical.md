@@ -48,7 +48,7 @@ Once logged in the Web Monetization Provider URL will be read from the WebID of 
 !!! warning
     In this case the content is hidden in client-side code. This means that with some DOM manipulation you can still see the content. It is only meant for demonstration purposes though. If you would do this properly, you could easily only load the actual content from the server, once payments arrive.
 
-![](/assets/img/microstore_paywall.png)
+![](../../assets/img/microstore_paywall.png)
 
 ### Mixed content page
 
@@ -57,13 +57,13 @@ This page demonstrates a use case where normal content is interleaved with premi
 !!! Note
     This use case is equivalent to a use case where advertisement banners can be removed from in between content, once payment has started.
 
-![](/assets/img/microstore_mixed.png)
+![](../../assets/img/microstore_mixed.png)
 
 ### Counter
 
 On top of the application is the counter. This acts as a visualization of the messaging once the payment is set up. Messages are being sent over a websocket from the WMP back to the client. This counter shows state or transferred funds.
 
-![](/assets/img/counter.png)
+![](../../assets/img/counter.png)
 
 ### Meta tag
 
