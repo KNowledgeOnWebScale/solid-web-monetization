@@ -130,6 +130,7 @@ It will be listed once added  .
 You can see the entry in your WebID profile output too:
 
 ```turtle
+@prefix : <#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix schema: <http://schema.org/>.
 @prefix n: <https://paymentpointers.org/ns#>.
@@ -182,6 +183,7 @@ The page now shows detail on the subscription.
 You can see the entry in your WebID profile output too:
 
 ```turtle
+@prefix : <#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix schema: <http://schema.org/>.
 @prefix ns0: <https://webmonetization.org/ns#>.
