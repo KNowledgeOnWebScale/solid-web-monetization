@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.http.get<any>('/assets/config.json').subscribe(config => {
       const meta = this.document.createElement('meta');
       meta.setAttribute('name', 'monetization');
-      meta.setAttribute('content', config.paymentPointer);
+      meta.setAttribute('content', config.PAYMENT_POINTER);
       this.document.head.appendChild(meta)
     });
   }
