@@ -52,7 +52,32 @@ class MonetizedSessionEndpoints @Inject constructor(
                 }
                 .subscribeBy(
                     onSuccess = { session ->
-                        ctx.response().putHeader("Link", "<${config.baseURI}$>; rel=\"channel\"")
+                        ctx.response().putHeader("Link", "<${session.id}/channel>; rel=\"channel\"")
+                        writeLDHttpResponse(ctx, config.monetizationSessionContext).invoke(session)
+                    },
+                    onError = writeHttpError(ctx)
+                )
+        }
+
+        // Non scoped alias
+        router.get("${config.apiPath}/sessions/:sessionId").handler { ctx ->
+            accessManager.getToken(ctx.request())
+                .flatMap { token ->
+                    val result =
+                        sessions.filterKeys { it.sessionId == ctx.pathParam("sessionId") }.entries.firstOrNull()
+                    if (result == null) {
+                        Single.error(NotFoundException())
+                    } else {
+                        if (result.key.userId == token.userId) {
+                            Single.just(result.value)
+                        } else {
+                            Single.error(UnauthorizedException())
+                        }
+                    }
+                }
+                .subscribeBy(
+                    onSuccess = { session ->
+                        ctx.response().putHeader("Link", "<${session.id}/channel>; rel=\"channel\"")
                         writeLDHttpResponse(ctx, config.monetizationSessionContext).invoke(session)
                     },
                     onError = writeHttpError(ctx)
@@ -90,13 +115,16 @@ class MonetizedSessionEndpoints @Inject constructor(
                                 assetCode = config.subscriptionAssetCode
                             )
                             sessions[sessionKey] = session
-                            // Set location header
-                            ctx.response().putHeader(HttpHeaders.LOCATION, sessionUri)
-                            JsonObject().put("sessionId", sessionKey.sessionId)
+                            sessionUri
                         }
                 }
                 .subscribeBy(
-                    onSuccess = writeHttpResponse(ctx),
+                    onSuccess = { sessionUri ->
+                        ctx.response()
+                            .putHeader(HttpHeaders.LOCATION.toString(), sessionUri)
+                            .setStatusCode(201)
+                            .end()
+                    },
                     onError = writeHttpError(ctx)
                 )
         }
@@ -105,37 +133,46 @@ class MonetizedSessionEndpoints @Inject constructor(
 
         router.mountSubRouter(
             "${config.apiPath}/me/sessions/:sessionId/channel",
-            webSocketHandler.socketHandler { socket ->
-                val sessionId = socket.routingContext().pathParam("sessionId")
-                val sessionKey = sessions.keys.find { it.sessionId == sessionId }
-                if (sessionKey != null) {
-                    logger.info { "Initializing session channel for session $sessionId (user: ${sessionKey.userId})..." }
-                    val session = sessions[sessionKey]!!
-                    session.activeSocket = socket
-                    val ilpStream = ilpStreamManager.streamMoney(session.target)
-                        .flatMapCompletable { update ->
-                            // Update session
-                            session.totalAmountTransferred += update.amount
-                            // Notify client via socket
-                            socket.rxWrite(JsonObject.mapFrom(update).encode()).onErrorLogAndComplete(logger)
-                        }
-                        .subscribeBy(
-                            onError = { err -> logger.warn(err) { "Error while streaming money for session $sessionId!" } }
-                        )
-                    socket.closeHandler {
-                        ilpStream.dispose()
-                        sessions.remove(sessionKey)
-                        logger.info { "Session $session was closed!" }
-                    }
-                } else {
-                    val errorMsg =
-                        "Error while opening a session channel: session with id $sessionId could not be found!"
-                    logger.warn { errorMsg }
-                    socket.rxWrite(JsonObject().put("error", errorMsg).encode())
-                        .doFinally { socket.close() }
-                        .subscribe()
+            webSocketHandler.socketHandler(::channelSocketHandler)
+        )
+
+        // Non-scoped alias
+        router.mountSubRouter(
+            "${config.apiPath}/sessions/:sessionId/channel",
+            webSocketHandler.socketHandler(::channelSocketHandler)
+        )
+    }
+
+    private fun channelSocketHandler(socket: SockJSSocket) {
+        val sessionId = socket.routingContext().pathParam("sessionId")
+        val sessionKey = sessions.keys.find { it.sessionId == sessionId }
+        if (sessionKey != null) {
+            logger.info { "Initializing session channel for session $sessionId (user: ${sessionKey.userId})..." }
+            val session = sessions[sessionKey]!!
+            session.activeSocket = socket
+            val ilpStream = ilpStreamManager.streamMoney(session.target)
+                .flatMapCompletable { update ->
+                    // Update session
+                    session.totalAmountTransferred += update.amount
+                    // Notify client via socket
+                    socket.rxWrite(JsonObject.mapFrom(update).encode()).onErrorLogAndComplete(logger)
                 }
-            })
+                .subscribeBy(
+                    onError = { err -> logger.warn(err) { "Error while streaming money for session $sessionId!" } }
+                )
+            socket.closeHandler {
+                ilpStream.dispose()
+                sessions.remove(sessionKey)
+                logger.info { "Session $session was closed!" }
+            }
+        } else {
+            val errorMsg =
+                "Error while opening a session channel: session with id $sessionId could not be found!"
+            logger.warn { errorMsg }
+            socket.rxWrite(JsonObject().put("error", errorMsg).encode())
+                .doFinally { socket.close() }
+                .subscribe()
+        }
     }
 
 }
