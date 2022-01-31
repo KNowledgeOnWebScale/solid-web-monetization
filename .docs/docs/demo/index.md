@@ -145,3 +145,6 @@ volumes:
     driver: local
 
 ```
+
+
+--8<-- "includes/abbreviations.md"

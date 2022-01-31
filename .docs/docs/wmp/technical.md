@@ -69,3 +69,6 @@ The Solid Pod Manager is defined by the interface `SolidPodManager`. This compon
 
 The existing PoC implementations fulfill all the features required at this moment and are compatible with https://solidcommunity.net Solid pods.
 Replace or extend upon these implementations to make the WMP compatible with other Solid pod providers or to expand the authorization layer (e.g. say you want to include an administrator role for managing the subscriptions and monitoring the sessions).
+
+
+--8<-- "includes/abbreviations.md"

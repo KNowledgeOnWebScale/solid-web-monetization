@@ -5683,10 +5683,10 @@ socks@^2.6.1:
     ip "^1.1.5"
     smart-buffer "^4.1.0"
 
-solid-wmp-client@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/solid-wmp-client/-/solid-wmp-client-1.0.4.tgz#e368db383132fd9ae17d559ebf723c2057e5ff8f"
-  integrity sha512-BL7voGoLTuX5n9Vv+crBNgT44ZFrePo53gzGkiDVIIC9idHNXrXSuP8L1wWrurVX9A5whRrpcHvC55l+C99Zfw==
+solid-wmp-client@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/solid-wmp-client/-/solid-wmp-client-1.0.5.tgz#fbcf1b05a78c996b96f8935200116f5d64b4baae"
+  integrity sha512-GowCerylbnwkEQMK+SrEta0QTFdwfdeSuQeQWUmxjLSDBRVfGt6L83E0wnnACDW7TBGudqm1VVcyFM4tIzFeiQ==
   dependencies:
     sockjs-client "^1.5.2"
     uuid "^8.3.2"

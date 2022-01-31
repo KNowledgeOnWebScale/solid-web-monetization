@@ -7,7 +7,9 @@ import { ReplaySubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  /** Is user logged in */
   loggedIn: boolean = false;
+
   /**
    * Notifies on auth changes (like suddenly being authed)
    */
@@ -15,11 +17,19 @@ export class AuthService {
 
   constructor(private router: Router, private ngZone: NgZone) { }
 
+  /**
+   * Returns the WebID Profile document URI of the authed user.
+   * @returns URI of WebID Profile document.
+   */
   getWebId(): string {
     return solidAuth.getDefaultSession().info.webId!!;
   }
 
+  /**
+   * Utility method to bundle solid auth library calls
+   */
   handleIncomingCallback(): void {
+    // Restore session (helps with internal routing after auth callback)
     solidAuth.onSessionRestore(url => {
       // Regular location strategy
       let path = url.substring(url.lastIndexOf('/'));
@@ -33,28 +43,37 @@ export class AuthService {
       });
     });
 
+    // Callback for authentication after which access tokens are in place
     solidAuth.handleIncomingRedirect({
       restorePreviousSession: true,
     }).then(_ => {
+      // Set public property
       this.loggedIn = solidAuth.getDefaultSession().info.isLoggedIn;
+
+      // Notify on subject property that authentication is ready.
       this.statusChanged$.next();
     });
   
   }
 
+  /**
+   * Call login on auth library to solidcommunity.net
+   */
   login() {
     solidAuth.login({oidcIssuer: 'https://solidcommunity.net', redirectUrl: location.href });
   }
 
-  
+  /**
+   * Call logout method on auth library.
+   */
   logout() {
     solidAuth.logout().then(_ => window.location.reload());
   }
 
-  getAccessToken(): string {
-    return solidAuth.getDefaultSession().info.webId!!;
-  }
-
+  /**
+   * Return the custom fetch method of the auth library.
+   * It injects the proper autentiocaion headers
+   */
   get fetch(): (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response> {
     return solidAuth.getDefaultSession().fetch;
   }
