@@ -231,8 +231,10 @@ The WMP server must respond with a `201 Created` response upon successful creati
 ```
 POST /me/subscription HTTP/1.1
 Host: example.com
+Content-Type: application/ld+json
 
 {
+  "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/SubscriptionInput.jsonld",
   "paymentPointer" : "wallet.example/alice"
 }
 ```
@@ -241,7 +243,8 @@ Host: example.com
 <aside class="example" title="Example response">
 ```
 HTTP/1.1 201 Created
-Content-Type: application/json
+Host: example.com
+Location: https://example.com/subscriptions/aHR0cHM6Ly9zYXJjb2JlLnNvbGlkY29tbXVuaXR5Lm5ldC9wcm9maWxlL2NhcmQjbWU=
 ```
 </aside>
 
@@ -252,7 +255,15 @@ The client gets details about a subscription by performing an HTTP GET to the su
 ```
 GET /me/subscription HTTP/1.1
 Host: example.com
-Accept: application/json
+Accept: application/ld+json
+```
+</aside>
+
+<aside class="example" title="Alternative example request (using ID instead of personal context)">
+```
+GET /subscription/aHR0cHM6Ly9zYXJjb2JlLnNvbGlkY29tbXVuaXR5Lm5ldC9wcm9maWxlL2NhcmQjbWU= HTTP/1.1
+Host: example.com
+Accept: application/ld+json
 ```
 </aside>
 
@@ -260,9 +271,12 @@ Accept: application/json
 ```
 HTTP/1.1 200 Ok
 Host: example.com
-Content-Type: application/json
+Content-Type: application/ld+json
 
 {
+  "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/Subscription.jsonld",
+  "@id" : "https://example.com/subscriptions/aHR0cHM6Ly9zYXJjb2JlLnNvbGlkY29tbXVuaXR5Lm5ldC9wcm9maWxlL2NhcmQjbWU=",
+  "@type" : "Subscription",
   "userId" : "https://alice.solidcommunity.net/profile/card#me",
   "paymentPointer" : "$wallet.example/alice",
   "mandateURI" : "https://wallet.example/alice/mandates/2fad69d0-7997-4543-8346-69b418c479a6",
@@ -326,7 +340,7 @@ A WMP server can optionally support clients listing active sessions by performin
 ```
 GET /me/sessions HTTP/1.1
 Host: example.com
-Accept: application/json
+Accept: application/ld+json
 ```
 </aside>
 
@@ -334,16 +348,19 @@ Accept: application/json
 ```
 HTTP/1.1 200 Ok
 Host: example.com
-Content-Type: application/json
+Content-Type: application/ld+json
 
-[
-  {
-    "id" : "f68e7176-60c0-460a-9f7f-8f5220a1d569"
-  },
-  {
-    "id" : "3f4fbd9c-3118-4409-abab-cc1937191d8d"
-  }
-]
+{
+  "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/MonetizationSession.jsonld",
+  "@graph" : [
+    {
+      "@id" : "https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569"
+    },
+    {
+      "@id" : "https://example.com/sessions/3f4fbd9c-3118-4409-abab-cc1937191d8d"
+    }
+  ]
+}
 ```
 </aside>
 
@@ -355,9 +372,10 @@ The WMP server must respond with a `201 Created` response and a JSON document co
 ```
 POST /me/subscription HTTP/1.1
 Host: example.com
-Accept: application/json
+Content-Type: application/ld+json
 
 {
+  "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/MonetizationSessionInput.jsonld",
   "targetPaymentPointer" : "wallet.example/bob"
 }
 ```
@@ -367,11 +385,7 @@ Accept: application/json
 ```
 HTTP/1.1 201 Created
 Host: example.com
-Content-Type: application/json
-
-{
-  "sessionId" : "f427b351-3e6c-4b05-8de4-c6ba1ac8b6a8"
-}
+Location: https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569
 ```
 </aside>
 
@@ -382,24 +396,38 @@ A WMP server can optionally support clients retrieving active session details by
 ```
 GET /me/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569 HTTP/1.1
 Host: example.com
-Accept: application/json
+Accept: application/ld+json
 ```
+</aside>
+
+<aside class="example" title="Alternative example request (not using the personal scope)">
+```
+GET /sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569 HTTP/1.1
+Host: example.com
+Accept: application/ld+json
+```
+This only works when requesting a session owned by the User (for the auth context), or when the User has special permissions (e.g. administrator).
 </aside>
 
 <aside class="example" title="Example response">
 ```
 HTTP/1.1 200 Ok
 Host: example.com
-Content-Type: application/json
+Link: <https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569/channel>; rel="channel"
+Content-Type: application/ld+json
 
 {
-  "id": "f68e7176-60c0-460a-9f7f-8f5220a1d569",
+  "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/MonetizationSession.jsonld",
+  "@id": "https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569",
+  "@type" : "MonetizationSession",
   "target" : "wallet.example/bob",
   "totalAmountTransferred": 250000,
   "assetCode": "XRP",
   "assetScale": 9
 }
 ```
+
+Note that a Link response header is returned that points to the channel URL (to be used to setup the Websocket channel for the Monetization session).
 </aside>
 
 ##### DELETE /me/sessions/{sessionId}
