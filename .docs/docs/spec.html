@@ -184,8 +184,8 @@ A Solid WebID can have a registered Payment Pointer, by linking the Payment Poin
 <aside class="example" title="Excerpt of a WebID profile, having a linked Payment Pointer">
 <pre>
 @prefix : <#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix pp: <https://paymentpointers.org/ns#>.
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/>.
+@prefix pp: &lt;https://paymentpointers.org/ns#>.
 :me
   a foaf:Person;
   ...
@@ -205,8 +205,8 @@ A Solid WebID can have a registered WMP Reference, by linking the WMP Reference 
 <aside class="example" title="Excerpt of a WebID profile, having a linked WMP Reference">
 <pre>
 @prefix : <#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix wm: <https://webmonetization.org/ns#>.
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/>.
+@prefix wm: &lt;https://webmonetization.org/ns#>.
 :me
   a foaf:Person;
   ...
@@ -410,12 +410,11 @@ This only works when requesting a session owned by the User (for the auth contex
 </aside>
 
 <aside class="example" title="Example response">
-```
+<pre>
 HTTP/1.1 200 Ok
 Host: example.com
-Link: <https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569/channel>; rel="channel"
+Link: &lt;https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569/channel>; rel="channel"
 Content-Type: application/ld+json
-
 {
   "@context" : "https://raw.githubusercontent.com/KNowledgeOnWebScale/solid-web-monetization/master/solid-wmp/src/main/resources/webroot/contexts/MonetizationSession.jsonld",
   "@id": "https://example.com/sessions/f68e7176-60c0-460a-9f7f-8f5220a1d569",
@@ -425,9 +424,9 @@ Content-Type: application/ld+json
   "assetCode": "XRP",
   "assetScale": 9
 }
-```
+</pre>
 
-Note that a Link response header is returned that points to the channel URL (to be used to setup the Websocket channel for the Monetization session).
+Note that a 'Link' response header is returned that points to the channel URL (to be used to setup the Websocket channel for the Monetization session).
 </aside>
 
 ##### DELETE /me/sessions/{sessionId}
