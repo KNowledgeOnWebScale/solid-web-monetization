@@ -18,37 +18,22 @@ _The project was extended until (and including) January 2022._
 
 ## Intended outcomes
 
-1. Application to configure a Web Monetization wallet into a Solid identity
-2. Extension of the Solid authentication library with Web Monetization support
-3. Prototypical Web Monetized Solid application
-4. Documentation and tutorials for Solid users to configure a Web Monetization wallet
-5. Documentation and tutorials for application developers to monetize their application
-6. Dissemination of the main results and findings of this project
+1. Application to configure a Web Monetization wallet into a Solid identity  
+   [:octicons-book-16: docs](/solid-web-monetization/accountant) | [:octicons-code-square-16: code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-accountant)
+2. Extension of the Solid authentication library with Web Monetization support  
+   [:octicons-checklist-16: spec](/solid-web-monetization/spec.html) | [:octicons-book-16: library docs](/solid-web-monetization/wmp/client) | [:octicons-code-square-16: library code](https://github.com/KNowledgeOnWebScale/solid-wmp-client)
+3. Prototypical Web Monetized Solid application  
+   [:octicons-book-16: docs](/solid-web-monetization/microstore) | [:octicons-code-square-16: code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-microstore)
+4. Documentation and tutorials for Solid users to configure a Web Monetization wallet  
+   [:octicons-book-16: practical docs](/solid-web-monetization/accountant/practical) | [[:octicons-book-16: technical docs]](/solid-web-monetization/accountant/technical) | [:octicons-play-16: demo](/solid-web-monetization/demo)
+5. Documentation and tutorials for application developers to monetize their application  
+   [:octicons-book-16: practical docs](/solid-web-monetization/microstore/practical) | [[:octicons-book-16: technical docs]](/solid-web-monetization/microstore/technical) | [:octicons-play-16: demo](/solid-web-monetization/demo)
+6. Dissemination of the main results and findings of this project  
+   [:octicons-eye-16: dissemination](/solid-web-monetization/dissemination) 
 
 ## Public reports
 
 * [Interim report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-1-4i35)
 * Final report *(upcoming)*
-
-## Outcomes
-
-### Documentation site
-
-All required outcomes have been gathered this documentation site.
-
-Outcome | Subpage | Direct link
---------|---------|-------------
-Outcome 1 | Components/Accountant | [[link]](accountant)
-
-## Solid-Accountant (Outcome 1)
-The solid accountant app can be found under its respective [folder](./solid-accountant).
-
-Documentation: https://knowledgeonwebscale.github.io/solid-web-monetization/wallet
-
-## Solid-MicroStore (Outcome 3)
-The solid microstore app can be found under its respective [folder](./solid-microstore).
-
-Public URL: https://knowledgeonwebscale.github.io/solid-web-monetization/store
-
 
 --8<-- "includes/abbreviations.md"
