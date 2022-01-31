@@ -13,6 +13,25 @@ To use this application you simply browse the two example use case pages. You wi
 
 Once you are logged in, you will be able to view all the content.
 
+### Docker
+The Microstore can be started via Docker:
+
+1. Download the [Docker compose file](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml) or clone the whole repository.
+2. Open a shell and browse to the folder where the compose file is located
+3. Execute `docker-compose up -d`
+4. Browse to http://store.localhost
+
+### Environment variables
+
+Under the `store.environment` section in the `docker-compose.yml` file, you can set the following environment variables.
+
+name                      | default          | description
+--------------------------|------------------|----------------
+PAYMENT_POINTER           | `$$rafiki.money/p/thomas.dupont@ugent.be` | This is the payment pointer of the content creater/owner. _(Double `$$` is needed to escape the single `$`)_
+CONFIG_VARS               | `PAYMENT_POINTER`  | **Don't change this!** This is needed to setup the PAYMENT_POINTER variable in the microstore application.
+CONFIG_FILE_PATH          | `/app/assets`      | **Don't change this!** This is needed to setup the PAYMENT_POINTER variable in the microstore application.
+CONFIG_FILE_NAME          | `config.json`      | **Don't change this!** This is needed to setup the PAYMENT_POINTER variable in the microstore application.
+
 ### Login
 
 Although in theory it should not matter which Solid pod and thus Solid WebID you use, this demonstrator has been hardwired to authenticate with solidcommunity.net. So you will need an account and pod there. 
@@ -29,7 +48,7 @@ Once logged in the Web Monetization Provider URL will be read from the WebID of 
 !!! warning
     In this case the content is hidden in client-side code. This means that with some DOM manipulation you can still see the content. It is only meant for demonstration purposes though. If you would do this properly, you could easily only load the actual content from the server, once payments arrive.
 
-![](/assets/img/microstore_paywall.png)
+![](../../assets/img/microstore_paywall.png)
 
 ### Mixed content page
 
@@ -38,13 +57,13 @@ This page demonstrates a use case where normal content is interleaved with premi
 !!! Note
     This use case is equivalent to a use case where advertisement banners can be removed from in between content, once payment has started.
 
-![](/assets/img/microstore_mixed.png)
+![](../../assets/img/microstore_mixed.png)
 
 ### Counter
 
 On top of the application is the counter. This acts as a visualization of the messaging once the payment is set up. Messages are being sent over a websocket from the WMP back to the client. This counter shows state or transferred funds.
 
-![](/assets/img/counter.png)
+![](../../assets/img/counter.png)
 
 ### Meta tag
 

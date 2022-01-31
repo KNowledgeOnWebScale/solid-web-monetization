@@ -10,9 +10,17 @@ To use the application you are required to log in to a solid pod. Once authentic
 
 This will present you with a table that contains all stored payment pointer (read from your WebID). From here you can add or remove pointers as you see fit.
 
+### Docker
+The Microstore can be started via Docker:
+
+1. Download the [Docker compose file](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml) or clone the whole repository.
+2. Open a shell and browse to the folder where the compose file is located
+3. Execute `docker-compose up -d`
+4. Browse to http://wallet.localhost
+
 ### Login
 
-![Solid indentity providers](/assets/img/acc_login.png){ align=right }
+![Solid indentity providers](../../assets/img/acc_login.png){ align=right }
 
 Although this application has support for different solid pod providers, the other applications only support solidcommunity.net pods.  
 That is why you should create a solid pod over at [solidcommunity.net](https://solidcommunity.net/register) to carry on. 

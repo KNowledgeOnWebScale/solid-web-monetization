@@ -9,11 +9,14 @@ The purpose of this component is to provide a minimal implementation of the prop
 ### Docker
 The WMP server can be started via Docker:
 
-1. Download the [Docker compose file](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml)
+1. Download the [Docker compose file](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml) or clone the whole repository.
 2. Open a shell and browse to the folder where the compose file is located
 3. Execute `docker-compose up -d`
+4. Browse to http://wmp.localhost
 
 ### Environment variables
+
+Under the `wmp.environment` section in the `docker-compose.yml` file, you can set the following environment variables.
 
 name                      | default          | description
 --------------------------|------------------|----------------
@@ -62,7 +65,7 @@ EOF
 
 You should receive something like this:
 
-```json
+```json hl_lines="6 7"
 {
     "redirect_uris": [
         "http://localhost:8080/auth/cb",

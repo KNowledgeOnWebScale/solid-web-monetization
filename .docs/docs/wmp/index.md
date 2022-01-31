@@ -2,6 +2,6 @@
 
 The Solid Web Monetization Provider is an example of an intermediate party that performs micropayments to payment pointers on behalf of a user. That user trusts the WMP and has an active subscription with it.
 
-![](/assets/img/wmp.png)
+![](../assets/img/wmp.png)
 
 --8<-- "includes/abbreviations.md"

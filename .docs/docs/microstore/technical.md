@@ -212,10 +212,9 @@ All app routing paths can be found in `/src/app/app-routing.modules.ts`
 
 ## WebID Profile
 
-he WebID profile is stored in RDF. That means that data read from that profile should be queried as RDF. To query a WebID Profile document for a WMP url, this tuple is being searched.
+The WebID profile is stored in RDF. That means that data read from that profile should be queried as RDF. To query a WebID Profile document for a WMP url, this tuple is being searched.
 
-**`https://<my-username].solidcommunity.net/profile/card#me`**
-```
+```turtle title="https://[my-username].solidcommunity.net/profile/card#me"
 @prefix : <#>.
 ...
 @prefix ns0: <https://webmonetization.org/ns#>.

@@ -28,11 +28,22 @@ _The project was extended until (and including) January 2022._
 ## Public reports
 
 * [Interim report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-1-4i35)
+* Final report *(upcoming)*
+
+## Outcomes
+
+### Documentation site
+
+All required outcomes have been gathered this documentation site.
+
+Outcome | Subpage | Direct link
+--------|---------|-------------
+Outcome 1 | Components/
 
 ## Solid-Accountant (Outcome 1)
 The solid accountant app can be found under its respective [folder](./solid-accountant).
 
-Public URL: https://knowledgeonwebscale.github.io/solid-web-monetization/wallet
+Documentation: https://knowledgeonwebscale.github.io/solid-web-monetization/wallet
 
 ## Solid-MicroStore (Outcome 3)
 The solid microstore app can be found under its respective [folder](./solid-microstore).

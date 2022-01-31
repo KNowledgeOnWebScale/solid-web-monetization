@@ -1,4 +1,5 @@
 site_name: Solid Web Monetization Docs
+site_url: https://knowledgeonwebscale.github.io/solid-web-monetization/
 theme:
   name: material
   palette:
@@ -19,6 +20,7 @@ theme:
     - navigation.top
     - search
     - search.suggest
+    - content.code.annotate
 
 markdown_extensions:
   - abbr
@@ -44,7 +46,9 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Demo: demo/index.md
+  - Demo: 
+    - Introduction: demo/intro.md
+    - Scenario: demo/scenario.md
   - Components:
     - Accountant:
       - accountant/index.md
