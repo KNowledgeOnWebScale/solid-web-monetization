@@ -53,7 +53,8 @@ class IoCBindings {
             .exposedHeaders(
                 mutableSetOf(
                     HttpHeaders.CONTENT_DISPOSITION.toString(),
-                    HttpHeaders.LOCATION.toString()
+                    HttpHeaders.LOCATION.toString(),
+                    "Link"
                 )
             )
         router.route().handler(corsHandler)
