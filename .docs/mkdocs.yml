@@ -19,6 +19,7 @@ theme:
     - navigation.top
     - search
     - search.suggest
+    - content.code.annotate
 
 markdown_extensions:
   - abbr
@@ -44,7 +45,9 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Demo: demo/index.md
+  - Demo: 
+    - Introduction: demo/intro.md
+    - Scenario: demo/scenario.md
   - Components:
     - Accountant:
       - accountant/index.md

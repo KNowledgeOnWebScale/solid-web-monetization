@@ -1,4 +1,4 @@
-# Solid Web Monetization Demonstrator
+# Demo introduction
 
 The outcome of this project was defined by [several items](/#intended-outcomes). A large contribution to those items comes in the form of a working demonstrator. This section will act as a guide for this demo, as it consists of multiple separate components.
 
@@ -48,16 +48,15 @@ Component | URL | Description
 [Microstore](/microstore) | http://store.localhost | Website of the content creator that have unlockable monetized content for users logged in with WebID.
 Docs | http://docs.localhost | These docs are also hosted locally on your pc now.
 
-## Demo scenario
 
-!!! todo
-    step by step guide through the demo
+!!! info
+    If you want a more detailed explanation, you can follow the [demo scenario](/demo/scenario).
 
 ## docker-compose.yml
 
 The `docker-compose.yml` file that is being used has quite a few services that are worth explaining:
 
-```yaml
+```yaml linenums="1"
 version: '3.9'
 services:
 
@@ -95,6 +94,11 @@ services:
       - "traefik.enable=true"                                       # Let traefik pick this up   
       - "traefik.http.routers.store.rule=Host(`store.localhost`)"   # Route store.localhost
       - "traefik.http.routers.store.entrypoints=web"
+    environment:
+      - "PAYMENT_POINTER=$$rafiki.money/p/thomas.dupont@ugent.be"   # Paymentpointer of content creator
+      - "CONFIG_VARS=PAYMENT_POINTER"                               # Variables to expose to the app
+      - "CONFIG_FILE_PATH=/app/assets"                              # Path of the config file
+      - "CONFIG_FILE_NAME=config.json"                              # Name of the config file
 
   # Web Monetization Provider
   wmp:
@@ -108,9 +112,9 @@ services:
       - "traefik.http.routers.wmp.rule=Host(`wmp.localhost`)"       # Route wmp.localhost
       - "traefik.http.routers.wmp.entrypoints=web"
     environment:
-      - "BASE_URI=http://wmp.localhost"                                 # Uri that will be written in the pod
+      - "BASE_URI=http://wmp.localhost"                                 # Uri to register/write in the pod
       - "MONGO_CONNECTION_STRING=mongodb://mongodb:27017"               # The database connection string
-      - "REDIRECT_URI=http://wmp.localhost/auth/cb"                     # The redirect URI for WebID-OIDC auth
+      - "REDIRECT_URI=http://wmp.localhost/auth/cb"                     # The WebID-OIDC redirect URI
       - "REDIRECT_URI_POST_LOGOUT=http://wmp.localhost/auth/logout/cb"  # The redirect URI after logout
       - "CLIENT_ID=79e3648fc184f70306e4072f3a856bb1"                    # The client ID (see docs)
       - "CLIENT_SECRET=2ba10ec24a3cb231ee39781bc3882d66"                # The client secret (see docs)
