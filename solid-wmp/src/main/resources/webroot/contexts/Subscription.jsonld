@@ -1,0 +1,22 @@
+{
+    "@context" : {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "Subscription" : "https://webmonetization.org/ns#Subscription",
+        "userId" : {
+            "@id" : "https://webmonetization.org/ns#subscriptionOwner",
+            "@type" : "@id"
+        },
+        "paymentPointer" : {
+            "@id" : "https://webmonetization.org/ns#associatedPaymentPointer",
+            "@type" : "xsd:string"
+        },
+        "mandateURI" : {
+            "@id" : "https://webmonetization.org/ns#associatedMandate",
+            "@type" : "@id"
+        },
+        "valid" : {
+            "@id" : "https://webmonetization.org/ns#validSubscription",
+            "@type" : "xsd:boolean"
+        }
+    }
+}

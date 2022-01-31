@@ -1,0 +1,10 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "MonetizationSessionInput" : "https://webmonetization.org/ns#MonetizationSessionInput",
+        "targetPaymentPointer" : {
+           "@id" : "https://webmonetization.org/ns#associatedPaymentPointer",
+           "@type" : "xsd:string"
+        }
+    }
+}
