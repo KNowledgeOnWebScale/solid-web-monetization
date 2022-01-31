@@ -1,10 +1,12 @@
 package idlab.technology.solid.webmonetization.provider.impl.http
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import idlab.technology.solid.webmonetization.provider.*
 import idlab.technology.solid.webmonetization.provider.utils.*
 import io.reactivex.Single
 import io.reactivex.rxkotlin.subscribeBy
+import io.vertx.core.http.HttpHeaders
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
 import io.vertx.reactivex.core.Vertx
@@ -37,7 +39,7 @@ class MonetizedSessionEndpoints @Inject constructor(
                     sessions.filter { it.key.userId == token.userId }.map { it.value }
                 }
                 .subscribeBy(
-                    onSuccess = writeHttpResponse(ctx),
+                    onSuccess = writeLDHttpResponse(ctx, config.monetizationSessionContext),
                     onError = writeHttpError(ctx)
                 )
         }
@@ -49,7 +51,10 @@ class MonetizedSessionEndpoints @Inject constructor(
                         ?.let { Single.just(it) } ?: Single.error(NotFoundException())
                 }
                 .subscribeBy(
-                    onSuccess = writeHttpResponse(ctx),
+                    onSuccess = { session ->
+                        ctx.response().putHeader("Link", "<${config.baseURI}$>; rel=\"channel\"")
+                        writeLDHttpResponse(ctx, config.monetizationSessionContext).invoke(session)
+                    },
                     onError = writeHttpError(ctx)
                 )
         }
@@ -77,13 +82,16 @@ class MonetizedSessionEndpoints @Inject constructor(
                         .toSingle()
                         .map {
                             val sessionKey = SessionKey(token.userId)
+                            val sessionUri = "${config.baseURI}${config.apiPath}/me/sessions/${sessionKey.sessionId}"
                             val session = Session(
-                                sessionKey.sessionId,
-                                PaymentPointer(input.targetPaymentPointer),
+                                id = sessionUri,
+                                target = PaymentPointer(input.targetPaymentPointer),
                                 assetScale = config.subscriptionAssetScale,
                                 assetCode = config.subscriptionAssetCode
                             )
                             sessions[sessionKey] = session
+                            // Set location header
+                            ctx.response().putHeader(HttpHeaders.LOCATION, sessionUri)
                             JsonObject().put("sessionId", sessionKey.sessionId)
                         }
                 }
@@ -135,7 +143,10 @@ class MonetizedSessionEndpoints @Inject constructor(
 data class SessionKey(val userId: String, val sessionId: String = UUID.randomUUID().toString())
 
 data class Session(
-    val id: String = UUID.randomUUID().toString(),
+    @JsonProperty("@id")
+    val id: String,
+    @JsonProperty("@type")
+    val type: String = "MonetizationSession",
     val target: PaymentPointer,
     @JsonIgnore
     var activeSocket: SockJSSocket? = null,

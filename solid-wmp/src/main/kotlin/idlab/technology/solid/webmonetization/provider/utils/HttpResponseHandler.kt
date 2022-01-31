@@ -1,5 +1,6 @@
 package idlab.technology.solid.webmonetization.provider.utils
 
+import io.vertx.core.http.HttpHeaders
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
 import io.vertx.reactivex.ext.web.RoutingContext
@@ -10,4 +11,18 @@ import io.vertx.reactivex.ext.web.RoutingContext
  */
 fun writeHttpResponse(ctx: RoutingContext): (Any) -> Unit {
     return { ctx.json(if (it is List<*>) JsonArray(it) else JsonObject.mapFrom(it)) }
+}
+
+fun writeLDHttpResponse(ctx: RoutingContext, context: JsonObject): (Any) -> Unit {
+    return {
+        val result = context.copy()
+        if (it is List<*>) {
+            result.put("@graph", JsonArray(it))
+        } else {
+            result.mergeIn(JsonObject.mapFrom(it))
+        }
+        ctx.response()
+            .putHeader(HttpHeaders.CONTENT_TYPE.toString(), "application/ld+json")
+            .end(result.encode())
+    }
 }

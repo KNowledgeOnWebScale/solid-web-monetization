@@ -45,7 +45,26 @@ data class WMPConfig(
     val apiPath: String = "/api",
     @JsonProperty("AUTH_PATH")
     val authPath: String = "/auth",
-)
+) {
+
+    @JsonIgnore
+    val ilpStreamUpdateContext: JsonObject = JsonObject().put("@context", "$baseURI/contexts/ILPStreamUpdate.jsonld")
+
+    @JsonIgnore
+    val monetizationSessionContext: JsonObject =
+        JsonObject().put("@context", "$baseURI/contexts/MonetizationSession.jsonld")
+
+    @JsonIgnore
+    val monetizationSessionInputContext: JsonObject =
+        JsonObject().put("@context", "$baseURI/contexts/MonetizationSessionInput.jsonld")
+
+    @JsonIgnore
+    val subscriptionContext: JsonObject = JsonObject().put("@context", "$baseURI/contexts/Subscription.jsonld")
+
+    @JsonIgnore
+    val subscriptionInputContext: JsonObject =
+        JsonObject().put("@context", "$baseURI/contexts/SubscriptionInput.jsonld")
+}
 
 interface AccessManager {
 
@@ -108,6 +127,10 @@ data class Token(val userId: String, val podAccessToken: String)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 data class Subscription(
+    @JsonProperty("@id")
+    val id: String,
+    @JsonProperty("@type")
+    val type: String = "Subscription",
     val userId: String,
     val paymentPointer: PaymentPointer,
     val mandateURI: URI,

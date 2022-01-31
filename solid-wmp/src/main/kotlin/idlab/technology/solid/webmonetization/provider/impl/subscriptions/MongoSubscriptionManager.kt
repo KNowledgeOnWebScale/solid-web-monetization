@@ -45,6 +45,7 @@ class MongoSubscriptionManager @Inject constructor(
                         .flatMapCompletable { mandateURI ->
                             // 3. Create the subscription (and store in MongoDB)
                             val subscription = Subscription(
+                                id = "${config.baseURI}${config.apiPath}/subscriptions/${encodeUrlId(token.userId)}",
                                 userId = token.userId,
                                 paymentPointer = paymentPointer,
                                 mandateURI = mandateURI
