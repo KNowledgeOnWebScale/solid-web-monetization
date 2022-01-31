@@ -26,7 +26,7 @@ n3 | Implementation of the RDF.js low-level specification that lets you handle R
 @inrupt/solid-client-authn-browser |  Authenticate web apps (in the browser) with Solid identity servers. | https://www.npmjs.com/package/@inrupt/solid-client-authn-browser
 @inrupt/vocab-common-rdf |  Bundle of common RDF vocabularies. | https://www.npmjs.com/package/@inrupt/vocab-common-rdf
 sockjs-client | Counterpart of SockJS used on the server. it provides a WebSocket-like object. | https://www.npmjs.com/package/sockjs-client
-solid-wmp-client | Handles communication with a server component implementing the proposed [WMP specification](/specification) | https://www.npmjs.com/package/solid-wmp-client
+solid-wmp-client | Handles communication with a server component implementing the proposed [WMP specification](/solid-web-monetization/spec.html) | https://www.npmjs.com/package/solid-wmp-client
 web-monetization-polyfill | Polyfill the [Web Monetization JavaScript API](https://webmonetization.org/docs/api) on document.monetization, required until it is provided by browsers | https://www.npmjs.com/package/web-monetization-polyfill
 
 ## Code notes

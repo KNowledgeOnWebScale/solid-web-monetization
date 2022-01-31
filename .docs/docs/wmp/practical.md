@@ -109,7 +109,7 @@ There is nothing noteworthy about this page. Once logged in, it outputs your Sol
 
 ### Manage page
 
-If you do not have a subscription to this WMP yet, this page shows a form with all your available [payment pointers](https://paymentpointers.org/) found inside you WebID Profile document. If you see none yet, you have to use the [Accountant application](/accountant) first.
+If you do not have a subscription to this WMP yet, this page shows a form with all your available [payment pointers](https://paymentpointers.org/) found inside you WebID Profile document. If you see none yet, you have to use the [Accountant application](/solid-web-monetization/accountant) first.
 
 After selecting your preferred payment pointer and clicking `Subscribe with WebID`, your subscription is stored.
 

@@ -38,7 +38,7 @@ All required outcomes have been gathered this documentation site.
 
 Outcome | Subpage | Direct link
 --------|---------|-------------
-Outcome 1 | Components/
+Outcome 1 | Components/Accountant | [[link]](accountant)
 
 ## Solid-Accountant (Outcome 1)
 The solid accountant app can be found under its respective [folder](./solid-accountant).
