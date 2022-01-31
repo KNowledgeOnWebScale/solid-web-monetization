@@ -41,6 +41,6 @@ Payment pointers can be resolved to a (https scheme) URL. Under that URL [Open P
 
 A WebID is a unique identifier used to identify a specific user. An example of what a WebID could look like is: https://fulano.pod.provider/profile/card#me. To share data with a third party, a user associates sharing preferences to the WebID of that third party. [source](https://solidproject.org/faqs#what-is-a-webid)]
 
-The content of your WebID is typically stored in [RDF](https://www.w3.org/RDF/) and thus must be written to in RDF. This is exactly what this application demonstrates. (See [technical...](/accountant/technical))
+The content of your WebID is typically stored in [RDF](https://www.w3.org/RDF/) and thus must be written to in RDF. This is exactly what this application demonstrates. (See [technical...](/solid-web-monetization/accountant/technical))
 
 --8<-- "includes/abbreviations.md"

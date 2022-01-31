@@ -4,7 +4,7 @@ This is a step-by-step guide through the demo scenario.
 
 ## 1. Setup
 
-As explained in the [introduction](/demo/intro), you will need docker and git installed on you local pc.
+As explained in the [introduction](/solid-web-monetization/demo/intro), you will need docker and git installed on you local pc.
 
 ### 1.1 Create a content owner wallet
 
@@ -47,7 +47,7 @@ We will need to enter the Rafiki payment pointer from the previous step as an en
 
 ### 1.4 Register WMP as client (optional)
 
-**This step is optional** and only needed if you will run the components in the `docker-compose.yml` file on other endpoints/ports etc. If so, you will be required to first follow the steps in the [practical section](/wmp/practical#client-registration) of the WMP.
+**This step is optional** and only needed if you will run the components in the `docker-compose.yml` file on other endpoints/ports etc. If so, you will be required to first follow the steps in the [practical section](/solid-web-monetization/wmp/practical#client-registration) of the WMP.
 
 The resulting `client_id` and `client_secret` can be added in the `docker-compose.yml` file here:
 
@@ -83,9 +83,9 @@ This will start all demo components on your pc.
 
 Component | URL | Description
 ----------|-----|------------
-[Accountant](/accountant) | http://wallet.localhost | Allows you to edit your payment pointers stored in your WebID (on your Solid pod).
-[Web Monetization Provider](/wmp) | http://wmp.localhost | Allows you to register the WMP in your WebID (on your Solid pod) and setup a subscription to pay the WMP.
-[Microstore](/microstore) | http://store.localhost | Website of the content creator that have unlockable monetized content for users logged in with WebID.
+[Accountant](/solid-web-monetization/accountant) | http://wallet.localhost | Allows you to edit your payment pointers stored in your WebID (on your Solid pod).
+[Web Monetization Provider](/solid-web-monetization/wmp) | http://wmp.localhost | Allows you to register the WMP in your WebID (on your Solid pod) and setup a subscription to pay the WMP.
+[Microstore](/solid-web-monetization/microstore) | http://store.localhost | Website of the content creator that have unlockable monetized content for users logged in with WebID.
 Docs | http://docs.localhost | These docs are also hosted locally on your pc now.
 
 
@@ -103,7 +103,7 @@ You should now be able to login, and see your WebID URI, it will be of the form 
 Normally you would have a wallet account somewhere with a [payment pointer](https://paymentpointers.org) address. To be able to pay for monetized Solid apps, you will now register that payment pointer in your WebID. We will just add an example paymnet pointer address. Internally the WMP will be funded through other payments. (More in [step 4](#4-subscribe-to-the-wmp-web-monetization-provider-app))
 
 !!! important
-    The part where the user pays the WMP from his/her wallet is still mocked. It seemed impossible to do a pure browser based STREAM payment from a payment pointer at this stage, because of the [limitations outlined in the specification](/spec.html#goals).
+    The part where the user pays the WMP from his/her wallet is still mocked. It seemed impossible to do a pure browser based STREAM payment from a payment pointer at this stage, because of the [limitations outlined in the specification](/solid-web-monetization/spec.html#goals).
 
 Now we will use the Accountant application to add a payment pointer to your Solid pod.
 

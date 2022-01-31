@@ -62,6 +62,8 @@ nav:
       - wmp/index.md
       - Practical: wmp/practical.md
       - Technical: wmp/technical.md
+      - Client Lib: wmp/client.md
+  - Dissemination: dissemination/index.md
   - Specification: spec.html" target="_blank"
 
 extra:

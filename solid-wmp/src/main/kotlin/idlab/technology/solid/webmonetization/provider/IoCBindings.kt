@@ -52,7 +52,8 @@ class IoCBindings {
             .allowCredentials(true)
             .exposedHeaders(
                 mutableSetOf(
-                    HttpHeaders.CONTENT_DISPOSITION.toString()
+                    HttpHeaders.CONTENT_DISPOSITION.toString(),
+                    HttpHeaders.LOCATION.toString()
                 )
             )
         router.route().handler(corsHandler)
