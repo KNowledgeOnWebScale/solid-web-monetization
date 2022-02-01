@@ -6,11 +6,11 @@ This information is meant for developers looking at the code of the Accountant a
 
 ### Framework
 
-The application is written in [Angular 13.x.x](https://angular.io) and thus in TypeScript. It is written as a browser application.
+The application is written in [Angular 13.x.x](https://angular.io) and thus in [TypeScript](https://www.typescriptlang.org/). It is written as a browser application.
 
 ### Package manager
 
-The [yarn package manager](https://yarnpkg.com/) was used. It behaves very similar to npm but is a bit faster and more modern in use.
+The [yarn package manager](https://yarnpkg.com/) was used. It behaves very similar to [npm](https://docs.npmjs.com/cli/v8) but is a bit faster and more modern in use.
 
 To install all libraries and build the code: run `yarn` from the project folder `/solid-accountant`.
 
@@ -18,7 +18,7 @@ To run the code in a development server: execute `yarn start` from the project f
 
 ### Libraries
 
-The noteworthy libraries used and why are listed below:
+The noteworthy libraries used and the reason for doing so are listed below:
 
 library |  reason | npm link
 --------|---------|----------
@@ -30,7 +30,7 @@ n3 | Implementation of the RDF.js low-level specification that lets you handle R
 
 ### Pages
 
-Angular works with components. Each subpage is a component, as such the following folders contain the component for that such subpage:
+Angular works with components. Each subpage is a component, as such the following folders contain the component for those subpages:
 
   * `/src/app/home`: Home page
   * `/src/app/pp`: Payment pointers page
@@ -41,7 +41,12 @@ Nothing special happens in the code for these pages. The code and HTML should sp
 
 ### Other components
 
-The leftover components are used as custom html elements in the HTML. A component has HTML, CSS and code (typescript) associated with it. You can use a component in HTML by using an HTML tag to refer to it.
+The leftover components are used as custom HTML Elements in the HTML. A component has HTML, CSS and code (typescript) associated with it. You can use a component in HTML by using an HTML tag to refer to it.
+
+```html
+<!-- Example tag -->
+<app-login-btn [provider]="p"></app-login-btn>
+```
 
 #### Login button
 
@@ -52,7 +57,7 @@ This component is used for the login boxes on the login page with a logo of the 
 
 ### Services
 
-Services are singleton instances that are dependency injected into the components that list them as argument of their constructors.
+Services are singleton instances that are dependency injected into the components that list them as arguments of their constructor.
 
 #### SolidService
 
