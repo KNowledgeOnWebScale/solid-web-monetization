@@ -43,7 +43,7 @@ We will need to enter the Rafiki payment pointer from the previous step as an en
       - "CONFIG_FILE_NAME=config.json"
 ```
 
-1. :warning: Don't forget escape the `$` sign by typing `$$`!
+1. :warning: Don't forget to escape the `$` sign by typing `$$`!
 
 ### 1.4 Register WMP as client (optional)
 
@@ -76,7 +76,7 @@ The resulting `client_id` and `client_secret` can be added in the `docker-compos
 Now we can finally start all services!
 
 ```bash
-cd solid-web-monetization # cd in to root repo folder
+cd solid-web-monetization # cd into the root repository folder
 docker compose up -d      # start all services in docker-compose.yml file in detached mode
 ```
 This will start all demo components on your pc.
@@ -91,9 +91,9 @@ Docs | http://docs.localhost | These docs are also hosted locally on your pc now
 
 ## 2. Create your Solid Pod
 
-For this demo you will need your own Solid pod. Since this demonstrator is hardwired to https://solidcommunity.net, that is where we will register one.
+For this demo you will need your own Solid pod. Since this demonstrator is hardwired to https://solidcommunity.net, that is where we will register our pod.
 
- * Click `Register to get a Pod` on the top right of the page
+ * Click `Register to get a Pod` on the top right of [the page](https://solidcommunity.net).
  * Fill out the form and press `Register`.
 
 You should now be able to login, and see your WebID URI, it will be of the form `https://<username>.solidcommunity.net/profile/card#me`
@@ -145,33 +145,31 @@ You can see the entry in your WebID profile output too:
 
 ```
 
-If you wish you can add multiple pointers, this will allow you to choose one of them in your WMP subscription later.
+If you wish you can add multiple pointers, this will allow you to choose between them in your WMP subscription later.
 
-## 4. Subscribe to the WMP (web monetization provider app)
+## 4. Subscribe to the WMP
 
 We will now subscribe with the WMP application. The idea is that we subscribe and pay a monthly fee for the service. The WMP on their part will send micropayments to any web-monetized content we browse, while logged in with our WebID.
 
 !!! warning
-    This demonstrator works over an interledger testnet. This means all funds are fake and nothing of monetary value is being sent right now.
+    This demonstrator works over an [interledger testnet](https://interledger.org/developer-tools/get-started/set-up/). This means all funds are fake and nothing of monetary value is being sent right now.
 
 ### 4.1 Login
 
 * Browse to https://wmp.localhost
 * Click `Login with WebID` on the top right.
-* You will probably not notice the redirect, since you ar still logged in from before. If not, please login now.
+* You will probably not notice the redirect, since you are still logged in from before. If not, please login now.
 
 ### 4.2 Subscribe
 
-Open the `Manage` page  
-Your registered payment pointers are now read from your WebID profile document.*
-
-Select one of your registered payment pointer and click `Subscribe with WebID`.
+Open the `Manage` page. Your registered payment pointers are now read from your WebID profile document. Select one of your registered payment pointer and click `Subscribe with WebID`.
 
 ![](../assets/img/guide/4_1.png)
 
 Two things now happen:
+
 * This WMP is written to your WebID Profile for later use.
-* A [Mandate](https://docs.openpayments.dev/mandates) is set up following the [Open Payments](https://openpayments.dev/) specification draft. This allows the WMP to claim [Charges](https://docs.openpayments.dev/charges) from you chosen paymentpointer (and the wallet behind it).
+* A [Mandate](https://docs.openpayments.dev/mandates) is set up following the [Open Payments](https://openpayments.dev/) specification draft. This allows the WMP to claim [Charges](https://docs.openpayments.dev/charges) from your chosen payment pointer (and the wallet behind it).
 
 !!! info
     Since no wallets were found that already implement the [Open Payments](https://openpayments.dev/) specification draft, this part is mocked. The WMP will instead use generated accounts on [ILPv4 Testnet Faucet](https://faucet.ilpv4.dev/), to generate temporary accounts with fake funds, and transfer money over the ILP testnet from there.
@@ -201,12 +199,12 @@ You can see the entry in your WebID profile output too:
 
 ## 5. Browse to the microstore app
 
-The only thing left to do now is browsing the microstore application to view some monetized content.
+The only thing left to do now is to browse to the [Microstore application](/solid-web-monetization/microstore/) to view some monetized content.
 
 * Browse to http://store.localhost
 * Open the subpages while logged out.
-  * Paywall: This has a large paywall in front of the content
-  * Mixed content: This has some locked premium content in between the viewable images
+    * Paywall: This example has a large paywall in front of the content.
+    * Mixed content: This example has some locked premium content in between the viewable images.
 
 ### 5.1 Login
 
@@ -214,7 +212,7 @@ Click `Login with WebID` on the top right.
 
 ### 5.2 Open subpage paywall
 
-Open the paywall page. Now that you are logged in, the button is to unlock the content is shown.
+Open the `Paywall` page. Now that you are logged in, the button to unlock the content is shown.
 
 * Click `Unlock through Web Monetization`.
 * The paywall is hidden.
@@ -223,18 +221,20 @@ Open the paywall page. Now that you are logged in, the button is to unlock the c
 * Now open a new screen and browse to https://rafiki.money/login
 * Log in with the content creator account from [step 1.2](#12-set-environment-variables)
 * Watch as the Monetization box gets updated, while the paywall page is open.  
-  ![](../assets/img/guide/5.2.png)
+
+![](../assets/img/guide/5.2.png)
 
 ### 5.3 Open subpage mixed content
 
-Open the mixed content page. Now that you are logged in this page automatically show the premium content (by hiding the locked banners).
+Open the `Mixed content` page. Now that you are logged in, this page automatically show the premium content (by hiding the locked banners).
 
 * The state of the counter up top goes from `pending` to `0`
 * Once the first payment goes through, the counter is updated.
 * Now open a new screen and browse to https://rafiki.money/login
 * Log in with the content creator account from [step 1.2](#12-set-environment-variables)
-* Watch as the Monetization box gets updated, while the paywall page is open.  
-  ![](../assets/img/guide/5.3.png)
+* Watch as the Monetization box gets updated, while the mixed content page is open.  
+
+![](../assets/img/guide/5.3.png)
 
 ### 5.4 Active session in WMP
 

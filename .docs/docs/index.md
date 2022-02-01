@@ -1,7 +1,7 @@
 # Solid Web Monetization
 
 The **Solid decentralization effort** decouples data from services, so that users are in full control over their personal data.
-Since services can not primarily depend on data collection as a primary business model anymore, alternative forms of monetization,
+Since services cannot primarily depend on data collection as a primary business model anymore, alternative forms of monetization,
 such as **micropayments via Web Monetization** are essential for **incentivizing application development**.
 
 This project is funded by [Grant for the Web](https://www.grantfortheweb.org/),

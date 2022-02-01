@@ -1,15 +1,14 @@
 # Demo introduction
 
-The outcome of this project was defined by [several items](/#intended-outcomes). A large contribution to those items comes in the form of a working demonstrator. This section will act as a guide for this demo, as it consists of multiple separate components.
+The results of this project were defined by several [intended outcomes](/#intended-outcomes). A large contribution to these outcome manifests itself in the form of a working demonstrator. This section will act as a guide for this demo, as it consists of multiple separate components interacting to complete a scenario.
 
 ## Purpose of the demo
 
 The demo hosts a couple of components, that come into play when a content-creator is hosting web monetized content that visiting users pay for through micropayments. These micropayments are sent over the [interledger](https://interledger.org/) network from the visting users wallet to the content creators wallet.
 
-Aligning with Solid's vision, all required data is stored in the visiting user's Solid pod. Our demonstrator and the use of its various components is driven by the effort to further decentralize the web. The [Web Monetization Provider](/solid-web-monetization/wmp) component was introduced to facilitate this decentralization.
+Aligning with Solid's vision, all required data is stored in the visiting user's Solid pod. Our demonstrator and the use of its various components is driven by the effort to further decentralize the web. The [Web Monetization Provider component](/solid-web-monetization/wmp) was introduced to further facilitate this decentralization.
 
-This demo will allow you to log in to your personal Solid pod and register a personal [payment pointer](https://paymentpointers.org/). Afterwards you can subscribe to the [Web Monetization Provider](/solid-web-monetization/wmp), that will manage micropayments on your behalf (with the chosen [payment pointer](https://paymentpointers.org/)). The [microstore component](/solid-web-monetization/microstore) can then be visited to showcase how (once logged in with your Solid WebID) the registered WMP can be requested from your pod and instructed to pay micropayments to the content provider's [payment pointer](https://paymentpointers.org/) embedded in the web page.
-
+This demo will allow you to log in to your personal Solid pod and register a personal [payment pointer](https://paymentpointers.org/). Afterwards you can subscribe to the [Web Monetization Provider](/solid-web-monetization/wmp), that will manage micropayments on your behalf (with the chosen [payment pointer](https://paymentpointers.org/)). The [Microstore component](/solid-web-monetization/microstore) can then be visited to showcase how (once logged in with your Solid WebID) the registered WMP can be requested from your Solid WebID and instructed to pay micropayments to the content provider's [payment pointer](https://paymentpointers.org/) embedded in the web page.
 
 ## Setup
 
@@ -19,7 +18,7 @@ The whole demonstrator can be set up and executed locally.
 
 #### Docker
 
-You will need a working docker installation. We recommend installing [Docker Desktop](https://www.docker.com/get-started). The important part is that it should also include a Docker Compose install. (which installs by default with Docker Desktop).
+You will need a working docker installation. We recommend installing [Docker Desktop](https://www.docker.com/get-started). It should also include a Docker Compose install. (which installs by default with Docker Desktop).
 
 #### Git
 
@@ -45,7 +44,7 @@ Component | URL | Description
 ----------|-----|------------
 [Accountant](/solid-web-monetization/accountant) | http://wallet.localhost | Allows you to edit your payment pointers stored in your WebID (on your Solid pod).
 [Web Monetization Provider](/solid-web-monetization/wmp) | http://wmp.localhost | Allows you to register the WMP in your WebID (on your Solid pod) and setup a subscription to pay the WMP.
-[Microstore](/solid-web-monetization/microstore) | http://store.localhost | Website of the content creator that have unlockable monetized content for users logged in with WebID.
+[Microstore](/solid-web-monetization/microstore) | http://store.localhost | Website of the content creator that has unlockable monetized content for users logged in with WebID.
 Docs | http://docs.localhost | These docs are also hosted locally on your pc now.
 
 
