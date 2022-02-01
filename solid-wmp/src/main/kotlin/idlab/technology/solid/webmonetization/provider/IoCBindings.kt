@@ -1,5 +1,6 @@
 package idlab.technology.solid.webmonetization.provider
 
+import idlab.technology.solid.webmonetization.provider.impl.auth.CryptoManagerImpl
 import idlab.technology.solid.webmonetization.provider.impl.auth.LocalAccessManager
 import idlab.technology.solid.webmonetization.provider.impl.ilp.MockupILPStreamManager
 import idlab.technology.solid.webmonetization.provider.impl.solid.SolidPodManagerImpl
@@ -109,5 +110,12 @@ class IoCBindings {
     fun ilpStreamManager(ilpStreamManager: MockupILPStreamManager): ILPStreamManager {
         return ilpStreamManager
     }
+
+    @Provides
+    @Singleton
+    fun cryptoManager(cryptoManager: CryptoManagerImpl): CryptoManager {
+        return cryptoManager
+    }
+
 
 }

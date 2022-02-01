@@ -1,6 +1,7 @@
 package idlab.technology.solid.webmonetization.provider.impl.http
 
 import idlab.technology.solid.webmonetization.provider.AccessManager
+import idlab.technology.solid.webmonetization.provider.CryptoManager
 import idlab.technology.solid.webmonetization.provider.WMPConfig
 import idlab.technology.solid.webmonetization.provider.utils.BadRequestException
 import idlab.technology.solid.webmonetization.provider.utils.OpenIdConfig
@@ -21,7 +22,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthEndpoint @Inject constructor(
     router: Router,
-    private val accessManager: AccessManager,
+    private val cryptoManager: CryptoManager,
     private val client: WebClient,
     private val config: WMPConfig
 ) {
@@ -32,7 +33,7 @@ class AuthEndpoint @Inject constructor(
         /**
          * Publish public JWKset
          */
-        router.get("${config.authPath}/jwks").handler { it.end(accessManager.getPublicJwks().encode()) }
+        router.get("${config.authPath}/jwks").handler { it.end(cryptoManager.getPublicJwks().encode()) }
 
         /**
          * Initial login start
@@ -113,7 +114,7 @@ class AuthEndpoint @Inject constructor(
             .flatMap { endpoint ->
                 client.postAbs(endpoint)
                     .basicAuthentication(config.clientId, config.clientSecret)
-                    .putHeader("DPoP", accessManager.generateDpopProof(HttpMethod.POST, endpoint))
+                    .putHeader("DPoP", cryptoManager.generateDpopProof(HttpMethod.POST, endpoint))
                     .rxSendForm(
                         MultiMap.caseInsensitiveMultiMap()
                             .add("grant_type", "authorization_code")
@@ -148,7 +149,7 @@ class AuthEndpoint @Inject constructor(
         val body =
             "DELETE DATA { <https://tdupont-td.solidcommunity.net/profile/card#me> <http://www.w3.org/2006/vcard/ns#organization-name> \"\" . } " +
                     "; INSERT DATA { <https://tdupont-td.solidcommunity.net/profile/card#me> <http://www.w3.org/2006/vcard/ns#organization-name> \"IDLab\" . }"
-        val dpop = accessManager.generateDpopProof(method, endpoint)
+        val dpop = cryptoManager.generateDpopProof(method, endpoint)
         println("DPoP: " + dpop)
         println("Patching profile card:")
         client.patchAbs(endpoint)

@@ -66,13 +66,16 @@ data class WMPConfig(
         JsonObject().put("@context", "$baseURI/contexts/SubscriptionInput.jsonld")
 }
 
-interface AccessManager {
-
-    fun getToken(request: HttpServerRequest): Single<Token>
-
+interface CryptoManager {
     fun generateDpopProof(method: HttpMethod, endpoint: String): String
 
     fun getPublicJwks(): JsonObject
+}
+
+
+interface AccessManager {
+
+    fun getToken(request: HttpServerRequest): Single<Token>
 
 }
 
@@ -95,6 +98,8 @@ interface SubscriptionManager {
 }
 
 interface SolidPodManager {
+    // Check if WebId and issuer have a oidcIssuer relation
+    fun isWebIdAndIssuerCorrect(webid: String, issuer: String): Single<Boolean>
 
     // Check if a supplied Payment Pointer is linked to the Solid Pod represented by the Token
     fun isLinkedPaymentPointer(token: Token, paymentPointer: String): Single<Boolean>

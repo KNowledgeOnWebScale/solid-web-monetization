@@ -1,6 +1,6 @@
 package idlab.technology.solid.webmonetization.provider.impl.solid
 
-import idlab.technology.solid.webmonetization.provider.AccessManager
+import idlab.technology.solid.webmonetization.provider.CryptoManager
 import idlab.technology.solid.webmonetization.provider.SolidPodManager
 import idlab.technology.solid.webmonetization.provider.Token
 import idlab.technology.solid.webmonetization.provider.WMPConfig
@@ -16,9 +16,12 @@ import org.apache.jena.query.QueryExecutionFactory
 import org.apache.jena.rdf.model.*
 import org.apache.jena.vocabulary.RDF
 import java.io.ByteArrayOutputStream
-import java.net.URI
 import javax.inject.Inject
 import javax.inject.Singleton
+
+private const val ME = "#me"
+private const val WMP_LOCAL_REF = "$ME-webmonetization-provider"
+private const val OIDCissuer = "http://www.w3.org/ns/solid/terms#oidcIssuer"
 
 private val PP_QUERY = """
         SELECT ?entity
@@ -27,19 +30,49 @@ private val PP_QUERY = """
         }
     """.trimIndent()
 
-private const val ME = "#me"
-private const val WMP_LOCAL_REF = "$ME-webmonetization-provider"
+private val OIDC_ISSIER_QUERY = """
+        SELECT ?webid ?iss
+        WHERE {
+            ?webid <${OIDCissuer}> ?iss.
+        }
+    """.trimIndent()
 
 @Singleton
 class SolidPodManagerImpl @Inject constructor(
     private val vertx: Vertx,
     private val webClient: WebClient,
     private val config: WMPConfig,
-    private val accessManager: AccessManager
+    private val cryptoManager: CryptoManager
 ) :
     SolidPodManager {
 
     private val logger = KotlinLogging.logger { }
+
+    override fun isWebIdAndIssuerCorrect(webid: String, issuer: String): Single<Boolean> {
+        return vertx.rxExecuteBlocking<Boolean> { promise ->
+            val model = ModelFactory.createDefaultModel()
+            model.read(webid)
+            val queryExec = QueryExecutionFactory.create(OIDC_ISSIER_QUERY, model)
+            try {
+                val results = queryExec.execSelect()
+                while (results.hasNext()) {
+                    val sol = results.nextSolution();
+                    val qWebid = sol.getResource("webid");
+                    val qIss = sol.getLiteral("iss");
+                    val valid = qWebid.uri.equals(webid, true) && qIss.string.equals(issuer, true);
+                    promise.complete(valid)
+                    return@rxExecuteBlocking
+                }
+                promise.complete(false)
+            } catch (ex: Throwable) {
+                promise.fail(ex)
+            } finally {
+                queryExec.close()
+            }
+        }
+            .toSingle()
+    }
+
 
     override fun isLinkedPaymentPointer(token: Token, paymentPointer: String): Single<Boolean> {
         return vertx.rxExecuteBlocking<Boolean> { promise ->
@@ -97,7 +130,7 @@ class SolidPodManagerImpl @Inject constructor(
             addModel?.asN3String()?.let { "INSERT DATA { $it }" },
             deleteModel?.asN3String()?.let { "DELETE DATA { $it }" }
         ).joinToString("\n")
-        val dpop = accessManager.generateDpopProof(HttpMethod.PATCH, onlyKeepHostAndPathPartOfUrl(endpoint))
+        val dpop = cryptoManager.generateDpopProof(HttpMethod.PATCH, onlyKeepHostAndPathPartOfUrl(endpoint))
         logger.debug { "Authorization: DPoP ${token.podAccessToken}" }
         logger.debug { "DPoP: $dpop" }
         return webClient.patchAbs(endpoint)
