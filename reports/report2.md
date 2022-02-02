@@ -15,7 +15,7 @@
 
 <!-- Provide a short summary of how your project is going. Feel free to highlight a big win, a struggle you had or generally update us on where you are on your timeline. If this is your final report, provide a summary of how your project went during the funded period. -->
 
-After our initial smooth progress on the application to assign payment pointers to a Solid WebID, we struggled a bit on the next part of the project. The promise beforehand was that there was ample library and documentation support out there, to be able to perform Interledger Protocol based STREAM payments, right from the user's browser to the target payment pointer of a content creator (present inside the HTML of his/her website). What we found however was that every library and example that we discovered had several issues that could always be described as one or more of the following:
+After our initial smooth progress on the application to assign payment pointers to a Solid WebID, we struggled a bit on the next part of the project. An initial scan of the Interledger technology stack gave the impression of a mature ecosystem, with ample library and documentation support. This lead us to believe that it would be straightforward to perform Interledger Protocol based STREAM payments, right from the user's browser to the target payment pointer of a content creator (present inside the HTML of his/her website). What we found however was that every library and example that we discovered had several issues that could always be described as one or more of the following:
 
  * Libraries were written for node but not browser compatible because of internal node-specific library dependencies.
  * Documentation was outdated (but not mentioned as being outdated).
