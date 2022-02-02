@@ -1,16 +1,16 @@
-# Practical
+# Solid Web Monetization Provider - Practical
 
 ## Purpose
 
-The purpose of this component is to provide a minimal implementation of the proposed [Solid Web Monetization provider](https://knowledgeonwebscale.github.io/solid-web-monetization/spec.html).
+The purpose of this component is to provide a minimal implementation of the proposed [Solid Web Monetization provider](/solid-web-monetization/spec.html).
 
 ## Usage
 
 ### Docker
-The WMP server can be started via Docker:
+The WMP server can be started via Docker Compose:
 
-1. Download the [Docker compose file](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml) or clone the whole repository.
-2. Open a shell and browse to the folder where the compose file is located
+1. Clone the repository: `git clone https://github.com/KNowledgeOnWebScale/solid-web-monetization`
+2. Open the root repository folder, where the `docker-compose.yml` file is located: `cd solid-web-monetization`
 3. Execute `docker-compose up -d`
 4. Browse to http://wmp.localhost
 
@@ -95,13 +95,13 @@ You should receive something like this:
 }
 ```
 
-You can now use those `client_id` and `client_secret` values to pass as environment variables to the server. They can be edited in the [`docker-compose.yml`](#docker).
+You can now use those `client_id` and `client_secret` values to pass as [environment variables](#environment-variables) to the server. They can be edited in the [`docker-compose.yml`](#docker).
 
 ### Login
 
-Although in theory it should not matter which Solid pod and thus Solid WebID you use, this demonstrator has been hardwired to authenticate with solidcommunity.net. So you will need an account and pod there. 
+Although in theory it should not matter which Solid pod and thus Solid WebID you use, this demonstrator has been hardwired to authenticate with *solidcommunity.net*. So you will need an account and pod there. 
 
-That is why you should create a solid pod over at [solidcommunity.net](https://solidcommunity.net/register) if you did not so already. 
+That is why you should create a solid pod over at [solidcommunity.net](https://solidcommunity.net/register), if you did not so already. 
 
 ### About page
 
@@ -109,17 +109,17 @@ There is nothing noteworthy about this page. Once logged in, it outputs your Sol
 
 ### Manage page
 
-If you do not have a subscription to this WMP yet, this page shows a form with all your available [payment pointers](https://paymentpointers.org/) found inside you WebID Profile document. If you see none yet, you have to use the [Accountant application](/solid-web-monetization/accountant) first.
+If you do not have a subscription to this WMP yet, this page shows a form with all [payment pointers](https://paymentpointers.org/) found inside you WebID Profile document. If there aren't any listed, you have to use the [Accountant application](/solid-web-monetization/accountant) first.
 
 After selecting your preferred payment pointer and clicking `Subscribe with WebID`, your subscription is stored.
 
-Now that you have a subscripton all details should be shown. Along with your subscription a Madate is now typically being created at your payment pointers wallet according to the [Open Payments draft specification](https://docs.openpayments.dev/api).
+Now that you have a subscripton all details should be shown. Along with your subscription a [Mandate](https://docs.openpayments.dev/mandates) is now created at your payment pointers wallet following the [Open Payments draft specification](https://docs.openpayments.dev/api).
 
-Now your wallet is charged according to the [environment variables](#environment-variables) set for the WMP server. This effectively funds the WMP to do paymnet on its users behalf.
+Now your wallet is charged according to the [environment variables](#environment-variables) set for the WMP server. This effectively funds the WMP to do payments on its user's behalf.
 
-### Solid
+### Solid application
 
-Following the Solid idea, the payment pointers are queried from the user's Solid pod and the user's WMP is stored in the user's Solid pod.
+Following the Solid ideology, the payment pointers are queried from the user's Solid pod and the user's WMP is stored in the user's Solid pod.
 
 
 --8<-- "includes/abbreviations.md"

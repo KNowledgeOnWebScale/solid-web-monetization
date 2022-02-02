@@ -1,4 +1,4 @@
-# Technical
+# Solid Microstore - Technical
 
 This information is meant for developers looking at the code of the Microstore application.
 
@@ -10,7 +10,7 @@ The application is written in [Angular 13.x.x](https://angular.io) and thus in T
 
 ### Package manager
 
-The [yarn package manager](https://yarnpkg.com/) was used. It behaves very similar to npm but is a bit faster and more modern in use.
+The [yarn package manager](https://yarnpkg.com/) was used. It behaves very similar to [npm](https://docs.npmjs.com/cli/v8) but is a bit faster and more modern in use.
 
 To install all libraries and build the code: run `yarn` from the project folder `/solid-microstore`.
 
@@ -18,7 +18,7 @@ To run the code in a development server: execute `yarn start` from the project f
 
 ### Libraries
 
-The noteworthy libraries used and why are listed below:
+The noteworthy libraries used and the reason for doing so are listed below:
 
 library |  reason | npm link
 --------|---------|----------
@@ -33,9 +33,9 @@ web-monetization-polyfill | Polyfill the [Web Monetization JavaScript API](https
 
 ### Pages
 
-Angular works with components. Each subpage is a component. 
+Angular works with components. Each subpage is a [Component](https://angular.io/api/core/Component). 
 
-Important for this demonstrator is that where possible, the standard [Web Monetization Javascript API](https://webmonetization.org/docs/api) was used. Typically this amounts to registering event listeners to the `document.monetization` object and reacting on the fired events.
+Important for this demonstrator is that where possible, the standard [Web Monetization Javascript API](https://webmonetization.org/docs/api) was used. Typically this amounts to registering event listeners to the `document.monetization` object and reacting to the fired events.
 
 Anything else noteworthy will be explained per page.
 
@@ -53,7 +53,7 @@ Nothing special happens on this page.
 
 ##### constructor(...)
 
-On creation of this page, eventlisteners are added for all four [MonetizationEvents](https://webmonetization.org/docs/api/#browser-events), to not miss any events being fired early on. The listeners manage the display of the paywall overlay.
+On creation of this page, eventlisteners are added for all four [MonetizationEvents](https://webmonetization.org/docs/api/#browser-events), to not miss any events that are fired early on. The listeners manage the display of the paywall overlay.
 
 ```typescript
 constructor(...) {
@@ -69,11 +69,11 @@ constructor(...) {
 
 The page starts with a locked paywall overlay that can be unlocked only when the user is logged in. For that the `loggedIn` property of the [Auth service](#auth-service) is checked. If that unlock button is clicked, the `unlock()` method is called.
 
-This will first call the [WMP service](@wmp-service) to check whether monetization is supported. If so, the [Solid service](#solid-service) is called to fetch the stored WMP form the user's [WebID](@webid-profile). The URL of the WMP is then passed on to the [WMP service](@wmp-service) to setup the payment.
+This will first call the [WMP service](#wmp-service) to check whether monetization is supported. If so, the [Solid service](#solid-service) is called to fetch the stored WMP form the user's [WebID](#webid-profile). The URL of the WMP is then passed on to the [WMP service](#wmp-service) to setup the payment.
 
 ##### ngOnDestroy()
 
-There is an `ngOnDestroy()` method, this lifecycle hook gets called by the angular framework when the componet is destroyed. In our case, since it is a full page, this happens when the user routes to another page. The code here calls the [WMP service](#wmp-service) to close the current (if any) monetization stream.
+There is an `ngOnDestroy()` method, this [lifecycle hook](https://angular.io/guide/lifecycle-hooks) gets called by the angular framework when the component is destroyed. In our case, since it is a full page, this happens when the user routes to another page. The code here calls the [WMP service](#wmp-service) to close the current (if any) monetization stream.
 
 #### Mixed content page
 
@@ -82,7 +82,7 @@ There is an `ngOnDestroy()` method, this lifecycle hook gets called by the angul
 
 ##### constructor(...)
 
-On creation of this page, eventlisteners are added for two [MonetizationEvents](https://webmonetization.org/docs/api/#browser-events), to not miss any events being fired early on. The listeners manage the display of the LOCKED labels.
+On creation of this page, eventlisteners are added for two [MonetizationEvents](https://webmonetization.org/docs/api/#browser-events), to not miss any events that are fired early on. The listeners manage the display of the LOCKED labels.
 
 ```typescript
 constructor(...) {
@@ -94,21 +94,26 @@ constructor(...) {
 
 ##### ngOnInit()
 
-This lifecycle hook is called upon initialization of the page by the angular framework. Here two things happen:
+This [lifecycle hook](https://angular.io/guide/lifecycle-hooks) is called upon initialization of the page by the angular framework. Here two things happen:
 
 1. The [Image service](#image-service) is being called to generate 100 random images.
-2. We subscribe on the `statusChanged$` [Subject](https://rxjs.dev/guide/subject) property of the [Auth service](@auth-service) to do the following once the user is logged in:
+2. We subscribe to the `statusChanged$` [Subject](https://rxjs.dev/guide/subject) property of the [Auth service](#auth-service) to do the following once the user is logged in:
 
     * Request the [Solid service](#solid-service) to fetch the WMP URL from the [WebID Profile](#webid-profile) document.
     * Call the [WMP service](#wmp-service) to set up the payment using that URL.
 
 ##### ngOnDestroy()
 
-There is an `ngOnDestroy()` method, this lifecycle hook gets called by the angular framework when the componet is destroyed. In our case, since it is a full page, this happens when the user routes to another page. The code here calls the [WMP service](#wmp-service) to close the current (if any) monetization stream.
+There is an `ngOnDestroy()` method, this [lifecycle hook](https://angular.io/guide/lifecycle-hooks) gets called by the angular framework when the component is destroyed. In our case, since it is a full page, this happens when the user routes to another page. The code here calls the [WMP service](#wmp-service) to close the current (if any) monetization stream.
 
 ### Other components
 
-The leftover components are used as custom html elements in the HTML. A component has HTML, CSS and code (typescript) associated with it. You can use a component in HTML by using an HTML tag to refer to it.
+The leftover components are used as custom HTML Elements in the HTML. A component has HTML, CSS and code (typescript) associated with it. You can use a component in HTML by using an HTML tag to refer to it.
+
+```html
+<!-- Example tag -->
+<app-login-btn [provider]="p"></app-login-btn>
+```
 
 #### Navigation component
 
@@ -126,7 +131,7 @@ This component encapsulates the logic to view the progress and status of the mic
 
 ##### constructor()
 
-On creation of this component, eventlisteners are added for all four [MonetizationEvents](https://webmonetization.org/docs/api/#browser-events), to not miss any events being fired early on. The listeners manage the update of the counter view.
+On creation of this component, eventlisteners are added for all four [MonetizationEvents](https://webmonetization.org/docs/api/#browser-events), to not miss any events that are fired early on. The listeners manage the update of the counter view.
 
 ```typescript
 constructor() {
@@ -142,7 +147,7 @@ The [code itself](https://github.com/KNowledgeOnWebScale/solid-web-monetization/
 
 ### Services
 
-Services are singleton instances that are dependency injected into the components that list them as argument of their constructors.
+[Services](https://angular.io/guide/singleton-services) are singleton instances that are [dependency injected](https://angular.io/guide/architecture-services) into the components that list them as argument of their constructors.
 
 #### Auth service
 
@@ -153,7 +158,7 @@ This service is mainly a wrapper around the [@inrupt/solid-client-authn-browser]
 
 ##### handleIncomingCallback()
 
-This method consolidates two callback methods from the auth library that should be called when the application gets called on its callback URI. This method gets called from inside the `app.component.ts` `ngOnInit()` call, which is one of the first scripts to get executed.
+This method calls two functions from the auth library that should be called when the browser is redirected to the application's callback URI. This method is called from inside the `app.component.ts` `ngOnInit()` hook, which is [one of the first hook](https://angular.io/guide/lifecycle-hooks) to be executed when the application loads.
 
 ##### login()
 
@@ -168,14 +173,14 @@ This returns the custom `fetch()` function of the auth library. Their security a
 !!! warning ""
     :material-file-outline: `/src/app/services/image.service.ts`
 
-This is a simple service that is able to consistently generate multiple generated images with at random picked colors, interleaved with some _premium_ images.
+This is a simple service that is able to consistently generate multiple generated images with randomly picked colors, interleaved with some _premium_ images.
 
 #### Solid service
 
 !!! warning ""
     :material-file-outline: `/src/app/services/solid.service.ts`
 
-This service contains the code to read from the WebID document on the solid pod of the user. It mainly uses the [n3 library](#libraries) to read the solid [WebID profile](#webid-profile) and fetch the proper quads/triples.
+This service contains the code to read from the WebID document on the solid pod of the user. It mainly uses the [n3](https://www.npmjs.com/package/n3) library to read the Solid [WebID profile](#webid-profile) and fetch the proper triples.
 
 The [code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/solid-microstore/src/app/services/solid.service.ts) itself is documented.
 
@@ -188,7 +193,7 @@ This service encapsulates the [solid-wmp-client](https://www.npmjs.com/package/s
 
 ##### constructor(...)
 
-The constructor instantiates a WmpClient instance, assigns a variable `wmHandler` to the MonetizationHandler helper object and assigns a variable `fetch` to the custom fetch function from the [Auth service](#auth-service).
+The constructor instantiates a [WmpClient](https://knowledgeonwebscale.github.io/solid-wmp-client/classes/WmpClient.html) instance, assigns a variable `wmHandler` to the [MonetizationHandler](https://knowledgeonwebscale.github.io/solid-wmp-client/classes/MonetizationHandler.html) helper object and assigns a variable `fetch` to the custom fetch function from the [Auth service](#auth-service).
 
 ```typescript
 constructor(auth: AuthService) {
@@ -201,6 +206,9 @@ constructor(auth: AuthService) {
 ##### setupWMPayment(...)
 
 This method instructs the wmp client instance to setup the payment from the WMP on the given `wmpUrl` using the given `fetch` function.
+
+!!! info
+    On the [API docs](https://knowledgeonwebscale.github.io/solid-wmp-client) of the [solid-wmp-client](https://www.npmjs.com/package/solid-wmp-client) library you can read more about [how this works](https://knowledgeonwebscale.github.io/solid-wmp-client/#setuppaymentwmpuri-string-fetchfunction-url-requestinfo-init-requestinit--undefined-gt-promise-void).
 
 ##### closeMonetizationStream()
 
@@ -231,6 +239,6 @@ The WebID profile is stored in RDF. That means that data read from that profile 
 
 ```
 
-The actual query is performed by the [solid-wmp-client](https://github.com/KNowledgeOnWebScale/solid-wmp-client) library.
+The actual query is performed by the [Solid service](#solid-service) library.
 
 --8<-- "includes/abbreviations.md"

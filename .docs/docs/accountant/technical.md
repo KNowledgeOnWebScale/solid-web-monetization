@@ -1,4 +1,4 @@
-# Technical
+# Solid Accountant - Technical
 
 This information is meant for developers looking at the code of the Accountant application.
 
@@ -30,7 +30,7 @@ n3 | Implementation of the RDF.js low-level specification that lets you handle R
 
 ### Pages
 
-Angular works with components. Each subpage is a component, as such the following folders contain the component for those subpages:
+Angular works with components. Each subpage is a [Component](https://angular.io/api/core/Component), as such the following folders contain the component for those subpages:
 
   * `/src/app/home`: Home page
   * `/src/app/pp`: Payment pointers page
@@ -57,7 +57,7 @@ This component is used for the login boxes on the login page with a logo of the 
 
 ### Services
 
-Services are singleton instances that are dependency injected into the components that list them as arguments of their constructor.
+[Services](https://angular.io/guide/singleton-services) are singleton instances that are [dependency injected](https://angular.io/guide/architecture-services) into the components that list them as argument of their constructors.
 
 #### SolidService
 
@@ -94,6 +94,6 @@ The WebID profile is stored in RDF. That means that data written to that profile
 
 ```
 
-This was done by means of a [SPARQL update](https://www.w3.org/TR/sparql11-update/) PATCH request. (See [here...](https://github.com/solid/solid-spec/blob/master/api-rest.md#alternative-using-sparql-1)).
+This was done by means of a [SPARQL update](https://www.w3.org/TR/sparql11-update/) PATCH request. (See [here...](https://github.com/solid/solid-spec/blob/master/api-rest.md#alternative-using-sparql-1))
 
 --8<-- "includes/abbreviations.md"

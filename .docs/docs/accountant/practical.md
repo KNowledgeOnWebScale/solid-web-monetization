@@ -1,4 +1,4 @@
-# Practical
+# Solid Accountant - Practical
 
 ## Purpose
 
@@ -11,10 +11,10 @@ To use the application you are required to log in to a [Solid pod](https://solid
 This will present you with a table that contains all your stored payment pointers (read from your WebID). From here you can add or remove payment pointers as you see fit.
 
 ### Docker
-The Microstore can be started via Docker Compose:
+The Accountant application can be started via Docker Compose:
 
 1. Clone the repository: `git clone https://github.com/KNowledgeOnWebScale/solid-web-monetization`
-2. Open the root repository folder, where the compose file is located: `cd solid-web-monetization`
+2. Open the root repository folder, where the `docker-compose.yml` file is located: `cd solid-web-monetization`
 3. Execute `docker-compose up -d`
 4. Browse to http://wallet.localhost
 
