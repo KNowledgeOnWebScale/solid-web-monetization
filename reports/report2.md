@@ -96,7 +96,7 @@ In the future however it could be integrated in the Solid authentication process
     * Task 3.1. Implementation of prototypical Solid application
 
       **[Status: Finished]**  
-      This task required the implementation of a prototypical Solid application. The result of this task is the [Microstore application](https://knowledgeonwebscale.github.io/solid-web-monetization/microstore/). This application is an example of a Web Monetized application: it has two subpages which represent a typical use case each (paywall and mixed content). Micropayments allow the visiting user to see the locked content.
+      This task required the implementation of a prototypical Solid application. The result of this task is the [Microstore application](https://knowledgeonwebscale.github.io/solid-web-monetization/microstore/). This application is an example of a Web Monetized Solid application: it has two subpages which represent a typical use case each (paywall and mixed content). Micropayments allow the visiting user to see the locked content.
 
     * Task 3.2. Integration testing of Web Monetization in combination with Solid authentication
 
