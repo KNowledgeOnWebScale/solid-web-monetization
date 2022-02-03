@@ -1,14 +1,15 @@
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: mongo-data
+  name: solid-mongo-pvc
 spec:
+  storageClassName: k8s-stud-storage
   accessModes:
-    - ReadWriteOnce
-  capacity:
-    storage: 2Mi
-  hostPath:
-    path: /data/mongo
+    - ReadWriteOnce 
+  volumeName: solid-mongo-pv
+  resources:
+    requests:
+      storage: 512Mi
 
 ---
 apiVersion: apps/v1
@@ -69,7 +70,7 @@ spec:
       volumes:
         - name: "mongo-data-dir"
           persistentVolumeClaim:
-            claimName: "mongo-pvc"
+            claimName: "solid-mongo-pvc"
 
 ---
 apiVersion: v1
