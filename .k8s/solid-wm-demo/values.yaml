@@ -4,11 +4,6 @@
 
 replicaCount: 1
 
-mongo:
-  # Just a demo, nothing secure needed
-  username: mongo
-  password: mongo
-
 wmp:
   name: solid-wmp
   image:
@@ -30,7 +25,7 @@ wmp:
   config:
     HTTP_PORT: 8080
     BASE_URI: "https://solid-wmp.discover.ilabt.imec.be"
-    MONGO_CONNECTION_STRING: "mongodb://solid-mongo"
+    MONGO_CONNECTION_STRING: "mongodb://solid-mongo-svc"
     MONGO_DATABASE_NAME: "demo-wmp"
     SUBSCRIPTION_AMOUNT: 5
     SUBSCRIPTION_ASSET_CODE: "USD"
