@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2Mi
+  hostPath:
+    path: /data/mongo
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: solid-mongo
+  name: solid-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solid-mongo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: solid-mongo
+    spec:
+      containers:
+      - image: mongo
+        name: solid-mongo
+        args: ["--dbpath","/data/db"]
+        livenessProbe:
+          exec:
+            command:
+              - mongo
+              - --disableImplicitSessions
+              - --eval
+              - "db.adminCommand('ping')"
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 6
+        readinessProbe:
+          exec:
+            command:
+              - mongo
+              - --disableImplicitSessions
+              - --eval
+              - "db.adminCommand('ping')"
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 6
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: { .Values.mongo.username }
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: { .Values.mongo.password }
+        volumeMounts:
+        - name: "mongo-data-dir"
+          mountPath: "/data/db"
+      volumes:
+      - name: "mongo-data-dir"
+        persistentVolumeClaim:
+          claimName: "mongo-pvc"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: solid-mongo
+  name: mongo-nodeport-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    app: solid-mongo
+  type: ClusterIP
+status:
+  loadBalancer: {}

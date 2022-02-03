@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solid-accountant-deployment
+  namespace: solid-wm
+  labels:
+    app: solid-accountant
+spec:
+  selector:
+    matchLabels:
+      app: solid-accountant
+  template:
+    metadata:
+      labels:
+        app: solid-accountant
+    spec:
+      containers:
+      - name: solid-accountant-service
+        image: ghcr.io/knowledgeonwebscale/solid-web-monetization/accountant:latest
+        ports:
+        - containerPort: 80
+      # imagePullSecrets:
+      # - name: github-solid-credentials
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: solid-accountant-service
+  namespace: solid-wm
+spec:
+  selector:
+    app: solid-accountant
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

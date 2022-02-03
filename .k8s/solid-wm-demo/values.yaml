@@ -1,0 +1,77 @@
+# Default values for solid-wm-demo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+mongo:
+  # Just a demo, nothing secure needed
+  username: mongo
+  password: mongo
+
+wmp:
+  name: solid-wmp
+  image:
+    repository: ghcr.io/knowledgeonwebscale/solid-web-monetization/wmp
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "latest"
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+  podAnnotations: {}
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  config:
+    HTTP_PORT: "8080"
+    BASE_URI: "https://solid-wmp.discover.ilabt.imec.be"
+    MONGO_CONNECTION_STRING: "mongodb://solid-mongo"
+    MONGO_DATABASE_NAME: "demo-wmp"
+    SUBSCRIPTION_AMOUNT: "5"
+    SUBSCRIPTION_ASSET_CODE: "USD"
+    SUBSCRIPTION_ASSET_SCALE: "2"
+    SUBSCRIPTION_INTERVAL: "P1M"
+    IDP_URI_SOLID_COMMUNITY: "https://solidcommunity.net/.well-known/openid-configuration"
+    CLIENT_ID: "123"
+    CLIENT_SECRET: "123"
+
+accountant:
+  name: solid-accountant
+  image:
+    repository: ghcr.io/knowledgeonwebscale/solid-web-monetization/accountant
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "latest"
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+  podAnnotations: {}
+
+  service:
+    type: ClusterIP
+    port: 80
+
+microstore:
+  name: solid-microstore
+  image:
+    repository: ghcr.io/knowledgeonwebscale/solid-web-monetization/microstore
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "latest"
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+  podAnnotations: {}
+
+  service:
+    type: ClusterIP
+    port: 80

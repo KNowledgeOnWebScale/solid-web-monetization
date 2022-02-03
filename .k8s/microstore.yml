@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solid-microstore-deployment
+  namespace: solid-wm
+  labels:
+    app: solid-microstore
+spec:
+  selector:
+    matchLabels:
+      app: solid-microstore
+  template:
+    metadata:
+      labels:
+        app: solid-microstore
+    spec:
+      containers:
+      - name: solid-microstore-service
+        image: ghcr.io/knowledgeonwebscale/solid-web-monetization/microstore:latest
+        ports:
+        - containerPort: 80
+      # imagePullSecrets:
+      # - name: github-solid-credentials
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: solid-microstore-service
+  namespace: solid-wm
+spec:
+  selector:
+    app: solid-microstore
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

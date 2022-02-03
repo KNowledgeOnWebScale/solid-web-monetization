@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.wmp.name }}
+  labels:
+    app: {{ .Values.wmp.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.wmp.name }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ .Values.wmp.name }}
+    spec:
+      containers:
+        - name: {{ .Values.wmp.name }}
+          image: "{{ .Values.wmp.image.repository }}:{{ .Values.wmp.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.wmp.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            {{- range $key, $val := .Values.wmp.config }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+            {{- end }}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.accountant.name }}
+  labels:
+    app: {{ .Values.accountant.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.accountant.name }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ .Values.accountant.name }}
+    spec:
+      containers:
+        - name: {{ .Values.accountant.name }}
+          image: "{{ .Values.accountant.image.repository }}:{{ .Values.accountant.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.accountant.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.microstore.name }}
+  labels:
+    app: {{ .Values.microstore.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.microstore.name }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ .Values.microstore.name }}
+    spec:
+      containers:
+        - name: {{ .Values.microstore.name }}
+          image: "{{ .Values.microstore.image.repository }}:{{ .Values.microstore.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.microstore.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP

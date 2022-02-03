@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Values.wmp.name}}-test-connection"
+  labels:
+    {{ .Values.wmp.name}}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ .Values.wmp.name}}:{{ .Values.wmp.service.port }}']
+  restartPolicy: Never
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Values.accountant.name}}-test-connection"
+  labels:
+    {{ .Values.accountant.name}}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ .Values.accountant.name}}:{{ .Values.accountant.service.port }}']
+  restartPolicy: Never
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Values.microstore.name}}-test-connection"
+  labels:
+    {{ .Values.microstore.name}}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ .Values.microstore.name}}:{{ .Values.microstore.service.port }}']
+  restartPolicy: Never

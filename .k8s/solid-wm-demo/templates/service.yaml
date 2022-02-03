@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.wmp.name }}-service"
+  labels:
+    app: {{ .Values.wmp.name }}
+spec:
+  type: {{ .Values.wmp.service.type }}
+  ports:
+    - port: {{ .Values.wmp.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.wmp.name }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.accountant.name }}-service"
+  labels:
+    app: {{ .Values.accountant.name }}
+spec:
+  type: {{ .Values.accountant.service.type }}
+  ports:
+    - port: {{ .Values.accountant.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.accountant.name }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.microstore.name }}-service"
+  labels:
+    app: {{ .Values.microstore.name }}
+spec:
+  type: {{ .Values.microstore.service.type }}
+  ports:
+    - port: {{ .Values.microstore.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.microstore.name }}
