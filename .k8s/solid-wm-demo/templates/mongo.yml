@@ -78,7 +78,7 @@ kind: Service
 metadata:
   labels:
     app: solid-mongo
-  name: mongo-nodeport-svc
+  name: solid-mongo-svc
 spec:
   ports:
     - port: 80
