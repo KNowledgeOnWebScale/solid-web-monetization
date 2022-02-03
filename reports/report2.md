@@ -4,12 +4,16 @@
 
 <!-- As a Grant for the Web grantee it is important that you update the community and the program on the progress of your work. This is a chance to brag a little, name where you might have struggled and get feedback from the Web Monetization Community. -->
 
+This is the final report of our project to enable the monetization of Solid application,
+allowing Solid identities to be linked to Web Monetization wallets,
+and incorporating payment processing into Solid’s authentication.
+
+Learn more about our project here: https://github.com/KNowledgeOnWebScale/solid-web-monetization
 
 ## Image (optional)
 
 <!-- Share a project screenshot, a whiteboard doodle, or a photo of your team hard at work. -->
 ![](https://knowledgeonwebscale.github.io/solid-web-monetization/assets/img/final-report-image.png)
-
 
 ## Project Update
 
@@ -20,7 +24,7 @@ After our initial smooth progress on the application to assign payment pointers 
  * Libraries were written for node but not browser compatible because of internal node-specific library dependencies.
  * Documentation was outdated (but not mentioned as being outdated).
  * No pointer or link to what the correct newer libraries to use were now (since redesigns in this space seemed to happen multiple times, making older libraries obsolete but still publicly available)
- * Little to no response on dedicated slack channels 
+ * Little to no response on dedicated Slack channels 
  * Missing formal abstraction to request executing payment from a wallet, based on the payment pointer. Since any wallet could host its own auhtentication method and API for doing so, and there is no formal discovery mechanism.
 
 This led us to request for a 3 month (time) extension for the project.
@@ -153,16 +157,7 @@ The next steps would be hearing possible objections or suggestion to the [Solid 
 
 ## What community support would benefit your project?
 
-<!-- Please let readers  know if there are ways we can help problem-solve, advance your work or make connections. -->
-
-N/A
-
-
-## Additional comments
-
-<!-- Is there something that we haven’t asked you would like to share? -->
-
-N/A
+We would be very excited to see Solid app developers interested in implementing monetization using our [WMP client](https://www.npmjs.com/package/solid-wmp-client).
 
 
 ## Relevant links/resources  (optional)
