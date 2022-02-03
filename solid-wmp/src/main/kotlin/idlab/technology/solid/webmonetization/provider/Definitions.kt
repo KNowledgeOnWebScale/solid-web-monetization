@@ -37,10 +37,6 @@ data class WMPConfig(
     val clientId: String = "b8c75d654bfe324ccae44f1638d5310c",
     @JsonProperty("CLIENT_SECRET")
     val clientSecret: String = "899fb60c7f7c1b3e67abbaebcaf06904",
-    @JsonProperty("REDIRECT_URI")
-    val redirectUri: String = "http://localhost:8080/auth/cb",
-    @JsonProperty("REDIRECT_URI_POST_LOGOUT")
-    val redirectUriPostLogout: String = "http://localhost:8080/auth/logout/cb",
     @JsonProperty("API_PATH")
     val apiPath: String = "/api",
     @JsonProperty("AUTH_PATH")

@@ -47,7 +47,7 @@ class AuthEndpoint @Inject constructor(
             val query = "?response_type=code" +
                     "&scope=openid webid offline_access" +
                     "&client_id=${config.clientId}" +
-                    "&redirect_uri=${config.redirectUri}" +
+                    "&redirect_uri=${config.baseURI}${config.authPath}/cb" +
                     "&state=" + Base64.getUrlEncoder().encodeToString(cb!!.toByteArray(Charsets.UTF_8))
             "&nonce=" + // TODO: nonce
                     "&prompt=select_account"
@@ -75,7 +75,7 @@ class AuthEndpoint @Inject constructor(
             };
 
             // Redirect to solidcommunity.net auth page and start flow
-            val query = "?post_logout_redirect_uri=${config.redirectUriPostLogout}&id_token_hint=$it&state=$cb";
+            val query = "?post_logout_redirect_uri=${config.baseURI}${config.authPath}/logout/cb&id_token_hint=$it&state=$cb";
             oidc.getEndSessionEndpoint().subscribeBy(
                 onSuccess = { ctx.redirect(it + query); },
                 onError = writeHttpError(ctx)
@@ -119,7 +119,7 @@ class AuthEndpoint @Inject constructor(
                         MultiMap.caseInsensitiveMultiMap()
                             .add("grant_type", "authorization_code")
                             .add("code", code)
-                            .add("redirect_uri", config.redirectUri)
+                            .add("redirect_uri", "${config.baseURI}${config.authPath}/cb")
                             .add("state", state.orEmpty())
                     )
 //                    .doOnSuccess { println(it.bodyAsString()) }
@@ -136,7 +136,7 @@ class AuthEndpoint @Inject constructor(
                         MultiMap.caseInsensitiveMultiMap()
                             .add("grant_type", "authorization_code")
                             .add("code", code)
-                            .add("redirect_uri", config.redirectUri)
+                            .add("redirect_uri", "${config.baseURI}${config.authPath}/cb")
                             .add("state", state.orEmpty())
                     )
                     .map { it.bodyAsJsonObject() }
