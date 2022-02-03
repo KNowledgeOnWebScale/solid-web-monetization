@@ -31,8 +31,6 @@ SUBSCRIPTION_INTERVAL     | Subscription deduction interval | `"P1M"`,
 IDP_URI_SOLID_COMMUNITY   | solidcommunity.net IDP configuration URI | `"https://solidcommunity.net/.well-known/openid-configuration"`
 CLIENT_ID **(*)**         | solidcommunity.net clientId of WMP | `"b8c75d654bfe324ccae44f1638d5310c"`
 CLIENT_SECRET **(*)**     | solidcommunity.net clientSecret of WMP | `"899fb60c7f7c1b3e67abbaebcaf06904"`
-REDIRECT_URI              | solidcommunity.net redirectUri of WMP | `"http://localhost:8080/auth/cb"`
-REDIRECT_URI_POST_LOGOUT  | solidcommunity.net redirectUri after logout of WMP | `"http://localhost:8080/auth/logout/cb"`
 API_PATH                  | Path under which API is hosted | `"/api"`
 AUTH_PATH                 | Path under which auth is hosted | `"/auth"`
 
