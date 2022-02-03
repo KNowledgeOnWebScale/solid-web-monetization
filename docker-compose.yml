@@ -51,8 +51,6 @@ services:
     environment:
       - "BASE_URI=http://wmp.localhost"
       - "MONGO_CONNECTION_STRING=mongodb://mongodb:27017"
-      - "REDIRECT_URI=http://wmp.localhost/auth/cb"
-      - "REDIRECT_URI_POST_LOGOUT=http://wmp.localhost/auth/logout/cb"
       - "CLIENT_ID=79e3648fc184f70306e4072f3a856bb1"
       - "CLIENT_SECRET=2ba10ec24a3cb231ee39781bc3882d66"
       

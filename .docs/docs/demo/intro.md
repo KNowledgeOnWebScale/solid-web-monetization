@@ -113,8 +113,6 @@ services:
     environment:
       - "BASE_URI=http://wmp.localhost"                                 # Uri to register/write in the pod
       - "MONGO_CONNECTION_STRING=mongodb://mongodb:27017"               # The database connection string
-      - "REDIRECT_URI=http://wmp.localhost/auth/cb"                     # The WebID-OIDC redirect URI
-      - "REDIRECT_URI_POST_LOGOUT=http://wmp.localhost/auth/logout/cb"  # The redirect URI after logout
       - "CLIENT_ID=79e3648fc184f70306e4072f3a856bb1"                    # The client ID (see docs)
       - "CLIENT_SECRET=2ba10ec24a3cb231ee39781bc3882d66"                # The client secret (see docs)
   
