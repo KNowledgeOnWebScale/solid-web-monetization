@@ -11,7 +11,6 @@ spec:
     path: /data/mongo
 
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,48 +31,47 @@ spec:
         app: solid-mongo
     spec:
       containers:
-      - image: mongo
-        name: solid-mongo
-        args: ["--dbpath","/data/db"]
-        livenessProbe:
-          exec:
-            command:
-              - mongo
-              - --disableImplicitSessions
-              - --eval
-              - "db.adminCommand('ping')"
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 6
-        readinessProbe:
-          exec:
-            command:
-              - mongo
-              - --disableImplicitSessions
-              - --eval
-              - "db.adminCommand('ping')"
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 6
-        env:
-        - name: MONGO_INITDB_ROOT_USERNAME
-          value: { .Values.mongo.username }
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          value: { .Values.mongo.password }
-        volumeMounts:
-        - name: "mongo-data-dir"
-          mountPath: "/data/db"
+        - image: mongo
+          name: solid-mongo
+          args: ["--dbpath", "/data/db"]
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --disableImplicitSessions
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --disableImplicitSessions
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: {{ .Values.mongo.username }}
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: {{ .Values.mongo.password }}
+          volumeMounts:
+            - name: "mongo-data-dir"
+              mountPath: "/data/db"
       volumes:
-      - name: "mongo-data-dir"
-        persistentVolumeClaim:
-          claimName: "mongo-pvc"
+        - name: "mongo-data-dir"
+          persistentVolumeClaim:
+            claimName: "mongo-pvc"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -82,9 +80,9 @@ metadata:
   name: mongo-nodeport-svc
 spec:
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 27017
+    - port: 80
+      protocol: TCP
+      targetPort: 27017
   selector:
     app: solid-mongo
   type: ClusterIP
