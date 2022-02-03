@@ -28,13 +28,13 @@ wmp:
     port: 80
 
   config:
-    HTTP_PORT: "8080"
+    HTTP_PORT: 8080
     BASE_URI: "https://solid-wmp.discover.ilabt.imec.be"
     MONGO_CONNECTION_STRING: "mongodb://solid-mongo"
     MONGO_DATABASE_NAME: "demo-wmp"
-    SUBSCRIPTION_AMOUNT: "5"
+    SUBSCRIPTION_AMOUNT: 5
     SUBSCRIPTION_ASSET_CODE: "USD"
-    SUBSCRIPTION_ASSET_SCALE: "2"
+    SUBSCRIPTION_ASSET_SCALE: 2
     SUBSCRIPTION_INTERVAL: "P1M"
     IDP_URI_SOLID_COMMUNITY: "https://solidcommunity.net/.well-known/openid-configuration"
     CLIENT_ID: "123"
