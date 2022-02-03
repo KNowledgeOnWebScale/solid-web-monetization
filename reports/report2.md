@@ -130,13 +130,13 @@ In the future however it could be integrated in the Solid authentication process
     * Task 5.1. Presentation at Web-related conferences via publications and tutorials
 
       **[Status: Finished]**  
-      A [demonstrator](https://knowledgeonwebscale.github.io/solid-web-monetization/demo) was built and a [scenario](https://knowledgeonwebscale.github.io/solid-web-monetization/demo/scenario) was detailed to go through the demonstrator. A [demonstration paper](https://knowledgeonwebscale.github.io/solid-web-monetization/dissemination) is in the making which will be presented at a conference in the near future.
+      A [demonstrator](https://knowledgeonwebscale.github.io/solid-web-monetization/demo/intro) was built and a [scenario](https://knowledgeonwebscale.github.io/solid-web-monetization/demo/scenario) was detailed to go through the demonstrator. A [demonstration paper](https://knowledgeonwebscale.github.io/solid-web-monetization/dissemination) is in the making which will be presented at a conference in the near future.
 
     
     * Task 5.2. Publishing prototype on the Web as a live demonstration
 
       **[Status: Finished]**  
-      The demonstrator is publicly available at the [GitHub repository](https://github.com/KNowledgeOnWebScale/solid-web-monetization), documentation on how to get it running is hosted on the [GitHub Pages](https://knowledgeonwebscale.github.io/solid-web-monetization). It can be installed locally by anyone using Docker Compose and the [`docker-compose.yml`](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml) file. The setup is documented [here](https://knowledgeonwebscale.github.io/solid-web-monetization/demo).
+      The demonstrator is publicly available at the [GitHub repository](https://github.com/KNowledgeOnWebScale/solid-web-monetization), documentation on how to get it running is hosted on the [GitHub Pages](https://knowledgeonwebscale.github.io/solid-web-monetization). It can be installed locally by anyone using Docker Compose and the [`docker-compose.yml`](https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/docker-compose.yml) file. The setup is documented [here](https://knowledgeonwebscale.github.io/solid-web-monetization/demo/intro).
 
       The demonstrator will also be hosted online at *(url coming soon)*.
 
