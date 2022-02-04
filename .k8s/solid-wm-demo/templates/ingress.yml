@@ -43,3 +43,19 @@ spec:
     services:
     - name: solid-accountant-service
       port: http
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: solid-docs-route
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`solid-wm.discover.ilabt.imec.be`)
+    services:
+    - name: solid-docs-redirect-service
+      port: http

@@ -49,3 +49,21 @@ spec:
       name: http
   selector:
     app: {{ .Values.microstore.name }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.docs.name }}-service"
+  labels:
+    app: {{ .Values.docs.name }}
+spec:
+  type: {{ .Values.docs.service.type }}
+  ports:
+    - port: {{ .Values.docs.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.docs.name }}

@@ -12,10 +12,6 @@ wmp:
     # Overrides the image tag whose default is the chart appVersion.
     tag: "latest"
 
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
-
   podAnnotations: {}
 
   service:
@@ -43,10 +39,6 @@ accountant:
     # Overrides the image tag whose default is the chart appVersion.
     tag: "latest"
 
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
-
   podAnnotations: {}
 
   service:
@@ -61,10 +53,6 @@ microstore:
     # Overrides the image tag whose default is the chart appVersion.
     tag: "latest"
 
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
-
   podAnnotations: {}
 
   service:
@@ -76,3 +64,20 @@ microstore:
     CONFIG_VARS: "PAYMENT_POINTER"
     CONFIG_FILE_PATH: "/app/assets"
     CONFIG_FILE_NAME: "config.json"
+
+docs:
+  name: solid-docs-redirect
+  image:
+    repository: morbz/docker-web-redirect
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  
+  podAnnotations: {}
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  config:
+    OLD_DOMAIN: "https://solid-wm.discover.ilabt.imec.be"
+    REDIRECT_TARGET: "https://knowledgeonwebscale.github.io/solid-web-monetization"

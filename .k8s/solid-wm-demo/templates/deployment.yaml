@@ -95,3 +95,38 @@ spec:
             - name: {{ $key }}
               value: {{ $val | quote }}
             {{- end }}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.docs.name }}
+  labels:
+    app: {{ .Values.docs.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.docs.name }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ .Values.docs.name }}
+    spec:
+      containers:
+        - name: {{ .Values.docs.name }}
+          image: "{{ .Values.docs.image.repository }}:{{ .Values.docs.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.docs.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+            {{- range $key, $val := .Values.docs.config }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+            {{- end }}
