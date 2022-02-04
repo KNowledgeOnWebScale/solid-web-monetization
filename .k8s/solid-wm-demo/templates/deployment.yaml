@@ -90,3 +90,8 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          env:
+            {{- range $key, $val := .Values.microstore.config }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+            {{- end }}

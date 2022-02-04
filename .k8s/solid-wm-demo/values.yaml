@@ -70,3 +70,9 @@ microstore:
   service:
     type: ClusterIP
     port: 80
+
+  config:
+    PAYMENT_POINTER: "$$rafiki.money/p/thomas.dupont@ugent.be"
+    CONFIG_VARS: "PAYMENT_POINTER"
+    CONFIG_FILE_PATH: "/app/assets"
+    CONFIG_FILE_NAME: "config.json"
