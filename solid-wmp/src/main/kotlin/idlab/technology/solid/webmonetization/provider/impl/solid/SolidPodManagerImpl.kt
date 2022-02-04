@@ -142,7 +142,7 @@ class SolidPodManagerImpl @Inject constructor(
                 if (resp.statusCode() in 200..399) {
                     Completable.complete()
                 } else {
-                    Completable.error(RuntimeException("Error while applying SPARQL patch!"))
+                    Completable.error(RuntimeException("Error while applying SPARQL patch! ${resp.statusCode()} ${resp.statusMessage()} (${resp.bodyAsString()})"))
                 }
             }
     }
