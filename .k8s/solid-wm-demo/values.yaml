@@ -24,7 +24,7 @@ wmp:
 
   config:
     HTTP_PORT: 8080
-    BASE_URI: "https://solid-wmp.discover.ilabt.imec.be"
+    BASE_URI: "https://wmp.solid-wm.discover.ilabt.imec.be"
     MONGO_CONNECTION_STRING: "mongodb://solid-mongo-svc"
     MONGO_DATABASE_NAME: "demo-wmp"
     SUBSCRIPTION_AMOUNT: 5
@@ -32,8 +32,8 @@ wmp:
     SUBSCRIPTION_ASSET_SCALE: 2
     SUBSCRIPTION_INTERVAL: "P1M"
     IDP_URI_SOLID_COMMUNITY: "https://solidcommunity.net/.well-known/openid-configuration"
-    CLIENT_ID: "123"
-    CLIENT_SECRET: "123"
+    CLIENT_ID: "f61aefb2d8e70b4070a226dc36a6420f"
+    CLIENT_SECRET: "3064c0572a6769783a2326ae7b3b0140"
 
 accountant:
   name: solid-accountant

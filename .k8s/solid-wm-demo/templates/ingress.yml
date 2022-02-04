@@ -1,0 +1,45 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: solid-wmp-route
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`wmp.solid-wm.discover.ilabt.imec.be`)
+    services:
+    - name: solid-wmp-service
+      port: http
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: solid-microstore-route
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`store.solid-wm.discover.ilabt.imec.be`)
+    services:
+    - name: solid-microstore-service
+      port: http
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: solid-accountant-route
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`wallet.solid-wm.discover.ilabt.imec.be`)
+    services:
+    - name: solid-accountant-service
+      port: http

@@ -74,12 +74,10 @@ metadata:
     app: solid-mongo
   name: solid-mongo-svc
 spec:
+  clusterIP: None
   ports:
-    - port: 80
-      protocol: TCP
+    - port: 27017
       targetPort: 27017
   selector:
     app: solid-mongo
   type: ClusterIP
-status:
-  loadBalancer: {}
