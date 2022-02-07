@@ -25,15 +25,21 @@ _The project was extended until (and including) January 2022._
 3. Prototypical Web Monetized Solid application  
    [:octicons-book-16: docs](/solid-web-monetization/microstore) | [:octicons-code-square-16: code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-microstore)
 4. Documentation and tutorials for Solid users to configure a Web Monetization wallet  
-   [:octicons-book-16: practical docs](/solid-web-monetization/accountant/practical) | [:octicons-book-16: technical docs](/solid-web-monetization/accountant/technical) | [:octicons-play-16: demo](/solid-web-monetization/demo/intro)
+   [:octicons-book-16: practical docs](/solid-web-monetization/accountant/practical) | [:octicons-book-16: technical docs](/solid-web-monetization/accountant/technical) | [:octicons-play-16: local demo](/solid-web-monetization/demo/intro)
 5. Documentation and tutorials for application developers to monetize their application  
-   [:octicons-book-16: practical docs](/solid-web-monetization/microstore/practical) | [:octicons-book-16: technical docs](/solid-web-monetization/microstore/technical) | [:octicons-play-16: demo](/solid-web-monetization/demo/intro)
+   [:octicons-book-16: practical docs](/solid-web-monetization/microstore/practical) | [:octicons-book-16: technical docs](/solid-web-monetization/microstore/technical) | [:octicons-play-16: local demo](/solid-web-monetization/demo/intro)
 6. Dissemination of the main results and findings of this project  
    [:octicons-eye-16: dissemination](/solid-web-monetization/dissemination) 
+
+## Public demos
+
+* [Solid Accountant](https://wallet.solid-wm.discover.ilabt.imec.be/): configure Web Monetization wallet into a Solid identity.
+* [Solid MicroStore](https://store.solid-wm.discover.ilabt.imec.be/): prototypical Web Monetized Solid application.
+* [Solid WMP](https://wmp.solid-wm.discover.ilabt.imec.be): Web Monetization Provider with a fake currency.
 
 ## Public reports
 
 * [Interim report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-1-4i35)
-* Final report *(upcoming)*
+* [Final report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-2-4blb)
 
 --8<-- "includes/abbreviations.md"

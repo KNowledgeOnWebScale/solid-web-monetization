@@ -2,6 +2,13 @@
 
 The results of this project were defined by several [intended outcomes](/#intended-outcomes). A large contribution to these outcome manifests itself in the form of a working demonstrator. This section will act as a guide for this demo, as it consists of multiple separate components interacting to complete a scenario.
 
+!!! info
+    This introduction and scenario will talk about the demonstrator that can be run locally on your machine. However there are also **public hosted versions** of these demo components, which you can find here:  
+
+    * [Solid Accountant](https://wallet.solid-wm.discover.ilabt.imec.be/): configure Web Monetization wallet into a Solid identity.
+    * [Solid MicroStore](https://store.solid-wm.discover.ilabt.imec.be/): prototypical Web Monetized Solid application.
+    * [Solid WMP](https://wmp.solid-wm.discover.ilabt.imec.be/about): Web Monetization Provider with a fake currency.
+
 ## Purpose of the demo
 
 The demo hosts a couple of components, that come into play when a content-creator is hosting web monetized content that visiting users pay for through micropayments. These micropayments are sent over the [interledger](https://interledger.org/) network from the visting users wallet to the content creators wallet.
