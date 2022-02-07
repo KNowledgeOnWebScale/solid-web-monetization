@@ -27,10 +27,28 @@ All progress will happen publicly via this repository.
 
 * [Interim report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-1-4i35)
 
-## Solid-Accountant (Outcome 1)
-The solid accountant app can be found under its respective [folder](./solid-accountant).
+## Outcomes
 
-## Solid-MicroStore (Outcome 3 -- ongoing)
-The solid microstore app can be found under its respective [folder](./solid-microstore).
+### 1: Solid Accountant
 
-Public URL: https://knowledgeonwebscale.github.io/solid-web-monetization
+Application to configure a Web Monetization wallet into a Solid identity.
+
+* [Demo](https://wallet.solid-wm.discover.ilabt.imec.be/)
+* [Documentation](https://knowledgeonwebscale.github.io/solid-web-monetization/accountant/)
+* [Source code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-accountant)
+
+### 2: Web Monetization in Solid
+
+Alignment of Solid and Web Monetization.
+
+* [Specification](https://knowledgeonwebscale.github.io/solid-web-monetization/spec.html)
+* [Source code of Solid library with Web Monetization support](https://github.com/KNowledgeOnWebScale/solid-wmp-client)
+* [Demo](https://wmp.solid-wm.discover.ilabt.imec.be/about)
+
+### 3: Solid MicroStore
+
+Prototypical Web Monetized Solid application.
+
+* [Demo](https://store.solid-wm.discover.ilabt.imec.be/)
+* [Documentation](https://knowledgeonwebscale.github.io/solid-web-monetization/microstore/)
+* [Source code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-microstore)

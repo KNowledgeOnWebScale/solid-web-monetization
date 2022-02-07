@@ -160,7 +160,13 @@ The next steps would be hearing possible objections or suggestion to the [Solid 
 We would be very excited to see Solid app developers interested in implementing monetization using our [WMP client](https://www.npmjs.com/package/solid-wmp-client).
 
 
-## Relevant links/resources  (optional)
+## Relevant links/resources
+
+### Demos
+
+* [Solid Accountant](https://wallet.solid-wm.discover.ilabt.imec.be/): configure Web Monetization wallet into a Solid identity.
+* [Solid MicroStore](https://store.solid-wm.discover.ilabt.imec.be/): prototypical Web Monetized Solid application.
+* [Solid WMP](https://wmp.solid-wm.discover.ilabt.imec.be/about): Web Monetization Provider with a fake currency,
 
 ### Repositories
 
