@@ -10,7 +10,7 @@ and incorporating payment processing into Solid’s authentication.
 
 Learn more about our project here: https://github.com/KNowledgeOnWebScale/solid-web-monetization
 
-## Image (optional)
+## Image
 
 <!-- Share a project screenshot, a whiteboard doodle, or a photo of your team hard at work. -->
 ![](https://knowledgeonwebscale.github.io/solid-web-monetization/assets/img/final-report-image.png)

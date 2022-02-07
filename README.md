@@ -25,6 +25,7 @@ All progress will happen publicly via this repository.
 
 ## Public reports
 
+* [Final report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-2-4blb)
 * [Interim report](https://community.webmonetization.org/rubensworks/incentivizing-decentralized-application-development-within-solid-through-web-monetization-grant-report-1-4i35)
 
 ## Outcomes
