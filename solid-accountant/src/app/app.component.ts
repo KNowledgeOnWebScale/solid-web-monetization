@@ -11,6 +11,7 @@ import * as solidAuth from '@inrupt/solid-client-authn-browser';
 export class AppComponent implements OnInit {
   title = 'solid-accountant';
   loggedIn: boolean = false;
+  collapse:boolean = true;
 
   constructor(private router: Router, private ngZone: NgZone) {
 

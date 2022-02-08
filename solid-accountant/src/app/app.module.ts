@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbTooltipModule, NgbCollapse, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { PaymentPointersComponent } from './pp/payment-pointers.component';
-import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginBtnComponent } from './components/login-btn/login-btn.component';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HomeComponent } from './home/home.component';
+import { PaymentPointersComponent } from './pp/payment-pointers.component';
+
 
 @NgModule({
   declarations: [
@@ -26,14 +25,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgbCollapseModule
   ],
-  providers: [
-    // {
-    //   provide: LocationStrategy,
-    //   useClass: HashLocationStrategy
-    // }
-  ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
