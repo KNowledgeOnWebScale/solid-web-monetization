@@ -24,4 +24,4 @@ The JS/TS library solid-wmp-client is published on [npm](https://www.npmjs.com/p
 
 ## Papers
 
-IDLab Ghent is preparing a demonstration paper and plans on publishing it soon. Once published, it will be referenced here.
+* Solid Web Monetization [[publication]](https://link.springer.com/chapter/10.1007/978-3-031-09917-5_40) [[preprint pdf]](https://github.com/KNowledgeOnWebScale/solid-web-monetization/raw/master/Solid_Web_Monetization.pdf)

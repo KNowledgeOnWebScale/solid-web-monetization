@@ -53,3 +53,7 @@ Prototypical Web Monetized Solid application.
 * [Demo](https://store.solid-wm.discover.ilabt.imec.be/)
 * [Documentation](https://knowledgeonwebscale.github.io/solid-web-monetization/microstore/)
 * [Source code](https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-microstore)
+
+### 4: Published paper
+
+* Solid Web Monetization [[publication]](https://link.springer.com/chapter/10.1007/978-3-031-09917-5_40) [[preprint pdf]](https://github.com/KNowledgeOnWebScale/solid-web-monetization/raw/master/Solid_Web_Monetization.pdf)
