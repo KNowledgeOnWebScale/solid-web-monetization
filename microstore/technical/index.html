@@ -1,0 +1,1303 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://knowledgeonwebscale.github.io/solid-web-monetization/microstore/technical/">
+      
+      <link rel="icon" href="../../assets/solid-emblem.svg">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Technical - Solid Web Monetization Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#solid-microstore-technical" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Solid Web Monetization Docs" class="md-header__button md-logo" aria-label="Solid Web Monetization Docs" data-md-component="logo">
+      
+  <img src="../../assets/solid-emblem.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Solid Web Monetization Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Technical
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../demo/intro/" class="md-tabs__link">
+        Demo
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../accountant/" class="md-tabs__link md-tabs__link--active">
+        Components
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../dissemination/" class="md-tabs__link">
+      Dissemination
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../spec.html" target="_blank"" class="md-tabs__link">
+      Specification
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Solid Web Monetization Docs" class="md-nav__button md-logo" aria-label="Solid Web Monetization Docs" data-md-component="logo">
+      
+  <img src="../../assets/solid-emblem.svg" alt="logo">
+
+    </a>
+    Solid Web Monetization Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Demo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Demo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Demo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../demo/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../demo/scenario/" class="md-nav__link">
+        Scenario
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Components
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Components" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Components
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../accountant/">Accountant</a>
+          
+            <label for="__nav_3_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Accountant" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Accountant
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accountant/practical/" class="md-nav__link">
+        Practical
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accountant/technical/" class="md-nav__link">
+        Technical
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">Microstore</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Microstore" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Microstore
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical/" class="md-nav__link">
+        Practical
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Technical
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Technical
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    Stack
+  </a>
+  
+    <nav class="md-nav" aria-label="Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#framework" class="md-nav__link">
+    Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-manager" class="md-nav__link">
+    Package manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-notes" class="md-nav__link">
+    Code notes
+  </a>
+  
+    <nav class="md-nav" aria-label="Code notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pages" class="md-nav__link">
+    Pages
+  </a>
+  
+    <nav class="md-nav" aria-label="Pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-page" class="md-nav__link">
+    About page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paywall-page" class="md-nav__link">
+    Paywall page
+  </a>
+  
+    <nav class="md-nav" aria-label="Paywall page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    constructor(...)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlock" class="md-nav__link">
+    unlock()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ngondestroy" class="md-nav__link">
+    ngOnDestroy()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixed-content-page" class="md-nav__link">
+    Mixed content page
+  </a>
+  
+    <nav class="md-nav" aria-label="Mixed content page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_1" class="md-nav__link">
+    constructor(...)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ngoninit" class="md-nav__link">
+    ngOnInit()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ngondestroy_1" class="md-nav__link">
+    ngOnDestroy()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-components" class="md-nav__link">
+    Other components
+  </a>
+  
+    <nav class="md-nav" aria-label="Other components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigation-component" class="md-nav__link">
+    Navigation component
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#micropayment-counter" class="md-nav__link">
+    Micropayment counter
+  </a>
+  
+    <nav class="md-nav" aria-label="Micropayment counter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_2" class="md-nav__link">
+    constructor()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-service" class="md-nav__link">
+    Auth service
+  </a>
+  
+    <nav class="md-nav" aria-label="Auth service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handleincomingcallback" class="md-nav__link">
+    handleIncomingCallback()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    login()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-property" class="md-nav__link">
+    fetch property
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-service" class="md-nav__link">
+    Image service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solid-service" class="md-nav__link">
+    Solid service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wmp-service" class="md-nav__link">
+    WMP service
+  </a>
+  
+    <nav class="md-nav" aria-label="WMP service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_3" class="md-nav__link">
+    constructor(...)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setupwmpayment" class="md-nav__link">
+    setupWMPayment(...)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closemonetizationstream" class="md-nav__link">
+    closeMonetizationStream()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-routing" class="md-nav__link">
+    App routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webid-profile" class="md-nav__link">
+    WebID Profile
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../wmp/">Web Monetization Provider</a>
+          
+            <label for="__nav_3_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Web Monetization Provider" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Web Monetization Provider
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wmp/practical/" class="md-nav__link">
+        Practical
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wmp/technical/" class="md-nav__link">
+        Technical
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wmp/client/" class="md-nav__link">
+        Client Lib
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dissemination/" class="md-nav__link">
+        Dissemination
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spec.html" target="_blank"" class="md-nav__link">
+        Specification
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="solid-microstore-technical">Solid Microstore - Technical<a class="headerlink" href="#solid-microstore-technical" title="Permanent link">&para;</a></h1>
+<p>This information is meant for developers looking at the code of the Microstore application.</p>
+<h2 id="stack">Stack<a class="headerlink" href="#stack" title="Permanent link">&para;</a></h2>
+<h3 id="framework">Framework<a class="headerlink" href="#framework" title="Permanent link">&para;</a></h3>
+<p>The application is written in <a href="https://angular.io">Angular 13.x.x</a> and thus in TypeScript. It is written as a browser application.</p>
+<h3 id="package-manager">Package manager<a class="headerlink" href="#package-manager" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://yarnpkg.com/">yarn package manager</a> was used. It behaves very similar to <a href="https://docs.npmjs.com/cli/v8">npm</a> but is a bit faster and more modern in use.</p>
+<p>To install all libraries and build the code: run <code>yarn</code> from the project folder <code>/solid-microstore</code>.</p>
+<p>To run the code in a development server: execute <code>yarn start</code> from the project folder <code>/solid-microstore</code>.</p>
+<h3 id="libraries">Libraries<a class="headerlink" href="#libraries" title="Permanent link">&para;</a></h3>
+<p>The noteworthy libraries used and the reason for doing so are listed below:</p>
+<table>
+<thead>
+<tr>
+<th>library</th>
+<th>reason</th>
+<th>npm link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n3</td>
+<td>Implementation of the <abbr title="Resource Description Framework">RDF</abbr>.js low-level specification that lets you handle <abbr title="Resource Description Framework">RDF</abbr>.</td>
+<td><a href="https://www.npmjs.com/package/n3">https://www.npmjs.com/package/n3</a></td>
+</tr>
+<tr>
+<td>@inrupt/solid-client-authn-browser</td>
+<td>Authenticate web apps (in the browser) with Solid identity servers.</td>
+<td><a href="https://www.npmjs.com/package/@inrupt/solid-client-authn-browser">https://www.npmjs.com/package/@inrupt/solid-client-authn-browser</a></td>
+</tr>
+<tr>
+<td>@inrupt/vocab-common-rdf</td>
+<td>Bundle of common <abbr title="Resource Description Framework">RDF</abbr> vocabularies.</td>
+<td><a href="https://www.npmjs.com/package/@inrupt/vocab-common-rdf">https://www.npmjs.com/package/@inrupt/vocab-common-rdf</a></td>
+</tr>
+<tr>
+<td>sockjs-client</td>
+<td>Counterpart of SockJS used on the server. it provides a WebSocket-like object.</td>
+<td><a href="https://www.npmjs.com/package/sockjs-client">https://www.npmjs.com/package/sockjs-client</a></td>
+</tr>
+<tr>
+<td>solid-wmp-client</td>
+<td>Handles communication with a server component implementing the proposed <a href="/solid-web-monetization/spec.html"><abbr title="Web Monetization Provider">WMP</abbr> specification</a></td>
+<td><a href="https://www.npmjs.com/package/solid-wmp-client">https://www.npmjs.com/package/solid-wmp-client</a></td>
+</tr>
+<tr>
+<td>web-monetization-polyfill</td>
+<td>Polyfill the <a href="https://webmonetization.org/docs/api">Web Monetization JavaScript API</a> on document.monetization, required until it is provided by browsers</td>
+<td><a href="https://www.npmjs.com/package/web-monetization-polyfill">https://www.npmjs.com/package/web-monetization-polyfill</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="code-notes">Code notes<a class="headerlink" href="#code-notes" title="Permanent link">&para;</a></h2>
+<h3 id="pages">Pages<a class="headerlink" href="#pages" title="Permanent link">&para;</a></h3>
+<p>Angular works with components. Each subpage is a <a href="https://angular.io/api/core/Component">Component</a>. </p>
+<p>Important for this demonstrator is that where possible, the standard <a href="https://webmonetization.org/docs/api">Web Monetization Javascript API</a> was used. Typically this amounts to registering event listeners to the <code>document.monetization</code> object and reacting to the fired events.</p>
+<p>Anything else noteworthy will be explained per page.</p>
+<h4 id="about-page">About page<a class="headerlink" href="#about-page" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18H4V8h16m0-2h-8l-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"/></svg></span> <code>/src/app/about</code></p>
+</div>
+<p>Nothing special happens on this page.</p>
+<h4 id="paywall-page">Paywall page<a class="headerlink" href="#paywall-page" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18H4V8h16m0-2h-8l-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"/></svg></span> <code>/src/app/paywall</code></p>
+</div>
+<h5 id="constructor">constructor(...)<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h5>
+<p>On creation of this page, eventlisteners are added for all four <a href="https://webmonetization.org/docs/api/#browser-events">MonetizationEvents</a>, to not miss any events that are fired early on. The listeners manage the display of the paywall overlay.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">constructor</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Setup listeners</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationstart&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onStart</span><span class="p">(</span><span class="nx">evt</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationprogress&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onProgress</span><span class="p">(</span><span class="nx">evt</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationstop&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onStop</span><span class="p">(</span><span class="nx">evt</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationpending&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onPending</span><span class="p">(</span><span class="nx">evt</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h5 id="unlock">unlock()<a class="headerlink" href="#unlock" title="Permanent link">&para;</a></h5>
+<p>The page starts with a locked paywall overlay that can be unlocked only when the user is logged in. For that the <code>loggedIn</code> property of the <a href="#auth-service">Auth service</a> is checked. If that unlock button is clicked, the <code>unlock()</code> method is called.</p>
+<p>This will first call the <a href="#wmp-service"><abbr title="Web Monetization Provider">WMP</abbr> service</a> to check whether monetization is supported. If so, the <a href="#solid-service">Solid service</a> is called to fetch the stored <abbr title="Web Monetization Provider">WMP</abbr> form the user's <a href="#webid-profile">WebID</a>. The URL of the <abbr title="Web Monetization Provider">WMP</abbr> is then passed on to the <a href="#wmp-service"><abbr title="Web Monetization Provider">WMP</abbr> service</a> to setup the payment.</p>
+<h5 id="ngondestroy">ngOnDestroy()<a class="headerlink" href="#ngondestroy" title="Permanent link">&para;</a></h5>
+<p>There is an <code>ngOnDestroy()</code> method, this <a href="https://angular.io/guide/lifecycle-hooks">lifecycle hook</a> gets called by the angular framework when the component is destroyed. In our case, since it is a full page, this happens when the user routes to another page. The code here calls the <a href="#wmp-service"><abbr title="Web Monetization Provider">WMP</abbr> service</a> to close the current (if any) monetization stream.</p>
+<h4 id="mixed-content-page">Mixed content page<a class="headerlink" href="#mixed-content-page" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18H4V8h16m0-2h-8l-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"/></svg></span> <code>/src/app/mix</code></p>
+</div>
+<h5 id="constructor_1">constructor(...)<a class="headerlink" href="#constructor_1" title="Permanent link">&para;</a></h5>
+<p>On creation of this page, eventlisteners are added for two <a href="https://webmonetization.org/docs/api/#browser-events">MonetizationEvents</a>, to not miss any events that are fired early on. The listeners manage the display of the LOCKED labels.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">constructor</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="c1">// Setup listeners</span><span class="w"></span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationstart&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationstop&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h5 id="ngoninit">ngOnInit()<a class="headerlink" href="#ngoninit" title="Permanent link">&para;</a></h5>
+<p>This <a href="https://angular.io/guide/lifecycle-hooks">lifecycle hook</a> is called upon initialization of the page by the angular framework. Here two things happen:</p>
+<ol>
+<li>The <a href="#image-service">Image service</a> is being called to generate 100 random images.</li>
+<li>
+<p>We subscribe to the <code>statusChanged$</code> <a href="https://rxjs.dev/guide/subject">Subject</a> property of the <a href="#auth-service">Auth service</a> to do the following once the user is logged in:</p>
+<ul>
+<li>Request the <a href="#solid-service">Solid service</a> to fetch the <abbr title="Web Monetization Provider">WMP</abbr> URL from the <a href="#webid-profile">WebID Profile</a> document.</li>
+<li>Call the <a href="#wmp-service"><abbr title="Web Monetization Provider">WMP</abbr> service</a> to set up the payment using that URL.</li>
+</ul>
+</li>
+</ol>
+<h5 id="ngondestroy_1">ngOnDestroy()<a class="headerlink" href="#ngondestroy_1" title="Permanent link">&para;</a></h5>
+<p>There is an <code>ngOnDestroy()</code> method, this <a href="https://angular.io/guide/lifecycle-hooks">lifecycle hook</a> gets called by the angular framework when the component is destroyed. In our case, since it is a full page, this happens when the user routes to another page. The code here calls the <a href="#wmp-service"><abbr title="Web Monetization Provider">WMP</abbr> service</a> to close the current (if any) monetization stream.</p>
+<h3 id="other-components">Other components<a class="headerlink" href="#other-components" title="Permanent link">&para;</a></h3>
+<p>The leftover components are used as custom HTML Elements in the HTML. A component has HTML, CSS and code (typescript) associated with it. You can use a component in HTML by using an HTML tag to refer to it.</p>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- Example tag --&gt;</span>
+<span class="p">&lt;</span><span class="nt">app-login-btn</span> <span class="err">[</span><span class="na">provider</span><span class="err">]=&quot;</span><span class="na">p</span><span class="err">&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">app-login-btn</span><span class="p">&gt;</span>
+</code></pre></div>
+<h4 id="navigation-component">Navigation component<a class="headerlink" href="#navigation-component" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18H4V8h16m0-2h-8l-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"/></svg></span> <code>/src/app/components/navigation</code></p>
+</div>
+<p>This component just encapsulates the navigation bar on top. It provides a login butten and offloads the <code>login()</code> and <code>logout()</code> actions to the <a href="#auth-service">Auth service</a>.</p>
+<h4 id="micropayment-counter">Micropayment counter<a class="headerlink" href="#micropayment-counter" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18H4V8h16m0-2h-8l-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"/></svg></span> <code>/src/app/components/counter</code></p>
+</div>
+<p>This component encapsulates the logic to view the progress and status of the micropayments.</p>
+<h5 id="constructor_2">constructor()<a class="headerlink" href="#constructor_2" title="Permanent link">&para;</a></h5>
+<p>On creation of this component, eventlisteners are added for all four <a href="https://webmonetization.org/docs/api/#browser-events">MonetizationEvents</a>, to not miss any events that are fired early on. The listeners manage the update of the counter view.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Setup listeners</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationstart&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onStart</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationprogress&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onProgress</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationstop&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onStop</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">monetization</span><span class="o">?</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;monetizationpending&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">onPending</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>The <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/tree/master/solid-microstore/src/app/components/counter">code itself</a> is well enough documented to figure out how this counter works.</p>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<p><a href="https://angular.io/guide/singleton-services">Services</a> are singleton instances that are <a href="https://angular.io/guide/architecture-services">dependency injected</a> into the components that list them as argument of their constructors.</p>
+<h4 id="auth-service">Auth service<a class="headerlink" href="#auth-service" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6m4 18H6V4h7v5h5v11Z"/></svg></span> <code>/src/app/services/auth.service.ts</code></p>
+</div>
+<p>This service is mainly a wrapper around the <a href="https://www.npmjs.com/package/@inrupt/solid-client-authn-browser">@inrupt/solid-client-authn-browser</a> library. </p>
+<h5 id="handleincomingcallback">handleIncomingCallback()<a class="headerlink" href="#handleincomingcallback" title="Permanent link">&para;</a></h5>
+<p>This method calls two functions from the auth library that should be called when the browser is redirected to the application's callback URI. This method is called from inside the <code>app.component.ts</code> <code>ngOnInit()</code> hook, which is <a href="https://angular.io/guide/lifecycle-hooks">one of the first hook</a> to be executed when the application loads.</p>
+<h5 id="login">login()<a class="headerlink" href="#login" title="Permanent link">&para;</a></h5>
+<p>This calls the auth library's <code>login()</code> method but with a fixed value of <code>http://solidcommunity.net</code>.</p>
+<h5 id="fetch-property">fetch property<a class="headerlink" href="#fetch-property" title="Permanent link">&para;</a></h5>
+<p>This returns the custom <code>fetch()</code> function of the auth library. Their security architecture does not allow for the access token to be exposed, that's why a custom fetch function is exposed that fills in the required <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-04#section-7.1"><code>Authorization</code></a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-04#section-4.1"><code>DPoP</code></a> headers for you.</p>
+<h4 id="image-service">Image service<a class="headerlink" href="#image-service" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6m4 18H6V4h7v5h5v11Z"/></svg></span> <code>/src/app/services/image.service.ts</code></p>
+</div>
+<p>This is a simple service that is able to consistently generate multiple generated images with randomly picked colors, interleaved with some <em>premium</em> images.</p>
+<h4 id="solid-service">Solid service<a class="headerlink" href="#solid-service" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6m4 18H6V4h7v5h5v11Z"/></svg></span> <code>/src/app/services/solid.service.ts</code></p>
+</div>
+<p>This service contains the code to read from the WebID document on the solid pod of the user. It mainly uses the <a href="https://www.npmjs.com/package/n3">n3</a> library to read the Solid <a href="#webid-profile">WebID profile</a> and fetch the proper triples.</p>
+<p>The <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization/blob/master/solid-microstore/src/app/services/solid.service.ts">code</a> itself is documented.</p>
+<h4 id="wmp-service"><abbr title="Web Monetization Provider">WMP</abbr> service<a class="headerlink" href="#wmp-service" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6m4 18H6V4h7v5h5v11Z"/></svg></span> <code>/src/app/services/wmp.service.ts</code></p>
+</div>
+<p>This service encapsulates the <a href="https://www.npmjs.com/package/solid-wmp-client">solid-wmp-client</a> library.</p>
+<h5 id="constructor_3">constructor(...)<a class="headerlink" href="#constructor_3" title="Permanent link">&para;</a></h5>
+<p>The constructor instantiates a <a href="https://knowledgeonwebscale.github.io/solid-wmp-client/classes/WmpClient.html">WmpClient</a> instance, assigns a variable <code>wmHandler</code> to the <a href="https://knowledgeonwebscale.github.io/solid-wmp-client/classes/MonetizationHandler.html">MonetizationHandler</a> helper object and assigns a variable <code>fetch</code> to the custom fetch function from the <a href="#auth-service">Auth service</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">constructor</span><span class="p">(</span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="kt">AuthService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">wmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WmpClient</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">wmHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">wmp</span><span class="p">.</span><span class="nx">getMonetizationHandler</span><span class="p">();</span><span class="w">    </span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">auth</span><span class="p">.</span><span class="nx">fetch</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h5 id="setupwmpayment">setupWMPayment(...)<a class="headerlink" href="#setupwmpayment" title="Permanent link">&para;</a></h5>
+<p>This method instructs the wmp client instance to setup the payment from the <abbr title="Web Monetization Provider">WMP</abbr> on the given <code>wmpUrl</code> using the given <code>fetch</code> function.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>On the <a href="https://knowledgeonwebscale.github.io/solid-wmp-client">API docs</a> of the <a href="https://www.npmjs.com/package/solid-wmp-client">solid-wmp-client</a> library you can read more about <a href="https://knowledgeonwebscale.github.io/solid-wmp-client/#setuppaymentwmpuri-string-fetchfunction-url-requestinfo-init-requestinit--undefined-gt-promise-void">how this works</a>.</p>
+</div>
+<h5 id="closemonetizationstream">closeMonetizationStream()<a class="headerlink" href="#closemonetizationstream" title="Permanent link">&para;</a></h5>
+<p>This methode will instruct the wmp client instance to close any open payment stream.</p>
+<h3 id="app-routing">App routing<a class="headerlink" href="#app-routing" title="Permanent link">&para;</a></h3>
+<p>All app routing paths can be found in <code>/src/app/app-routing.modules.ts</code></p>
+<h2 id="webid-profile">WebID Profile<a class="headerlink" href="#webid-profile" title="Permanent link">&para;</a></h2>
+<p>The WebID profile is stored in <abbr title="Resource Description Framework">RDF</abbr>. That means that data read from that profile should be queried as <abbr title="Resource Description Framework">RDF</abbr>. To query a WebID Profile document for a <abbr title="Web Monetization Provider">WMP</abbr> url, this tuple is being searched.</p>
+<div class="highlight"><span class="filename">https://[my-username].solidcommunity.net/profile/card#me</span><pre><span></span><code><span class="k">@prefix</span><span class="w"> </span><span class="nn">:</span><span class="w"> </span><span class="nv">&lt;#&gt;</span><span class="p">.</span>
+<span class="p">...</span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">ns0:</span><span class="w"> </span><span class="nv">&lt;https://webmonetization.org/ns#&gt;</span><span class="p">.</span>
+
+<span class="p">...</span>
+
+<span class="c">#me </span>
+    <span class="p">...</span>
+    <span class="nn">ns0</span><span class="p">:</span><span class="nt">hasProvider</span> <span class="p">:</span><span class="nt">me-webmonetization-provider</span><span class="p">.</span>
+
+<span class="p">:</span><span class="nt">me-webmonetization-provider</span>
+    <span class="kt">a</span> <span class="nn">ns0</span><span class="p">:</span><span class="nt">Provider</span><span class="p">;</span>
+    <span class="nn">ns0</span><span class="p">:</span><span class="nt">apiUrl</span> <span class="s">&quot;http://wmp.localhost&quot;</span><span class="p">.</span>
+</code></pre></div>
+<p>The actual query is performed by the <a href="#solid-service">Solid service</a> library.</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../practical/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Practical" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Practical
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../wmp/" class="md-footer__link md-footer__link--next" aria-label="Next: Solid Web Monetization Provider" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Solid Web Monetization Provider
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/KNowledgeOnWebScale/solid-web-monetization" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.instant", "navigation.indexes", "toc.integrate", "navigation.top", "search", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+    
+  </body>
+</html>
